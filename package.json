@@ -10,7 +10,13 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@vue/eslint-config-airbnb": "^6.0.0",
+    "axios": "^0.26.1",
+    "element-plus": "^2.1.10",
     "pinia": "^2.0.13",
+    "sass": "^1.50.1",
+    "unplugin-auto-import": "^0.7.1",
+    "unplugin-vue-components": "^0.19.3",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14"
   },

@@ -1,0 +1,9 @@
+// Reset CSS
+@import './modules/reset.scss';
+
+//Core modules
+@import './modules/variables.scss';
+@import './modules/base.scss';
+@import './modules/typography.scss';
+@import './modules/animations.scss';
+@import './modules/layout.scss';

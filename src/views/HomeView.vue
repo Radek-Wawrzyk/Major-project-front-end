@@ -1,9 +1,10 @@
-<script setup lang="ts">
-import TheWelcome from '@/components/TheWelcome.vue'
-</script>
-
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <div>home</div>
+  <el-button class="m-4">Hello</el-button>
 </template>
+
+<style lang="scss">
+div {
+  color: $primary;
+}
+</style>
