@@ -19,7 +19,7 @@
       <div class="auth-details__form-field">
         <el-form-item label="First name" :error="errors.firstName">
           <el-input
-            v-model="login.firstName"
+            v-model="register.firstName"
             type="text"
             autocomplete="off"
             placeholder="John"
@@ -30,7 +30,7 @@
       <div class="auth-details__form-field">
         <el-form-item label="Last name" :error="errors.lastName">
           <el-input
-            v-model="login.lastName"
+            v-model="register.lastName"
             type="text"
             autocomplete="off"
             placeholder="Doe"
@@ -41,7 +41,7 @@
       <div class="auth-details__form-field">
         <el-form-item label="Email" :error="errors.email">
           <el-input
-            v-model="login.email"
+            v-model="register.email"
             type="text"
             autocomplete="off"
             placeholder="johnDoe@example.com"
@@ -52,7 +52,7 @@
       <div class="auth-details__form-field">
         <el-form-item label="Password" :error="errors.password">
           <el-input
-            v-model="login.password"
+            v-model="register.password"
             type="password"
             autocomplete="off"
             placeholder="Str@ngPassW@r1"
@@ -63,7 +63,7 @@
       <div class="auth-details__form-field">
         <el-form-item label="Phone" :error="errors.phone">
           <el-input
-            v-model="login.phone"
+            v-model="register.phone"
             type="number"
             autocomplete="off"
             placeholder="0704303204"
@@ -95,11 +95,11 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { string, object, boolean, number } from 'yup';
+import { string, object, number } from 'yup';
 import { useForm, useField } from 'vee-validate';
 import { useAuthStore } from '@/stores/auth';
 import { ElNotification } from 'element-plus';
-import type { AuthLogin, AuthRegister } from '@/types/Auth';
+import { AuthRegister } from '@/types/Auth';
 
 import AppLogo from '@/components/Global/AppLogo/AppLogo.vue';
 import { AxiosError } from 'axios';
@@ -112,7 +112,7 @@ export default defineComponent({
     const loading = ref<boolean>(false);
     const router: Router = useRouter();
   
-    const { values: login, handleSubmit, errors } = useForm({
+    const { values: register, handleSubmit, errors } = useForm({
       validationSchema: object({
         firstName: string().required().label('First name'),
         lastName: string().required().label('Last name'),
@@ -168,7 +168,7 @@ export default defineComponent({
     return {
       errors,
       onSubmit,
-      login,
+      register,
       loading,
     };
   },

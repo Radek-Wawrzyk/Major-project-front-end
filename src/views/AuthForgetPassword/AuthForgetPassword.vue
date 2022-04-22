@@ -19,7 +19,7 @@
       <div class="auth-details__form-field">
         <el-form-item label="Email" :error="errors.email">
           <el-input
-            v-model="login.email"
+            v-model="forgetPassword.email"
             type="text"
             autocomplete="off"
             placeholder="john@doe.com"
@@ -30,7 +30,7 @@
       <div class="auth-details__form-field">
         <el-form-item label="Repeat password" :error="errors.password">
           <el-input
-            v-model="login.password"
+            v-model="forgetPassword.password"
             type="password"
             autocomplete="off"
             placeholder="Str@ngPassW@r1"
@@ -42,7 +42,7 @@
       <div class="auth-details__form-field">
         <el-form-item label="Password" :error="errors.passwordConfirmation">
           <el-input
-            v-model="login.passwordConfirmation"
+            v-model="forgetPassword.passwordConfirmation"
             type="password"
             autocomplete="off"
             placeholder="Repeat Str@ngPassW@r1"
@@ -86,7 +86,7 @@ export default defineComponent({
     const loading = ref<boolean>(false);
     const router: Router = useRouter();
   
-    const { values: login, handleSubmit, errors } = useForm({
+    const { values: forgetPassword, handleSubmit, errors } = useForm({
       validationSchema: object({
         password: string().required().min(8).label('Password') as StringSchema<string>,
         email: string().required().email().label('Email') as StringSchema<string>,
@@ -136,7 +136,7 @@ export default defineComponent({
     return {
       errors,
       onSubmit,
-      login,
+      forgetPassword,
       loading,
     };
   },

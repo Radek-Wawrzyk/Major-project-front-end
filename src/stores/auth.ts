@@ -6,11 +6,11 @@ import { AuthForgetPassword, AuthLogin, AuthRegister, AuthResetPassword } from '
 export const useAuthStore = defineStore({
   id: 'auth',
   state: () => ({
-    user: null,
+    token: Cookies.get('token') || null,
   }),
   getters: {
     isAuthenticated: (state) => {
-      return !!state.user;
+      return !!state.token
     },
   },
   actions: {
@@ -21,8 +21,10 @@ export const useAuthStore = defineStore({
           password,
         });
         
-        // Set JWT cookie for authorization
-        if (rememberMe) Cookies.set('Token', response.data.access_token);
+        console.log(rememberMe)
+        // Set JWT cookie for authorization & save token to the state
+        if (rememberMe) Cookies.set('token', response.data.access_token);
+        this.token = response.data.access_token;
 
         return true;
       } catch (error) {
@@ -53,9 +55,13 @@ export const useAuthStore = defineStore({
       } catch (error) {
         throw (error);
       }
+    },
+    logout() {
+      this.token = null;
+      Cookies.remove('token');
     }
-  }
-})
+  },
+});
 
 if (import.meta.hot) {
   import.meta.hot.accept(acceptHMRUpdate(useAuthStore, import.meta.hot))

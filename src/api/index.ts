@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import Cookies from 'js-cookie';
+import { useAuthStore } from '@/stores/auth';
 
 const request: AxiosInstance = axios.create({
   baseURL: 'http://localhost:3000',
@@ -10,10 +10,12 @@ const request: AxiosInstance = axios.create({
 
 // Set HTTP header with token
 request.interceptors.request.use((config: AxiosRequestConfig) => {
-  if (Cookies.get('Token')) {
+  const authStore = useAuthStore();
+
+  if (authStore.isAuthenticated) {
     config.headers = {
       ...config.headers,
-      'Authorization': `Bearer ${Cookies.get('Token')}`,
+      'Authorization': `Bearer ${authStore.token}`,
     };
 
     return config;

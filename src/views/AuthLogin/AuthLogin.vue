@@ -43,6 +43,7 @@
           <el-checkbox
             label="Remember me"
             name="type"
+            v-model="login.rememberMe"
           />
 
           <router-link to="/auth/forgot-password" class="auth-details__form-link">
