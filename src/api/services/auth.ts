@@ -2,20 +2,25 @@ import request from '@/api/index';
 import type { AuthLogin, AuthRegister } from '@/types/Auth';
 
 export default {
-  login(payload: AuthLogin) {
+  login(loginDetails: AuthLogin) {
     return request.post('/auth/login', {
-      email: payload.email,
-      password: payload.password,
+      email: loginDetails.email,
+      password: loginDetails.password,
     });
   },
 
-  register(payload : AuthRegister) {
+  register(registerDetails : AuthRegister) {
+    // Necessary because despite input type number, the value is type string
+    // Therefore to not to mess with TS interfaces, there is a simply "hack" below
+    const stringPhone = registerDetails.phone.toString();
+    const numberPhone = parseInt(stringPhone);
+
     return request.post('/auth/register', {
-      first_name: payload.first_name,
-      last_name: payload.last_name,
-      email: payload.email,
-      password: payload.password,
-      phone: payload.phone,
+      first_name: registerDetails.firstName,
+      last_name: registerDetails.lastName,
+      email: registerDetails.email,
+      password: registerDetails.password,
+      phone: numberPhone,
     });
   },
 
@@ -25,9 +30,9 @@ export default {
     });
   },
 
-  resetPassword(payload: any) {
+  resetPassword(password: string) {
     return request.post('/auth/reset-password', {
-      password: payload.password,
+      password,
     });
   },
 }

@@ -29,9 +29,18 @@ export const useAuthStore = defineStore({
         throw (error);
       }
     },
+    async signUp(registerDetails : AuthRegister): Promise<boolean> {
+      try {
+        const response = await auth.register(registerDetails);
+
+        return true;
+      } catch (error) {
+        throw (error);
+      }
+    },
   }
 })
 
-// if (import.meta.hot) {
-//   import.meta.hot.accept(acceptHMRUpdate(useAuthStore, import.meta.hot))
-// }
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useAuthStore, import.meta.hot))
+}

@@ -136,8 +136,10 @@
 @media screen and (max-width: 576px) {
   .auth-page {
     &__header {
+      position: static;
       padding: 0 1rem;
       height: 56px;
+      margin: 0 0 32px 0;
 
       &-text, &-link {
         font-size: 14px;
@@ -147,5 +149,6 @@
 
   .auth-details {
     padding: 0 1rem;
+    height: auto;
   }
 }

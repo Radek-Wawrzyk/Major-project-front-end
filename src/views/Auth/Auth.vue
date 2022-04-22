@@ -62,7 +62,7 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { useRoute } from 'vue-router';
-import AppLogo from '../../components/Global/AppLogo/AppLogo.vue';
+import AppLogo from '@/components/Global/AppLogo/AppLogo.vue';
 
 export default defineComponent({
   components: { AppLogo },

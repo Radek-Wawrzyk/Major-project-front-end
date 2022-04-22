@@ -2,11 +2,11 @@
   <div class="auth-details">
     <header class="auth-details__header">
       <h2 class="auth-details__header-title">
-        Sign in to the FindYourFlat
+        Sign up to the FindYourFlat
       </h2>
 
       <p class="auth-details__header-text">
-        Welcome back! Enter your details below.
+        Please enter your details below.
       </p>
     </header>
 
@@ -16,6 +16,28 @@
       class="auth-details__form"
       @submit.prevent="onSubmit()"
     >
+      <div class="auth-details__form-field">
+        <el-form-item label="First name" :error="errors.firstName">
+          <el-input
+            v-model="login.firstName"
+            type="text"
+            autocomplete="off"
+            placeholder="John"
+          />
+        </el-form-item>
+      </div>
+
+      <div class="auth-details__form-field">
+        <el-form-item label="Last name" :error="errors.lastName">
+          <el-input
+            v-model="login.lastName"
+            type="text"
+            autocomplete="off"
+            placeholder="Doe"
+          />
+        </el-form-item>
+      </div>
+
       <div class="auth-details__form-field">
         <el-form-item label="Email" :error="errors.email">
           <el-input
@@ -39,15 +61,13 @@
       </div>
 
       <div class="auth-details__form-field">
-        <el-form-item class="auth-details__form-remember-me">
-          <el-checkbox
-            label="Remember me"
-            name="type"
+        <el-form-item label="Phone" :error="errors.phone">
+          <el-input
+            v-model="login.phone"
+            type="number"
+            autocomplete="off"
+            placeholder="0704303204"
           />
-
-          <router-link to="/auth/forgot-password" class="auth-details__form-link">
-            Forgot assword?
-          </router-link>
         </el-form-item>
       </div>
 
@@ -59,8 +79,14 @@
             class="auth-details__form-submit-button"
             :loading="loading"
           >
-            Login
+            Register
           </el-button>
+
+          <p class="auth-details__form-register-info">
+            By registering, I agree to
+            <a href="#" class="auth-details__form-link">Minimal Terms</a>
+            of Service and <a href="#" class="auth-details__form-link">Privacy Policy.</a>
+          </p>
         </el-form-item>
       </div>
     </el-form>
@@ -69,11 +95,11 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { string, object, boolean } from 'yup';
+import { string, object, boolean, number } from 'yup';
 import { useForm, useField } from 'vee-validate';
 import { useAuthStore } from '@/stores/auth';
 import { ElNotification } from 'element-plus';
-import type { AuthLogin } from '@/types/Auth';
+import type { AuthLogin, AuthRegister } from '@/types/Auth';
 
 import AppLogo from '@/components/Global/AppLogo/AppLogo.vue';
 import { AxiosError } from 'axios';
@@ -81,38 +107,52 @@ import { Router, useRouter } from 'vue-router';
 
 export default defineComponent({
   components: { AppLogo },
-  name: 'PageAuthLogin',
+  name: 'PageAuthRegister',
   setup() {
     const loading = ref<boolean>(false);
     const router: Router = useRouter();
   
     const { values: login, handleSubmit, errors } = useForm({
       validationSchema: object({
+        firstName: string().required().label('First name'),
+        lastName: string().required().label('Last name'),
+        phone: number().required().label('Phone number'),
         email: string().required().email().label('Email'),
         password: string().required().min(8).label('Password'),
-        rememberMe: boolean(),
       }),
       initialValues: {
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
-        rememberMe: false,
+        phone: undefined,
       },
     });
 
+    useField('firstName');
+    useField('lastName');
     useField('email');
     useField('password');
+    useField('phone');
 
     const authStore = useAuthStore();
-    const redirectHome = (): void => {
-      router.push('/dashboard');
+    const redirectLogin = (): void => {
+      router.push('/auth/login');
     }
 
-    const onSubmit = handleSubmit(async ({ email, password, rememberMe }) => {
+    const onSubmit = handleSubmit(async (registerDetails) => {
       loading.value = true;
 
       try {
-        const response: boolean = await authStore.signIn({ email, password, rememberMe } as AuthLogin);
-        if (response) redirectHome()
+        const response: boolean = await authStore.signUp(registerDetails as AuthRegister);
+        if (response) {
+          redirectLogin();
+          ElNotification({
+            title: 'Success',
+            type: 'success',
+            message: `You have succesfully created your account!`,
+          });
+        }
       } catch (error: AxiosError | any) {
         ElNotification({
           title: `Error: ${error.response.data ? error.response.data.error : ''}`,

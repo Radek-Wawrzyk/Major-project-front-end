@@ -19,11 +19,11 @@ const router = createRouter({
           name: 'login',
           component: () => import('@/views/AuthLogin/AuthLogin.vue'),
         },
-        // {
-        //   path: '/auth/register',
-        //   name: 'Register',
-        //   component: () => import(/* webpackChunkName: "register-page" */ '../views/Auth/SubViews/Register.vue'),
-        // },
+        {
+          path: '/auth/register',
+          name: 'register',
+          component: () => import('@/views/AuthRegister/AuthRegister.vue'),
+        },
         // {
         //   path: '/auth/forgot-password',
         //   name: 'ForgotPassword',
