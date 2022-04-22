@@ -1,11 +1,12 @@
 body {
   .el-input {
     &__suffix {
-      display: none ;
+      .el-input__validateIcon {
+        display: none;
+      }
     }
   }
 }
-
 
 .el-form {
   &-item {

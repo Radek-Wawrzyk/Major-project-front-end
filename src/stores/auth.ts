@@ -1,7 +1,7 @@
 import auth from '@/api/services/auth';
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import Cookies from 'js-cookie'
-import { AuthLogin, AuthRegister } from '@/types/Auth';
+import { AuthForgetPassword, AuthLogin, AuthRegister, AuthResetPassword } from '@/types/Auth';
 
 export const useAuthStore = defineStore({
   id: 'auth',
@@ -31,13 +31,29 @@ export const useAuthStore = defineStore({
     },
     async signUp(registerDetails : AuthRegister): Promise<boolean> {
       try {
-        const response = await auth.register(registerDetails);
+        await auth.register(registerDetails);
 
         return true;
       } catch (error) {
         throw (error);
       }
     },
+    async forgetPassword(forgetPasswordDetails: AuthForgetPassword): Promise<boolean> {
+      try {
+        await auth.forgotPassword(forgetPasswordDetails);
+        return true;
+      } catch (error) {
+        throw (error);
+      }
+    },
+    async resetPassword(resetPasswordDetails: AuthResetPassword): Promise<boolean> {
+      try {
+        await auth.resetPassword(resetPasswordDetails);
+        return true;
+      } catch (error) {
+        throw (error);
+      }
+    }
   }
 })
 

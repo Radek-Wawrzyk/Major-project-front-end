@@ -1,5 +1,5 @@
 import request from '@/api/index';
-import type { AuthLogin, AuthRegister } from '@/types/Auth';
+import type { AuthForgetPassword, AuthLogin, AuthRegister, AuthResetPassword } from '@/types/Auth';
 
 export default {
   login(loginDetails: AuthLogin) {
@@ -24,15 +24,17 @@ export default {
     });
   },
 
-  forgotPassword(email: string) {
+  forgotPassword(forgetPasswordDetails: AuthForgetPassword) {
     return request.post('/auth/forgot-password', {
-      email,
+      email: forgetPasswordDetails.email,
+      password: forgetPasswordDetails.password,
     });
   },
 
-  resetPassword(password: string) {
+  resetPassword(resetPasswordDetails: AuthResetPassword) {
     return request.post('/auth/reset-password', {
-      password,
+      password: resetPasswordDetails.password,
+      token: resetPasswordDetails.token,
     });
   },
 }

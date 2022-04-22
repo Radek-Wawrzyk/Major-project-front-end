@@ -12,7 +12,19 @@ interface AuthRegister {
   phone: number;
 }
 
+interface AuthForgetPassword {
+  email: string;
+  password: string;
+}
+
+interface AuthResetPassword {
+  password: string;
+  token: string;
+}
+
 export {
   AuthLogin,
   AuthRegister,
+  AuthForgetPassword,
+  AuthResetPassword,
 };
