@@ -1,18 +1,6 @@
 .auth-page {
   position: relative;
-
-  &__header {
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 96px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
-  }
+  margin: -64px 0 0 0;
 
   &-content {
     display: flex;
@@ -135,6 +123,8 @@
 
 @media screen and (max-width: 576px) {
   .auth-page {
+    margin: 0;
+
     &__header {
       position: static;
       padding: 0 1rem;

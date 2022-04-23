@@ -2,6 +2,14 @@
   position: relative;
 }
 
+.app-page {
+  position: relative;
+
+  &__main {
+    padding: calc(64px + 32px) 0 0 0;
+  }
+}
+
 .container {
   position: relative;
   width: 100%;
@@ -11,5 +19,11 @@
 
   &--full {
     max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
   }
 }

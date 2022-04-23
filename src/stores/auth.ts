@@ -57,15 +57,18 @@ export const useAuthStore = defineStore({
         throw (error);
       }
     },
-    checkSession() {
-      if (!this.token) return;
+    checkSession(): boolean {
+      if (!this.token) return false;
 
       const decodedToken: AuthTokenizedUser = jwtDecode(this.token);
       const currentTimestamp: number = Math.floor(Date.now() / 1000);
 
       if (currentTimestamp >= decodedToken.exp) {
         this.logout();
+        return false;
       }
+
+      return true;
     },
     logout(): void {
       this.token = null;
