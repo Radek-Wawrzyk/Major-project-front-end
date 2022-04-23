@@ -3,6 +3,7 @@ import { defineStore, acceptHMRUpdate } from 'pinia'
 import Cookies from 'js-cookie'
 import jwtDecode from 'jwt-decode';
 import { AuthForgetPassword, AuthLogin, AuthRegister, AuthResetPassword, AuthTokenizedUser } from '@/types/Auth';
+import router from '@/router';
 
 export const useAuthStore = defineStore({
   id: 'auth',
@@ -73,6 +74,7 @@ export const useAuthStore = defineStore({
     logout(): void {
       this.token = null;
       Cookies.remove('token');
+      router.push('/');
     }
   },
 });

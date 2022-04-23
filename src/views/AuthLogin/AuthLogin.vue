@@ -92,6 +92,7 @@ import type { AuthLogin } from '@/types/Auth';
 import AppLogo from '@/components/Global/AppLogo/AppLogo.vue';
 import { AxiosError } from 'axios';
 import { Router, useRouter } from 'vue-router';
+import { useUserStore } from '@/stores/user';
 
 export default defineComponent({
   components: { AppLogo },
@@ -117,6 +118,7 @@ export default defineComponent({
     useField('password');
 
     const authStore = useAuthStore();
+    const userStore = useUserStore();
     const redirectHome = (): void => {
       router.push('/dashboard');
     }
@@ -126,7 +128,10 @@ export default defineComponent({
 
       try {
         const response: boolean = await authStore.signIn({ email, password, rememberMe } as AuthLogin);
-        if (response) redirectHome()
+        if (response) {
+          await userStore.getMe();
+          redirectHome()
+        } 
       } catch (error: AxiosError | any) {
         ElNotification({
           title: `Error: ${error.response.data ? error.response.data.error : ''}`,
