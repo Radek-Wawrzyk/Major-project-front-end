@@ -1,7 +1,8 @@
 import auth from '@/api/services/auth';
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import Cookies from 'js-cookie'
-import { AuthForgetPassword, AuthLogin, AuthRegister, AuthResetPassword } from '@/types/Auth';
+import jwtDecode from 'jwt-decode';
+import { AuthForgetPassword, AuthLogin, AuthRegister, AuthResetPassword, AuthTokenizedUser } from '@/types/Auth';
 
 export const useAuthStore = defineStore({
   id: 'auth',
@@ -56,7 +57,17 @@ export const useAuthStore = defineStore({
         throw (error);
       }
     },
-    logout() {
+    checkSession() {
+      if (!this.token) return;
+
+      const decodedToken: AuthTokenizedUser = jwtDecode(this.token);
+      const currentTimestamp: number = Math.floor(Date.now() / 1000);
+
+      if (currentTimestamp >= decodedToken.exp) {
+        this.logout();
+      }
+    },
+    logout(): void {
       this.token = null;
       Cookies.remove('token');
     }

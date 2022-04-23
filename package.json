@@ -15,6 +15,7 @@
     "axios": "^0.26.1",
     "element-plus": "^2.1.10",
     "js-cookie": "^3.0.1",
+    "jwt-decode": "^3.1.2",
     "pinia": "^2.0.13",
     "sass": "^1.50.1",
     "unplugin-auto-import": "^0.7.1",

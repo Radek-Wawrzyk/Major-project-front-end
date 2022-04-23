@@ -65,6 +65,7 @@ router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
 
   if (authStore.isAuthenticated) {
+    // If user is logged, he should not be able to navigate to auth pages
     if (to.meta.isAuthPage) {
       next(false);
       return;
