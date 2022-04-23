@@ -1,0 +1,20 @@
+*, input, textarea, button, a, li {
+  font-family: 'Roboto', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
+  transition: opacity $time;
+
+  &:hover, &:focus {
+    opacity: 0.7;
+  }
+}

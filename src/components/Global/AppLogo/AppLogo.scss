@@ -1,0 +1,15 @@
+.app-logo {
+  font-size: 18px;
+  display: inline-block;
+  color: $text-color--dark;
+  
+  &__strong {
+    font-weight: bold;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .app-logo {
+    font-size: 16px;
+  }
+}

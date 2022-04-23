@@ -3,13 +3,28 @@
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
+    "skipLibCheck": true,
+    "target": "esnext",
+    "module": "esnext",
+    "importHelpers": true,
+    "importsNotUsedAsValues": "remove",
+    "preserveValueImports": false,
+    "useUnknownInCatchVariables": false,
     "composite": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
     "types": [
-      "element-plus/global"
+      "element-plus/global",
+      "@types/js-cookie"
     ],
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
   },
 }
