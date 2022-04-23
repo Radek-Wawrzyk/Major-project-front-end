@@ -1,46 +1,5 @@
 <template>
   <div class="auth-page">
-    <header class="auth-page__header">
-      <app-logo class="auth-page__header-logo" />
-
-      <p class="auth-page__header-text" v-if="currentPage === 'login'">
-        Don't have an account?
-
-        <router-link
-          class="auth-page__header-link"
-          to="/auth/register"
-          title="Go to the register page"
-          aria-label="Go to the register page"
-        >
-          Get started
-        </router-link>
-      </p>
-
-      <p class="auth-page__header-text" v-else-if="currentPage === 'register'">
-        Already have an account?
-
-        <router-link
-          class="auth-page__header-link"
-          to="/auth/login"
-          title="Go to the login page"
-          aria-label="Go to the login page"
-        >
-          Login
-        </router-link>
-      </p>
-
-      <p class="auth-page__header-text" v-else>
-        <router-link
-          class="auth-page__header-link"
-          to="/auth/login"
-          title="Go to the login page"
-          aria-label="Go to the login page"
-        >
-          Back to the login page
-        </router-link>
-      </p>
-    </header>
-
     <div class="auth-page-content">
       <aside class="auth-page-content__sidebar">
         <img

@@ -8,6 +8,19 @@
       <p class="auth-details__header-text">
         Welcome back! Enter your details below.
       </p>
+
+      <p class="auth-details__header-text">
+        Don't have an account?
+
+        <router-link
+          class="auth-page__header-link"
+          to="/auth/register"
+          title="Go to the register page"
+          aria-label="Go to the register page"
+        >
+          Get started
+        </router-link>
+      </p>
     </header>
 
     <el-form

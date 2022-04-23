@@ -1,24 +1,54 @@
 <template>
   <div class="app-page">
-    <router-view v-slot="{ Component }">
-      <transition name="page-fade" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
+    <app-navigation />
+
+    <main class="app-page__main">
+      <router-view v-slot="{ Component }">
+        <transition name="page-fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+    </main>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { useAuthStore } from './stores/auth';
+import { defineComponent, ref } from 'vue';
+import { useAuthStore } from '@/stores/auth';
+import AppNavigation from '@/components/Global/AppNavigation/AppNavigation.vue';
+import { useUserStore } from '@/stores/user';
+import { ElNotification } from 'element-plus'
 
 export default defineComponent({
-  name: 'App',
+  name: "App",
+  components: { AppNavigation },
   setup() {
     const authStore = useAuthStore();
+    const userStore = useUserStore();
+    const loading = ref<boolean>(false);
 
-    // Check JWT exp session
-    authStore.checkSession();
+    const getUserDetails = async (): Promise<void> => {
+      loading.value = true;
+
+      try {
+        await userStore.getMe();
+      } catch (error) {
+        ElNotification({
+          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          type: 'error',
+          message: `${error.response.data ? error.response.data.message : error}`,
+        });
+      } finally {
+        loading.value = false;
+      }
+    }
+
+    if (authStore.isAuthenticated) {
+      // Check JWT exp session, if valid getUser
+      if (authStore.checkSession()) {
+        getUserDetails();
+      } 
+    }
   },
 });
 

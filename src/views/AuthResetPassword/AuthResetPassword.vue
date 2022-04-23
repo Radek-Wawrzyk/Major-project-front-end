@@ -8,6 +8,17 @@
       <p class="auth-details__header-text">
         Please enter your new password!
       </p>
+
+      <p class="auth-details__header-text">
+        <router-link
+          class="auth-page__header-link"
+          to="/auth/login"
+          title="Go to the login page"
+          aria-label="Go to the login page"
+        >
+          Back to the login page
+        </router-link>
+      </p>
     </header>
 
     <el-form
@@ -17,7 +28,7 @@
       @submit.prevent="onSubmit()"
     >
       <div class="auth-details__form-field">
-        <el-form-item label="Repeat password" :error="errors.password">
+        <el-form-item label="Password" :error="errors.password">
           <el-input
             v-model="resetPassword.password"
             type="password"
@@ -29,7 +40,7 @@
       </div>
 
       <div class="auth-details__form-field">
-        <el-form-item label="Password" :error="errors.passwordConfirmation">
+        <el-form-item label="Repeat password" :error="errors.passwordConfirmation">
           <el-input
             v-model="resetPassword.passwordConfirmation"
             type="password"
