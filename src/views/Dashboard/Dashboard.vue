@@ -1,5 +1,6 @@
 <template>
   <div>Dashboard page</div>
+  <router-link to="/auth">auth</router-link>
 </template>
 
 <script lang="ts">import request from "@/api";
