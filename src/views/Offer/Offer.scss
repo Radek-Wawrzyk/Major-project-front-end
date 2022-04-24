@@ -8,11 +8,16 @@
 
   &__inner {
     display: flex;
+    align-items: flex-start;
 
     &-form {
       width: 35%;
       position: sticky;
       top: 80px;
+    }
+
+    &-gallery {
+      margin: 0 0 32px 0;
     }
 
     &-content {

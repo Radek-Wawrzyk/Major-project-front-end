@@ -12,6 +12,11 @@
           class="offer-page__inner-gallery"
           :photos="offerDetails.photos"
         />
+
+        <page-offer-details 
+          :offer="offerDetails"
+          class="offer-page__inner-details"
+        />
       </div>
 
       <page-offer-form  
@@ -28,15 +33,16 @@
 import { defineComponent, computed, onBeforeMount, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElLoading } from 'element-plus';
+import { ArrowLeft } from '@element-plus/icons-vue';
 
 import offer from '@/api/services/offer';
 import PageOfferForm from '@/components/Page/PageOfferForm/PageOfferForm.vue';
 import PageOfferGallery from '@/components/Page/PageOfferGallery/PageOfferGallery.vue';
-import { ArrowLeft } from '@element-plus/icons-vue';
+import PageOfferDetails from '@/components/Page/PageOfferDetails/PageOfferDetails.vue';
 
 export default defineComponent({
   name: "PageOffer",
-  components: { PageOfferForm, PageOfferGallery },
+  components: { PageOfferForm, PageOfferGallery, PageOfferDetails, },
   setup() {
     const route = useRoute();
     const router = useRouter();
