@@ -1,0 +1,57 @@
+.offer-gallery {
+  position: relative;
+
+  &__placeholder-photo {
+    width: 100%;
+    display: block;
+    height: 480px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+
+    &--prev {
+      left: 16px;
+    }
+
+    &--next {
+      right: 16px;
+    }
+  }
+
+  &__list {
+    cursor: pointer;
+    transition: opacity $time;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &-item {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    &-image {
+      width: 100%;
+      display: block;
+      height: 480px;
+      object-fit: cover;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .offer-gallery {
+    &__list {
+      &-image {
+        height: 60vw;
+      }
+    }
+  }
+}

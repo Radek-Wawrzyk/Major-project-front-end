@@ -22,6 +22,7 @@ declare module '@vue/runtime-core' {
     ElInput: typeof import('element-plus/es')['ElInput']
     PageOffer: typeof import('./src/components/Page/PageOffer/PageOffer.vue')['default']
     PageOfferForm: typeof import('./src/components/Page/PageOfferForm/PageOfferForm.vue')['default']
+    PageOfferGallery: typeof import('./src/components/Page/PageOfferGallery/PageOfferGallery.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Test: typeof import('./src/components/test.vue')['default']

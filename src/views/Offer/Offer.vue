@@ -1,8 +1,17 @@
 <template>
   <div class="offer-page" v-if="offerDetails">
+    <header class="offer-page__header container">
+      <el-button :icon="ArrowLeft" @click="redirectHome()">
+        Back to offers
+      </el-button>
+    </header>
+
     <div class="container offer-page__inner">
       <div class="offer-page__inner-content">
-        content
+        <page-offer-gallery 
+          class="offer-page__inner-gallery"
+          :photos="offerDetails.photos"
+        />
       </div>
 
       <page-offer-form  
@@ -22,15 +31,21 @@ import { ElLoading } from 'element-plus';
 
 import offer from '@/api/services/offer';
 import PageOfferForm from '@/components/Page/PageOfferForm/PageOfferForm.vue';
+import PageOfferGallery from '@/components/Page/PageOfferGallery/PageOfferGallery.vue';
+import { ArrowLeft } from '@element-plus/icons-vue';
 
 export default defineComponent({
   name: "PageOffer",
-  components: { PageOfferForm },
+  components: { PageOfferForm, PageOfferGallery },
   setup() {
     const route = useRoute();
     const router = useRouter();
-    const offerDetails = ref(null);
+    const offerDetails = ref();
     const offerId = computed(() => route.params.id as string);
+
+    const redirectHome = (): void => {
+      router.push('/');
+    }
 
     onBeforeMount(async () => {
       const loading = ElLoading.service({
@@ -53,6 +68,8 @@ export default defineComponent({
     return {
       offerDetails,
       offerId,
+      redirectHome,
+      ArrowLeft,
     };
   },
 });
