@@ -1,0 +1,17 @@
+.offer-page {
+  position: relative;
+
+  &__inner {
+    display: flex;
+
+    &-form {
+      width: 420px;
+      min-width: 420px;
+    }
+
+    &-content {
+      width: 100%;
+      margin: 0 32px 0 0;
+    }
+  }
+}

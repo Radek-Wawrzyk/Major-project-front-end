@@ -1,0 +1,35 @@
+.offer-form {
+  position: relative;
+  padding: 20px;
+  border: 1px solid $main-border;
+  border-radius: 10px;
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 0 0 18px 0;
+
+    &-name {
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    &-tel {
+      width: 100%;
+      display: block;
+      font-size: 14px;
+      color: $text-color;
+
+      &-link {
+        font-size: 14px;
+      }
+    }
+  }
+
+  &__inner {
+    &-submit-button, &-fav-button {
+      width: 100%;
+    }
+  }
+}

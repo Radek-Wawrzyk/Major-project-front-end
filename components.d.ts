@@ -5,6 +5,8 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AppAvatar: typeof import('./src/components/Global/AppAvatar/AppAvatar.vue')['default']
+    AppFavButton: typeof import('./src/components/Global/AppFavButton/AppFavButton.vue')['default']
     AppLogo: typeof import('./src/components/Global/AppLogo/AppLogo.vue')['default']
     AppNavigation: typeof import('./src/components/Global/AppNavigation/AppNavigation.vue')['default']
     AppNavigationAvatar: typeof import('./src/components/Global/AppNavigationAvatar/AppNavigationAvatar.vue')['default']
@@ -18,6 +20,8 @@ declare module '@vue/runtime-core' {
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
+    PageOffer: typeof import('./src/components/Page/PageOffer/PageOffer.vue')['default']
+    PageOfferForm: typeof import('./src/components/Page/PageOfferForm/PageOfferForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Test: typeof import('./src/components/test.vue')['default']
