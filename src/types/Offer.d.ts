@@ -31,12 +31,14 @@ interface Offer {
   living_area:30
   location_city: string;
   location_country: string;
-  location_district: string;
+  location_street: string;
+  location_post_code: string;
   location_latidude: number;
   location_longitude: number;
   name: string;
   photos: OfferGallery[];
   price: number;
+  deposit: number;
   published_date: Date;
   rooms_number: number;
   rule_no_animals: boolean;
