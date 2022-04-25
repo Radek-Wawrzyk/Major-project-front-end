@@ -1,5 +1,10 @@
 <template>
-  <section class="offer-form">
+  <section 
+    class="offer-form" 
+    :class="[ 
+      isPlain ? 'offer-form--is-plain' : false,
+    ]"
+  >
     <header class="offer-form__header">
       <app-avatar :user="offerAuthor" :is-checked="true" class="offer-form__header-avatar"/>
       
@@ -104,6 +109,7 @@ import { User } from '@/types/User';
 
 export default defineComponent({
   name: 'PageOfferForm',
+  emits: ['on-submit'],
   components: {
     AppFavButton,
     AppAvatar,
@@ -120,9 +126,14 @@ export default defineComponent({
     offerAuthor: {
       type: Object as PropType<User>,
       required: true,
-    }
+    },
+    isPlain: {
+      type: Boolean as PropType<boolean>,
+      required: false,
+      default: () => false,
+    },
   },
-  setup(props) {
+  setup(props, { emit }) {
     const loading = ref<boolean>(false);
 
     const { values: questionForm, handleSubmit, errors } = useForm({
@@ -148,7 +159,10 @@ export default defineComponent({
     const onSubmit = handleSubmit(async ({ message, email, full_name, phone }) => {
       loading.value = true;
 
+      emit('on-submit');
+
       try {
+
          await question.askQuestion({
           question: message,
           email,

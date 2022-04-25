@@ -79,7 +79,7 @@
         </p>
 
         <p class="offer-details__list-value">
-          {{ offer.includes_internet }}
+          {{ offer.includes_internet ? 'Yes' : 'No' }}
         </p>
       </li>
     </ul>
@@ -91,6 +91,154 @@
 
       <p class="offer-details__description" v-html="offer.description" />
     </div>
+
+    <div class="offer-details__row">
+      <h3 class="offer-details__row-heading">
+        Additional information
+      </h3>
+
+      <ul class="offer-details__list offer-details__list--additional">
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            Building Age
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.building_age }}
+          </p>
+        </li>
+
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            Parking Space
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.includes_parking_space ? 'Yes' : 'No' }}
+          </p>
+        </li>
+
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            Television
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.includes_tv ? 'Yes' : 'No' }}
+          </p>
+        </li>
+
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            Garage
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.includes_garage ? 'Yes' : 'No' }}
+          </p>
+        </li>
+
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            Parking Space
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.includes_garage ? 'Yes' : 'No' }}
+          </p>
+        </li>
+
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            Lift
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.includes_lift ? 'Yes' : 'No' }}
+          </p>
+        </li>
+
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            Air Conditioning
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.includes_air_conditioning ? 'Yes' : 'No' }}
+          </p>
+        </li>
+
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            House Phone
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.includes_house_phone ? 'Yes' : 'No' }}
+          </p>
+        </li>
+
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            Balcony
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.includes_balcony ? 'Yes' : 'No' }}
+          </p>
+        </li>
+
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            Basement
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.includes_basement ? 'Yes' : 'No' }}
+          </p>
+        </li>
+
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            Washing Machine
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.includes_washing_machine ? 'Yes' : 'No' }}
+          </p>
+        </li>
+
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            Smoke Detectors
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.includes_smoke_detectors ? 'Yes' : 'No' }}
+          </p>
+        </li>
+
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            No Smokers
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.rule_no_smokers ? 'Yes' : 'No' }}
+          </p>
+        </li>
+
+        <li class="offer-details__list-item">
+          <p class="offer-details__list-label">
+            No Animals
+          </p>
+
+          <p class="offer-details__list-value">
+            {{ offer.rule_no_animals ? 'Yes' : 'No' }}
+          </p>
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
 
@@ -98,7 +246,6 @@
 import { defineComponent, computed, PropType } from 'vue';
 import { Offer } from '@/types/Offer';
 import { formatPrice } from '@/helpers/price';
-import { getMainList } from '@/helpers/offer';
 
 // Icons
 import locationIcon from '@/assets/icons/location.svg?raw';
@@ -121,18 +268,10 @@ export default defineComponent({
     const fullLocation = computed(() => {
       return `${props.offer.location_district}, ${props.offer.location_city}, ${props.offer.location_country}`
     });
-    const mainInformationList = computed(() => {
-      return getMainList(props.offer);
-    });
-    const additionalInformationList = computed(() => {
-
-    });
 
     return {
       fullLocation,
       locationIcon,
-      mainInformationList,
-      additionalInformationList,
       roomsIcon,
       livingAreaIcon,
       internetIcon,

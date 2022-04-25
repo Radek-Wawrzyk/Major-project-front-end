@@ -4,6 +4,11 @@
   border: 1px solid $main-border;
   border-radius: 10px;
 
+  &--is-plain {
+    border: none;
+    padding: 0;
+  }
+
   &__header {
     display: flex;
     align-items: flex-start;

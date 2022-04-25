@@ -26,6 +26,8 @@
         :offer-author="offerDetails.author"
       />
     </div>
+
+    <page-offer-mobile-bar :offer="offerDetails" />
   </div>
 </template>
 
@@ -34,15 +36,17 @@ import { defineComponent, computed, onBeforeMount, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElLoading } from 'element-plus';
 import { ArrowLeft } from '@element-plus/icons-vue';
-
 import offer from '@/api/services/offer';
+
+// Components
 import PageOfferForm from '@/components/Page/PageOfferForm/PageOfferForm.vue';
 import PageOfferGallery from '@/components/Page/PageOfferGallery/PageOfferGallery.vue';
 import PageOfferDetails from '@/components/Page/PageOfferDetails/PageOfferDetails.vue';
+import PageOfferMobileBar from '@/components/Page/PageOfferMobileBar/PageOfferMobileBar.vue';
 
 export default defineComponent({
   name: "PageOffer",
-  components: { PageOfferForm, PageOfferGallery, PageOfferDetails, },
+  components: { PageOfferForm, PageOfferGallery, PageOfferDetails, PageOfferMobileBar, },
   setup() {
     const route = useRoute();
     const router = useRouter();
