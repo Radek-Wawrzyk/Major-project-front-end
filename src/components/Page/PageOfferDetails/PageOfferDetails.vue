@@ -239,6 +239,19 @@
         </li>
       </ul>
     </div>
+
+    <div class="offer-details__row">
+      <h3 class="offer-details__row-heading">
+        Address
+      </h3>
+
+      <div class="offer-details__row-address">
+        <span v-html="locationIcon" class="offer-details__row-address-icon" />
+        {{ fullLocation }}
+      </div>
+
+      Map here!
+    </div>
   </section>
 </template>
 
