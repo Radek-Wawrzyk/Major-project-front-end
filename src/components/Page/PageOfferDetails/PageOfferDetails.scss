@@ -42,7 +42,7 @@
 
   &__row {
     position: relative;
-    margin: 0 0 32px 0;
+    margin: 0 0 48px 0;
 
     &-address {
       display: flex;
@@ -71,10 +71,7 @@
   &__list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-
-    &--main {
-      margin: 0 0 32px 0;
-    }
+    margin: 0 0 48px 0;
 
     &-item {
       display: flex;

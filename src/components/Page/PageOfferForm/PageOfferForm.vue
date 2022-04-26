@@ -9,9 +9,14 @@
       <app-avatar :user="offerAuthor" :is-checked="true" class="offer-form__header-avatar"/>
       
       <div class="offer-form__header-info">
-        <p class="offer-form__header-name">
+        <router-link 
+          class="offer-form__header-name"
+          :to="`/hosts/${offerAuthor.id}`"
+          aria-label="Go to the host page"
+          title="Go to the host page"
+        >
           {{ offerAuthor.first_name }} {{ offerAuthor.last_name }}
-        </p>
+        </router-link>
 
         <span class="offer-form__header-tel">
           Tel: 

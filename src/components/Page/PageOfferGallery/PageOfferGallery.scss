@@ -1,12 +1,14 @@
 .offer-gallery {
   position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
 
   &__placeholder-photo {
     width: 100%;
     display: block;
     height: 480px;
     object-fit: cover;
-    border-radius: 10px;
   }
 
   &__button {
@@ -27,6 +29,7 @@
   &__list {
     cursor: pointer;
     transition: opacity $time;
+    width: 100%;
 
     &:hover {
       opacity: 0.8;
