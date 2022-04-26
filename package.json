@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@types/google.maps": "^3.48.6",
     "@types/js-cookie": "^3.0.1",
     "@vue/eslint-config-airbnb": "^6.0.0",
     "axios": "^0.26.1",

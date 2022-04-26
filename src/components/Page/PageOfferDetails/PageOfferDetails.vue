@@ -35,7 +35,7 @@
         </p>
 
         <p class="offer-details__list-value">
-          {{ offer.price }}
+          {{ formatPrice(offer.deposit) }}
         </p>
       </li>
 
@@ -250,13 +250,13 @@
         {{ fullLocation }}
       </div>
 
-      Map here!
+      <page-offer-map :address="fullLocation" :options="{ zoom: 14 }"/>
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, PropType } from 'vue';
+import { defineComponent, computed, PropType, ref } from 'vue';
 import { Offer } from '@/types/Offer';
 import { formatPrice } from '@/helpers/price';
 
@@ -269,8 +269,14 @@ import internetIcon from '@/assets/icons/internet.svg?raw';
 import livingAreaIcon from '@/assets/icons/living-area.svg?raw';
 import roomsIcon from '@/assets/icons/rooms.svg?raw';
 
+// COmponents
+import PageOfferMap from '@/components/Page/PageOfferMap/PageOfferMap.vue';
+
 export default defineComponent({
   name: 'PageOfferDetails',
+  components: {
+    PageOfferMap,
+  },
   props: {
     offer: {
       type: Object as PropType<Offer>,
@@ -279,7 +285,7 @@ export default defineComponent({
   },
   setup(props) {
     const fullLocation = computed(() => {
-      return `${props.offer.location_district}, ${props.offer.location_city}, ${props.offer.location_country}`
+      return `${props.offer.location_street}, ${props.offer.location_city}, ${props.offer.location_post_code}, ${props.offer.location_country}`
     });
 
     return {

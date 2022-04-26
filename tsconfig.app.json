@@ -13,17 +13,21 @@
     "composite": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+
     "paths": {
       "@/*": ["./src/*"]
     },
     "types": [
       "element-plus/global",
-      "@types/js-cookie"
+      "@types/js-cookie",
+      "@types/google.maps"
     ],
     "lib": [
       "esnext",
       "dom",
       "dom.iterable",
+      "es5", 
+      "es6",
       "scripthost"
     ]
   },

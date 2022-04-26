@@ -25,6 +25,7 @@ declare module '@vue/runtime-core' {
     PageOfferDetails: typeof import('./src/components/Page/PageOfferDetails/PageOfferDetails.vue')['default']
     PageOfferForm: typeof import('./src/components/Page/PageOfferForm/PageOfferForm.vue')['default']
     PageOfferGallery: typeof import('./src/components/Page/PageOfferGallery/PageOfferGallery.vue')['default']
+    PageOfferMap: typeof import('./src/components/Page/PageOfferMap/PageOfferMap.vue')['default']
     PageOfferMobileBar: typeof import('./src/components/Page/PageOfferMobileBar/PageOfferMobileBar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

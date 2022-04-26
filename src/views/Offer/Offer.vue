@@ -1,5 +1,5 @@
 <template>
-  <div class="offer-page" v-if="offerDetails">
+  <div class="offer-page" v-if="loadedOffer">
     <header class="offer-page__header container">
       <el-button :icon="ArrowLeft" @click="redirectHome()">
         Back to offers
@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onBeforeMount, ref } from 'vue';
+import { defineComponent, computed, onBeforeMount, ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElLoading } from 'element-plus';
 import { ArrowLeft } from '@element-plus/icons-vue';
@@ -57,7 +57,13 @@ export default defineComponent({
       router.push('/');
     }
 
-    onBeforeMount(async () => {
+    const loadedOffer = computed(() => 
+      typeof offerDetails.value === 'object' && 
+      Object.keys(offerDetails.value) && 
+      Object.keys(offerDetails.value).length !== 0
+    );
+
+    onMounted(async () => {
       const loading = ElLoading.service({
         lock: true,
         background: "#ffffff",
@@ -66,18 +72,17 @@ export default defineComponent({
       try {
         const { data } = await offer.getSingleOffer(offerId.value);
         offerDetails.value = data;
-      }
-      catch (error) {
+      } catch (error) {
         if (error.response.data?.statusCode === 404) router.push("/page-not-found");
-      }
-      finally {
-        loading.close();
+      } finally {
+        loading.close()
       }
     });
 
     return {
       offerDetails,
       offerId,
+      loadedOffer,
       redirectHome,
       ArrowLeft,
     };
