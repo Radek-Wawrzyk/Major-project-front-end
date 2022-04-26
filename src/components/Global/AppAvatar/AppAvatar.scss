@@ -1,0 +1,12 @@
+.app-avatar {
+  position: relative;
+
+  &__check {
+    display: block;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    right: 0;
+    top: -5px;
+  }
+}

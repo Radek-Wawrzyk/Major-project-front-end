@@ -6,7 +6,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 100%;
 }
 
 a {
@@ -17,4 +17,8 @@ a {
   &:hover, &:focus {
     opacity: 0.7;
   }
+}
+
+p, li, ul, ol, h1, h2, h3, h4, h5, h6 {
+  color: $text-color;
 }
