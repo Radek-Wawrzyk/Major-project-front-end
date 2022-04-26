@@ -47,7 +47,16 @@ interface Offer {
   updated_at: Date;
 }
 
+interface FavoriteOffer {
+  id: number;
+  added_at: Date;
+  id: number;
+  offerId: number;
+  userId: number;
+}
+
 export {
   Offer,
   OfferGallery,
+  FavoriteOffer,
 };

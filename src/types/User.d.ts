@@ -1,3 +1,5 @@
+import { FavoriteOffer } from "./Offer";
+
 interface User {
   id: number;
 	first_name: string;
@@ -9,6 +11,7 @@ interface User {
 	bio: string | null;
 	created_at: Date;
 	updated_at: Date;
+	favOffers: FavoriteOffer[],
 }
 
 interface UserStoreState {

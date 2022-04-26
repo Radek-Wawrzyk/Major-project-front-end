@@ -149,7 +149,7 @@ export default defineComponent({
     });
 
     const onSubmit = () => {
-      emit('search', prepareParamsQuery(filters));
+      emit('search', filters);
     };
 
     return {
