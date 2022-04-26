@@ -1,6 +1,8 @@
 <template>
-  <li class="page-offer">
-    
+  <li class="offer-card">
+    <router-link :to="`/offers/${offer.id}`">
+      {{ offer.name }}
+    </router-link>
   </li>
 </template>
 
@@ -11,7 +13,7 @@ import { defineComponent, PropType, ref } from 'vue';
 export default defineComponent({
   name: 'PageOfferCard',
   props: {
-    props: {
+    offer: {
       type: Object as PropType<Offer>,
       required: true,
     },

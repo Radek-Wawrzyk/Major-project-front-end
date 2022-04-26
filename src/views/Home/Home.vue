@@ -2,7 +2,7 @@
   <div class="page page-home">
     <div class="container">
       <header class="page-home__filters">
-        <page-offers-filters @search-offers="searchOffers($event)" />
+        <page-offers-filters @search="searchOffers($event)" />
       </header>
 
       <section class="page-home__inner">
@@ -17,11 +17,12 @@
         </header>
 
         <ul class="page-home__inner-content" v-if="offers && offers.length">
-          <li v-for="offer in offers" :key="offer.id">
-            <router-link :to="`/offers/${offer.id}`">
-              {{ offer.name }}
-            </router-link>
-          </li>
+          <page-offer-card 
+            v-for="offer in offers" 
+            :key="offer.id"
+            :offer="offer"
+            class="page-home__inner-card"
+          />
         </ul>
       </section>
     </div>
@@ -30,11 +31,13 @@
 
 <script lang="ts">
 import offer from '@/api/services/offer';
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
+import { ElLoading } from 'element-plus';
 
 // Components
 import PageOffersFilters from '@/components/Page/PageOffersFilters/PageOffersFilters.vue';
 import PageOfferCard from '@/components/Page/PageOfferCard/PageOfferCard.vue';
+import { Offer } from '@/types/Offer';
 
 export default defineComponent({
   name: 'PageHome',
@@ -43,27 +46,28 @@ export default defineComponent({
     PageOffersFilters,
   },
   setup() {
-    const loading = ref(false);
-    const offers = ref([]);
+    const offers = ref();
     const error = ref(null);
 
-    const searchOffers = (payload: any) => {
+    const searchOffers = async (queryParams: string = ''): Promise<void> => {
+      const loading = ElLoading.service({
+        lock: true,
+        background: "#ffffff",
+      });
 
+      try {
+        const { data } = await offer.getAllOffers(queryParams);
+        offers.value = data.data;
+      } catch (err) {
+        error.value = err;
+      } finally {
+        loading.close();
+      }
     };
 
-    const fetchOffers = async (): Promise<void> => {
-      loading.value = true;
-      try {
-        const { data } = await offer.getAllOffers();
-        offers.value = data.data;
-      } catch (error) {
-        error.value = error;
-      } finally {
-        loading.value = false;
-      }
-    }
-
-    fetchOffers();
+    onMounted(async () => {
+      searchOffers();
+    });
 
     return {
       offers,
