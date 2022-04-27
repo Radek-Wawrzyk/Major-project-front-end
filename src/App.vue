@@ -9,6 +9,8 @@
         </transition>
       </router-view>
     </main>
+
+    <app-footer />
   </div>
 </template>
 
@@ -16,12 +18,13 @@
 import { defineComponent, ref } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 import AppNavigation from '@/components/Global/AppNavigation/AppNavigation.vue';
+import AppFooter from '@/components/Global/AppFooter/AppFooter.vue';
 import { useUserStore } from '@/stores/user';
 import { ElNotification } from 'element-plus'
 
 export default defineComponent({
   name: "App",
-  components: { AppNavigation },
+  components: { AppNavigation, AppFooter },
   setup() {
     const authStore = useAuthStore();
     const userStore = useUserStore();

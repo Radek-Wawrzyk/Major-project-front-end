@@ -25,6 +25,10 @@
     &-card {
       padding: 16px 0;
       border-bottom: 1px solid $main-border--light;
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
 
     &-pagination {
