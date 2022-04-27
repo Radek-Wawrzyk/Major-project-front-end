@@ -63,6 +63,11 @@ interface FiltrationDetails {
   [key: string]: any;
 }
 
+interface CloseFilterEmit {
+  syncFilters: boolean;
+  filters: AllOfferFilters;
+}
+
 export {
   OfferFilters,
   MainOfferFilters,
@@ -72,4 +77,5 @@ export {
   AnyFilterObject,
   SortingItem,
   FiltrationDetails,
+  CloseFilterEmit,
 };

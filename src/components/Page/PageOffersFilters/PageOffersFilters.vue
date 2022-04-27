@@ -132,7 +132,7 @@
 </template>
 
 <script lang="ts">
-import { AllOfferFilters } from '@/types/Filters';
+import { AllOfferFilters, CloseFilterEmit } from '@/types/Filters';
 import { defineComponent, reactive, ref, watch } from 'vue';
 import { Operation as operationIcon } from '@element-plus/icons-vue';
 import { buildingTypes, buildingAges, rooms, floors } from '@/data/filters';
@@ -189,9 +189,9 @@ export default defineComponent({
       emit('search', filters);
     };
 
-    const onClose = (payload: any) => {
-      if (payload.syncFilters) {
-        Object.assign(filters, payload.filters); 
+    const onClose = (closeDetails: CloseFilterEmit) => {
+      if (closeDetails.syncFilters) {
+        Object.assign(filters, closeDetails.filters); 
       }
 
       setDialog(false);
