@@ -15,6 +15,11 @@ const router = createRouter({
       component: () => import('@/views/Offer/Offer.vue'),
     },
     {
+      path: '/host/:id',
+      name: 'host',
+      component: () => import('@/views/Host/Host.vue'),
+    },
+    {
       path: '/auth',
       name: 'auth',
       component: () => import('@/views/Auth/Auth.vue'),

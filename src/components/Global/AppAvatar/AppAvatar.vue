@@ -1,8 +1,8 @@
 <template>
   <div class="app-avatar">
     <span class="app-avatar__check" v-if="isChecked" v-html="checkIcon" />
-    <el-avatar :size="45" v-if="user.avatar_url" :src="imagePath(user.avatar_url)" />
-    <el-avatar :size="45" v-else>
+    <el-avatar :size="size" v-if="user.avatar_url" :src="imagePath(user.avatar_url)" />
+    <el-avatar :size="size" v-else>
       {{ getDefaultInitials(user.first_name, user.last_name) }}
     </el-avatar>
   </div>
@@ -26,6 +26,11 @@ export default defineComponent({
       type: Boolean as PropType<boolean>,
       required: false,
       default: () => false,
+    },
+    size: {
+      type: Number as PropType<number>,
+      required: false,
+      default: () => 45,
     },
   },
   setup() {
