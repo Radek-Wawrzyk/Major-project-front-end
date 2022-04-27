@@ -1,0 +1,89 @@
+.host-page {
+  position: relative;
+
+  &__header {
+    margin: 0 0 32px 0;
+  }
+
+  &-details {
+    display: flex;
+    align-items: flex-start;
+    padding: 0 0 40px 0;
+    border-bottom: 1px solid $main-border--light;
+    margin: 0 0 40px 0;
+
+    &__image {
+      position: relative;
+      min-width: 140px;
+    }
+
+    &__content {
+      width: 100%;
+      padding: 0 0 0 32px;
+
+      &-name {
+        font-size: 24px;
+        font-weight: 500;
+        margin: 0 0 8px 0;
+      }
+
+      &-joined {
+        display: block;
+        font-size: 14px;
+        color: $text-color--light;
+        margin: 0 0 8px 0;
+      }
+
+      &-link {
+        display: block;
+        font-size: 14px;
+        color: $primary;
+        margin: 0 0 8px 0;
+      }
+
+      &-text {
+        font-size: 18px;
+        line-height: 150%;
+      }
+    }
+  }
+
+  &-offers {
+    &__list {
+      &-card {
+        padding: 16px 0;
+        border-bottom: 1px solid $main-border--light
+      }
+    }
+
+    &__no-offers {
+      font-size: 16px;
+      color: $text-color--light;
+    }
+  }
+}
+
+// Media
+@media screen and (max-width: 768px) {
+  .host-page {
+    &-details {
+      flex-direction: column;
+
+      &__content {
+        padding: 16px 0 0 0;
+
+        &-name, &-joined, &-link {
+          text-align: center;
+        }
+
+        &-text {
+          text-align: justify;
+        }
+      }
+
+      &__image {
+        margin: 0 auto;
+      }
+    }
+  }
+}

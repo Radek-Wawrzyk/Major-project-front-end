@@ -11,7 +11,7 @@
       <div class="offer-form__header-info">
         <router-link 
           class="offer-form__header-name"
-          :to="`/hosts/${offerAuthor.id}`"
+          :to="`/host/${offerAuthor.id}`"
           aria-label="Go to the host page"
           title="Go to the host page"
         >
