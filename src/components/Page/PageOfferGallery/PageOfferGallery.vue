@@ -60,10 +60,7 @@ import { computed, defineComponent, onMounted, PropType, ref } from 'vue';
 import { getImagePath } from '@/helpers/images';
 import Siema from 'siema';
 import VueEasyLightbox from 'vue-easy-lightbox';
-import {
-  ArrowLeft,
-  ArrowRight,
-} from '@element-plus/icons-vue';
+import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue';
 
 export default defineComponent({
   name: 'PageOfferGallery',

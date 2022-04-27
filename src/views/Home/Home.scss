@@ -1,0 +1,48 @@
+.page-home {
+  position: relative;
+
+  &__filters {
+    margin: 0 0 36px 0;
+  }
+
+  &__inner {
+    &-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 0 32px 0;
+    }
+
+    &-sorting {
+      width: 140px;
+    }
+
+    &-name {
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    &-card {
+      padding: 16px 0;
+      border-bottom: 1px solid $main-border--light;
+    }
+
+    &-pagination {
+      margin: 36px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+// Media
+@media screen and (max-width: 768px) {
+  .page-home {
+    &__inner {
+      &-name {
+        font-size: 20px;
+      }
+    }
+  }
+}

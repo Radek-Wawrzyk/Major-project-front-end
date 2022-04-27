@@ -1,0 +1,21 @@
+body {
+  .el-input {
+    &__suffix {
+      .el-input__validateIcon {
+        display: none;
+      }
+    }
+  }
+}
+
+.el-form {
+  &-item {
+    &__label {
+      padding: 0 !important;
+    }
+
+    &__content {
+      line-height: 1.5;
+    }
+  }
+}

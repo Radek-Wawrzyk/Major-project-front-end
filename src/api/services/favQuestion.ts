@@ -8,6 +8,6 @@ export default {
     return request.get(`/favorite-offers/get`);
   },
   removeFavQuestion(offerId: number) {
-    return request.get(`/favorite-offers/remove/${offerId}`);
+    return request.delete(`/favorite-offers/remove/${offerId}`);
   },
 };

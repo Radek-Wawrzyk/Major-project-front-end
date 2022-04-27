@@ -19,6 +19,17 @@ export const useUserStore = defineStore({
         throw (error);
       }
     },
+    addFavoriteOffer(favoriteOffer: any) {
+      this.user?.favOffers.push(favoriteOffer);
+    },
+    removeFavoriteOffer(favoriteOfferId: number) {
+      const favOffers = this.user?.favOffers;
+      const newFavOffers = favOffers?.filter((offer) => offer.id !== favoriteOfferId);
+
+      if (this.user?.favOffers && this.user?.favOffers.length) {
+        this.user.favOffers = newFavOffers;
+      }
+    },
   },
 });
 
