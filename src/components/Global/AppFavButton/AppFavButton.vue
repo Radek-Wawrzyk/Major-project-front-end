@@ -7,9 +7,12 @@
       mode !== 'button' ? 'app-fav-button--icon' : null,
       isIncluded(offerId) ? 'app-fav-button--active' : null,
     ]"
+    :type="(isIncluded(offerId) && mode === 'button') ? 'danger' : 'default'"
     class="app-fav-button"
   >
-    {{ mode !== 'button' ? '' : 'Add to favorites' }}
+    <template v-if="mode === 'button'">
+      {{ isIncluded(offerId) ? 'Delete from favorites' : 'Add to favorites' }}
+    </template>
   </el-button>
 </template>
 

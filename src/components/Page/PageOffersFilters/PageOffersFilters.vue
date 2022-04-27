@@ -92,7 +92,6 @@
             :value="item"
           />
         </el-select>
-        
       </el-form-item>
 
       <el-form-item label="Free Internet" class="offers-filters__form-item">
@@ -110,33 +109,42 @@
         type="default" 
         :icon="operationIcon"
         class="offers-filters__form-filter-button"
+        @click="setDialog(true)"
       >
         More filters
       </el-button>
     </el-form>
+
+    <teleport to="body">
+      <el-dialog 
+        v-model="dialogVisible" 
+        title="All filters"
+        custom-class="offers-filters__dialog"
+      >
+        <page-offers-all-filters 
+          @filter="filter($event)"
+          @close="setDialog(false)"
+        />
+      </el-dialog>
+    </teleport>
   </div>
 </template>
 
 <script lang="ts">
-import { Offer } from '@/types/Offer';
 import { MainOfferFilters } from '@/types/Filters';
-import { defineComponent, PropType, reactive, ref } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 import { Operation as operationIcon } from '@element-plus/icons-vue';
-import { prepareParamsQuery } from '@/helpers/filters';
-
-// Data
 import { buildingTypes, buildingAges, rooms, floors } from '@/data/filters';
+import PageOffersAllFilters from '@/components/Page/PageOffersAllFilters/PageOffersAllFilters.vue';
 
 export default defineComponent({
   name: 'PageOffersFilters',
+  components: {
+    PageOffersAllFilters,
+  },
   emits: ['search'],
-  // props: {
-  //   // props: {
-  //   //   type: Object as PropType<Offer>,
-  //   //   required: true,
-  //   // },
-  // },
   setup(_, { emit }) {
+    const dialogVisible = ref(false);
     const filters = <MainOfferFilters>reactive({
       location_city: undefined,
       price_min: undefined,
@@ -148,6 +156,12 @@ export default defineComponent({
       includes_internet: undefined,
     });
 
+    const setDialog = (toggleStatus = !dialogVisible.value): void => {
+      dialogVisible.value = toggleStatus;
+    };
+    const filter = (allFilters: any) => {
+      emit('search', allFilters);
+    };
     const onSubmit = () => {
       emit('search', filters);
     };
@@ -160,6 +174,9 @@ export default defineComponent({
       buildingAges,
       rooms, 
       floors,
+      dialogVisible,
+      setDialog,
+      filter,
     };
   },
 });

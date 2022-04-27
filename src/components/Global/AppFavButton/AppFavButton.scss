@@ -1,7 +1,6 @@
 .app-fav-button {
   position: relative;
-  border-radius: 50% !important;
-
+  
   &--active {
     path {
       fill: $primary;
@@ -14,6 +13,7 @@
     width: 48px;
     height: 48px;
     border-radius: 100%;
+    border-radius: 50% !important;
 
     .el-icon, svg {
       width: 20px;

@@ -13,6 +13,10 @@
       margin: 0 0 32px 0;
     }
 
+    &-sorting {
+      width: 140px;
+    }
+
     &-name {
       font-size: 24px;
       font-weight: 500;
@@ -28,6 +32,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+  }
+}
+
+// Media
+@media screen and (max-width: 768px) {
+  .page-home {
+    &__inner {
+      &-name {
+        font-size: 20px;
+      }
     }
   }
 }

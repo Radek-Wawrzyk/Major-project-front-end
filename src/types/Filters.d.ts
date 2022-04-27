@@ -23,6 +23,31 @@ interface MainOfferFilters {
   rooms_number: undefined | number;
 }
 
+interface AllOfferFilters {
+  building_age: undefined | BuildingAge;
+  building_type: undefined | BuildingType;
+  building_level: undefined | number;
+  includes_air_conditioning: undefined | boolean;
+  includes_balcony: undefined | boolean
+  includes_basement: undefined | boolean;
+  includes_garage: undefined | boolean;
+  includes_garden: undefined | boolean
+  includes_house_phone: undefined | boolean;
+  includes_internet: undefined | boolean;
+  includes_lift: undefined | boolean;
+  includes_parking_space: undefined | boolean
+  includes_smoke_detectors: undefined | boolean
+  includes_tv: undefined | boolean
+  includes_washing_machine: undefined | boolean
+  living_area_min?: undefined | number;
+  location_city?: undefined | string;
+  price_min?: undefined | number;
+  price_max?: undefined | number;
+  rooms_number: undefined | number;
+  rule_no_animals: undefined |boolean;
+  rule_no_smokers: undefined | boolean  
+}
+
 interface AnyFilterObject {
   [key: string]: any;
 }
@@ -41,6 +66,7 @@ interface FiltrationDetails {
 export {
   OfferFilters,
   MainOfferFilters,
+  AllOfferFilters,
   BuildingType,
   BuildingAge,
   AnyFilterObject,
