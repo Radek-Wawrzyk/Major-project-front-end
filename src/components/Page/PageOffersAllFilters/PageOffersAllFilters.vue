@@ -359,14 +359,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, PropType, watch } from 'vue';
 import { AllOfferFilters } from '@/types/Filters';
 import { buildingTypes, buildingAges, rooms, floors } from '@/data/filters';
 
 export default defineComponent({
   name: 'PageOffersAllFilters',
   emits: ['filter', 'close'],
-  setup(_, { emit }) {
+  props: {
+    filters: {
+      type: Object as PropType<AllOfferFilters>,
+      required: true,
+    },
+  },
+  setup(props, { emit }) {
     const filters = <AllOfferFilters>reactive({
       building_age: undefined,
       building_type: undefined,
@@ -392,11 +398,20 @@ export default defineComponent({
       rule_no_smokers: undefined, 
     });
 
+    watch((props.filters), () => {
+      Object.assign(filters, props.filters);
+    });
+
     const onSubmit = () => {
       emit('filter', filters);
+      onClose();
     };
+
     const onClose = () => {
-      emit('close');
+      emit('close', {
+        syncFilters: true,
+        filters,
+      });
     };
 
     return {

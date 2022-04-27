@@ -123,7 +123,8 @@
       >
         <page-offers-all-filters 
           @filter="filter($event)"
-          @close="setDialog(false)"
+          @close="onClose($event)"
+          :filters="dialogFilters"
         />
       </el-dialog>
     </teleport>
@@ -131,8 +132,8 @@
 </template>
 
 <script lang="ts">
-import { MainOfferFilters } from '@/types/Filters';
-import { defineComponent, reactive, ref } from 'vue';
+import { AllOfferFilters } from '@/types/Filters';
+import { defineComponent, reactive, ref, watch } from 'vue';
 import { Operation as operationIcon } from '@element-plus/icons-vue';
 import { buildingTypes, buildingAges, rooms, floors } from '@/data/filters';
 import PageOffersAllFilters from '@/components/Page/PageOffersAllFilters/PageOffersAllFilters.vue';
@@ -145,29 +146,62 @@ export default defineComponent({
   emits: ['search'],
   setup(_, { emit }) {
     const dialogVisible = ref(false);
-    const filters = <MainOfferFilters>reactive({
+    const dialogFilters = <AllOfferFilters>reactive({});
+    const filters = <AllOfferFilters>reactive({
+      building_age: undefined,
+      building_type: undefined,
+      building_level: undefined,
+      includes_air_conditioning: undefined,
+      includes_balcony: undefined,
+      includes_basement: undefined,
+      includes_garage: undefined,
+      includes_garden: undefined,
+      includes_house_phone: undefined,
+      includes_internet: undefined,
+      includes_lift: undefined,
+      includes_parking_space: undefined,
+      includes_smoke_detectors: undefined,
+      includes_tv: undefined,
+      includes_washing_machine: undefined,
+      living_area_min: undefined,
       location_city: undefined,
       price_min: undefined,
       price_max: undefined,
-      living_area_min: undefined,
-      building_type: undefined,
       rooms_number: undefined,
-      building_level: undefined,
-      includes_internet: undefined,
+      rule_no_animals: undefined,
+      rule_no_smokers: undefined, 
     });
 
     const setDialog = (toggleStatus = !dialogVisible.value): void => {
       dialogVisible.value = toggleStatus;
+
+      if (toggleStatus) {
+        Object.assign(dialogFilters, filters);
+      }
     };
-    const filter = (allFilters: any) => {
-      emit('search', allFilters);
+
+    const filter = (newFilters: any) => {
+      emit('search', newFilters);
+      Object.assign(filters, newFilters); 
     };
+
     const onSubmit = () => {
       emit('search', filters);
     };
 
+    const onClose = (payload: any) => {
+      if (payload.syncFilters) {
+        Object.assign(filters, payload.filters); 
+      }
+
+      setDialog(false);
+    }
+
     return {
       onSubmit,
+      onClose,
+      setDialog,
+      filter,
       operationIcon,
       filters,
       buildingTypes,
@@ -175,8 +209,7 @@ export default defineComponent({
       rooms, 
       floors,
       dialogVisible,
-      setDialog,
-      filter,
+      dialogFilters, 
     };
   },
 });

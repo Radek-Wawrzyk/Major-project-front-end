@@ -9,25 +9,25 @@ const sortingList: SortingItem[] = [
     label: 'Price: Lower',
     value: 'price:low',
     field: 'price',
-    order: 'DESC',
+    order: 'ASC',
   },
   {
     label: 'Price: Highest',
     value: 'price:highest',
-    order: 'ASC',
+    order: 'DESC',
     field: 'price',
   },
   {
-    label: 'Date: Latest',
-    value: 'created_at:latest',
-    order: 'DESC',
+    label: 'Date: Oldest',
+    value: 'created_at:oldest',
+    order: 'ASC',
     field: 'created_at',
   },
   {
     label: 'Date: Newest',
     value: 'created_at: newest',
     field: 'created_at',
-    order: 'ASC',
+    order: 'DESC',
   },
 ];
 
