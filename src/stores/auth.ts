@@ -33,6 +33,7 @@ export const useAuthStore = defineStore({
         throw (error);
       }
     },
+
     async signUp(registerDetails : AuthRegister): Promise<boolean> {
       try {
         await auth.register(registerDetails);
@@ -42,6 +43,7 @@ export const useAuthStore = defineStore({
         throw (error);
       }
     },
+
     async forgetPassword(forgetPasswordDetails: AuthForgetPassword): Promise<boolean> {
       try {
         await auth.forgotPassword(forgetPasswordDetails);
@@ -50,6 +52,7 @@ export const useAuthStore = defineStore({
         throw (error);
       }
     },
+  
     async resetPassword(resetPasswordDetails: AuthResetPassword): Promise<boolean> {
       try {
         await auth.resetPassword(resetPasswordDetails);
@@ -58,6 +61,7 @@ export const useAuthStore = defineStore({
         throw (error);
       }
     },
+
     checkSession(): boolean {
       if (!this.token) return false;
 
@@ -71,6 +75,7 @@ export const useAuthStore = defineStore({
 
       return true;
     },
+
     logout(): void {
       this.token = null;
       Cookies.remove('token');

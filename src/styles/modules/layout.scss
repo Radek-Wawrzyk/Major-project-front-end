@@ -6,7 +6,12 @@
   position: relative;
 
   &__main {
-    padding: calc(64px + 32px) 0 0 0;
+    padding: calc(64px + 32px) 0 32px 0;
+    background-color: $main-background;
+
+    &--is-dashboard {
+      background-color: $main-background--accent;
+    }
   }
 }
 

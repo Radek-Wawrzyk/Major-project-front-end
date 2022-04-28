@@ -4,6 +4,7 @@ import { useAuthStore } from '@/stores/auth';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // Public views
     {
       path: '/',
       name: 'home',
@@ -19,6 +20,7 @@ const router = createRouter({
       name: 'host',
       component: () => import('@/views/Host/Host.vue'),
     },
+    // Auth views
     {
       path: '/auth',
       name: 'auth',
@@ -59,6 +61,7 @@ const router = createRouter({
         },
       ]
     },
+    // Dashboard views
     {
       path: '/dashboard',
       name: 'dashboard',
@@ -67,6 +70,15 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
+    {
+      path: '/my-account',
+      name: 'myAccount',
+      component: () => import('@/views/DashboardSettings/DashboardSettings.vue'),
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    // 404
     {
       path: '/:pathMatch(.*)*',
       name: 'notFound',
