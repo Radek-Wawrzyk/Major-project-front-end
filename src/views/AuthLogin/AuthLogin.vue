@@ -132,7 +132,7 @@ export default defineComponent({
           await userStore.getMe();
           redirectHome()
         } 
-      } catch (error: AxiosError | any) {
+      } catch (error) {
         ElNotification({
           title: `Error: ${error.response.data ? error.response.data.error : ''}`,
           type: 'error',

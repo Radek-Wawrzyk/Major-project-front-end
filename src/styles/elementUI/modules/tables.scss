@@ -1,0 +1,12 @@
+body {
+  .el-table th.el-table__cell>.cell {
+    white-space: nowrap;
+  }
+}
+
+// Media
+@media screen and (max-width: 768px) {
+  .el-table {
+    overflow-x: hidden !important;
+  }
+}

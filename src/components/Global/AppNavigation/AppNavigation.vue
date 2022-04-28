@@ -99,6 +99,10 @@ export default defineComponent({
           value: 'fav',
         },
         {
+          name: 'Questions',
+          value: 'questions',
+        },
+        {
           name: 'Logout',
           value: 'logout',
         },
@@ -137,6 +141,10 @@ export default defineComponent({
         }
         case 'fav': {
           router.push('/favorite-offers');
+          break;
+        }
+        case 'questions': {
+          router.push('/questions');
           break;
         }
         default: {

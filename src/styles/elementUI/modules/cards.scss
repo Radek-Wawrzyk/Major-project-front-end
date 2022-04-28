@@ -6,3 +6,17 @@ body {
     }
   }
 }
+
+// Media
+
+@media screen and (max-width: 768px) {
+  body {
+    .el-card {
+      &.no-mobile-padding {
+        .el-card__body {
+          padding: 0;
+        }
+      }
+    }
+  }
+}

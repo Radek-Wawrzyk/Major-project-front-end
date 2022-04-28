@@ -105,7 +105,6 @@ export default defineComponent({
 
     const searchOffers = async (details: FiltrationDetails): Promise<void> => {
       finalDetailsQuery.value = {...finalDetailsQuery.value, ...details };
-      console.log(finalDetailsQuery.value)
 
       const loading = ElLoading.service({
         lock: true,

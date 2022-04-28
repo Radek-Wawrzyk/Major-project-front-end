@@ -78,6 +78,14 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
+    {
+      path: '/questions',
+      name: 'questions',
+      component: () => import('@/views/DashboardQuestions/DashboardQuestions.vue'),
+      meta: {
+        requiresAuth: true,
+      },
+    },
     // 404
     {
       path: '/:pathMatch(.*)*',
