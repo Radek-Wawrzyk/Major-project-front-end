@@ -86,6 +86,14 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
+    {
+      path: '/favorite-offers',
+      name: 'favoriteOffers',
+      component: () => import('@/views/DashboardFavOffers/DashboardFavOffers.vue'),
+      meta: {
+        requiresAuth: true,
+      },
+    },
     // 404
     {
       path: '/:pathMatch(.*)*',

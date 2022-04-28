@@ -23,6 +23,7 @@ import { computed, defineComponent, PropType, ref } from 'vue';
 import { ElNotification } from 'element-plus';
 import { Star as starIcon, StarFilled as starIconFilled } from '@element-plus/icons-vue'
 import { useUserStore } from '@/stores/user';
+import { FavoriteOffer } from '@/types/Offer';
 
 export default defineComponent({
   name: 'AppFavButton',
@@ -47,7 +48,7 @@ export default defineComponent({
         return favOffer.userId === userStore.user?.id && favOffer.offerId === props.offerId;
       });
 
-      return targetFavOffer;
+      return targetFavOffer as FavoriteOffer;
     });
 
     const isIncluded = (offerId: number) => {

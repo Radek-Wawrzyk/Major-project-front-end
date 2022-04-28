@@ -55,8 +55,13 @@ interface FavoriteOffer {
   userId: number;
 }
 
+interface FullFavOffer extends FavoriteOffer {
+  offer: Offer;
+}
+
 export {
   Offer,
   OfferGallery,
   FavoriteOffer,
+  FullFavOffer,
 };

@@ -1,8 +1,6 @@
 import user from '@/api/services/user';
 import { UpdateUser, UserStoreState } from '@/types/User';
 import { defineStore, acceptHMRUpdate } from 'pinia'
-import { Update } from 'vite/types/hmrPayload';
-
 
 export const useUserStore = defineStore({
   id: 'user',
