@@ -102,6 +102,22 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
+    {
+      path: '/create-offer',
+      name: 'createOffer',
+      component: () => import('@/views/DashboardCreateOffer/DashboardCreateOffer.vue'),
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: '/my-offers/:id',
+      name: 'editOffer',
+      component: () => import('@/views/DashboardEditOffer/DashboardEditOffer.vue'),
+      meta: {
+        requiresAuth: true,
+      },
+    },
     // 404
     {
       path: '/:pathMatch(.*)*',
@@ -137,4 +153,4 @@ router.beforeEach((to, from, next) => {
   return;
 });
 
-export default router
+export default router;

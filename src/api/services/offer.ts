@@ -1,4 +1,5 @@
 import request from '@/api/index';
+import { CreateOffer, Offer } from '@/types/Offer';
 
 export default {
   getAllOffers(queryParams: string) {
@@ -9,7 +10,41 @@ export default {
     return request.get(`/offers/get-with-details/${offerId}`)
   },
 
-  removeOffer(offerId: number) {
+  getPlainOffer(offerId: string) {
+    return request.get(`/offers/get/${offerId}`)
+  },
+
+  removeOffer(offerId: string) {
     return request.delete(`/offers/remove/${offerId}`)
+  },
+
+  edit(offer: CreateOffer) {
+    // Convert string to number (elementUI & input type='number' has issue with that)
+    const price = parseInt(offer.price.toString());
+    const living_area = parseInt(offer.living_area.toString());
+    const deposit = parseInt(offer.deposit.toString());
+
+    return request.put(`/offers/update/${offer.id}`, {
+      ...offer,
+      status: true,
+      price,
+      living_area,
+      deposit,
+    });
+  },
+
+  create(offer: CreateOffer) {
+    // Convert string to number (elementUI & input type='number' has issue with that)
+    const price = parseInt(offer.price.toString());
+    const living_area = parseInt(offer.living_area.toString());
+    const deposit = parseInt(offer.deposit.toString());
+
+    return request.post('/offers/create', {
+      ...offer,
+      status: true,
+      price,
+      living_area,
+      deposit,
+    });
   },
 };

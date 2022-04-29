@@ -88,11 +88,10 @@ import { useForm, useField } from 'vee-validate';
 import { useAuthStore } from '@/stores/auth';
 import { ElNotification } from 'element-plus';
 import type { AuthLogin } from '@/types/Auth';
-
-import AppLogo from '@/components/Global/AppLogo/AppLogo.vue';
-import { AxiosError } from 'axios';
 import { Router, useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user';
+
+import AppLogo from '@/components/Global/AppLogo/AppLogo.vue';
 
 export default defineComponent({
   components: { AppLogo },
