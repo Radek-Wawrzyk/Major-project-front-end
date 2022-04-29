@@ -8,4 +8,8 @@ export default {
   getSingleOffer(offerId: string) {
     return request.get(`/offers/get-with-details/${offerId}`)
   },
+
+  removeOffer(offerId: number) {
+    return request.delete(`/offers/remove/${offerId}`)
+  },
 };

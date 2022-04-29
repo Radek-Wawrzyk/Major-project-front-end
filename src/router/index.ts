@@ -94,6 +94,14 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
+    {
+      path: '/my-offers',
+      name: 'myOffers',
+      component: () => import('@/views/DashboardOffers/DashboardOffers.vue'),
+      meta: {
+        requiresAuth: true,
+      },
+    },
     // 404
     {
       path: '/:pathMatch(.*)*',

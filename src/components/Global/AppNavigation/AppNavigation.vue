@@ -3,13 +3,13 @@
     <div class="app-navigation__container container">
       <app-logo class="app-navigation__logo" />
 
-      <div class="app-navigation__search">
+      <!-- <div class="app-navigation__search">
         <el-input
           class="w-50 m-2"
           placeholder="Start searching offers"
           :suffix-icon="searchIcon"
         />
-      </div>
+      </div> -->
 
       <div class="app-navigation__content" v-if="!isAuthenticated">
         <el-button @click="redirectToPage('login')">Sign in</el-button>

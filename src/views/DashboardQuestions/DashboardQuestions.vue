@@ -77,7 +77,6 @@
           :total="totalCount"
           :page-count="totalPages"
           @current-change="setPage($event)"
-          background="transparent"
         />
       </div>
     </div>
