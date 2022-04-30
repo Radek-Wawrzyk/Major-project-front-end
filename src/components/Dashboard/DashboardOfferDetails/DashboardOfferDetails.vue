@@ -429,7 +429,7 @@
         </div>
       </section>
 
-      <section class="dashboard-offer-details__section">
+      <section class="dashboard-offer-details__section dashboard-offer-details__section--actions">
         <el-button
           type="primary"
           native-type="submit"

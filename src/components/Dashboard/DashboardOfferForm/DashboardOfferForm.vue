@@ -19,12 +19,35 @@
 
         <el-card v-else-if="activeStep === 1" key="photos">
           <dashboard-offer-photos 
-            @finish="" 
+            @go-finish="finishEditing()" 
             @go-prev="prevStep()"
             :offer="offerInfo"
             :mode="managementMode"
           />
-        </el-card> 
+        </el-card>
+
+        <el-card v-else-if="activeStep === 3" key="finish">
+          <div class="dashboard-offer-form__notification">
+            <img 
+              class="dashboard-offer-form__notification-icon"
+              alt=""
+              src="@/assets/icons/success.svg"
+            />
+
+            <p class="dashboard-offer-form__notification-text">
+              Your offer has been successfully saved!
+
+              <router-link 
+                to="/my-offers" 
+                class="dashboard-offer-form__notification-link"
+                title="Back to my offers"
+                arial-label="Back to my offers"
+              >
+                Back to my offers
+              </router-link>
+            </p>
+          </div>
+        </el-card>
       </transition>
     </div>
   </div>
@@ -69,6 +92,10 @@ export default defineComponent({
     const setFormMode = (mode: 'edit' | 'create') => {
       managementMode.value = mode;
     };
+
+    const finishEditing = () => {
+      activeStep.value = 3;
+    }
 
     const saveOfferDetails = (offerDetails: CreateOffer) => {
       if (managementMode.value === 'create') createOffer(offerDetails);
@@ -176,6 +203,7 @@ export default defineComponent({
       nextStep,
       prevStep,
       saveOfferDetails,
+      finishEditing,
     };
   },
 });

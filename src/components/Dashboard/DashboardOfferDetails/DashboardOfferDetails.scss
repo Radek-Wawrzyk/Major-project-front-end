@@ -97,10 +97,17 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
       }
-    }
 
-    &__submit-button {
-      width: 100%;
+      &--actions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+
+        .el-button {
+          width: 100%;
+          margin: 0;
+        }
+      }
     }
   }
 }
