@@ -430,19 +430,35 @@
       </section>
 
       <section class="dashboard-offer-details__section dashboard-offer-details__section--actions">
+        <h3 class="dashboard-offer-details__section-heading">
+          Offer Publish status
+        </h3>
+
+        <p class="dashboard-offer-details__section-text">
+          Please note that when the status would be unpublished, then your offer would not show on the offers page
+        </p>
+
+        <el-switch 
+          v-model="form.status"
+          active-text="Published"
+          inactive-text="Unpublished (Draft)"
+        />
+      </section>
+
+      <section class="dashboard-offer-details__section dashboard-offer-details__section--actions">
         <el-button
           type="primary"
           native-type="submit"
           class="dashboard-offer-details__submit-button"
         >
-          Save offer details
+          Save
         </el-button>
 
         <el-button
           type="default"
           native-type="button"
           class="dashboard-offer-details__next-button"
-          v-if="mode === 'edit'"
+          :disabled="mode === 'create'"
           @click="goNext()"
         >
           Go Next
@@ -453,7 +469,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType, ref } from 'vue';
+import { defineComponent, onMounted, PropType, ref, watch } from 'vue';
 import { string, object, boolean, BooleanSchema, StringSchema, number, NumberSchema } from 'yup';
 import { useForm, useField } from 'vee-validate';
 import { BuildingAge, BuildingType, BuildingLevel } from '@/types/Filters';
@@ -504,6 +520,7 @@ export default defineComponent({
         includes_smoke_detectors: boolean().required().label('Smoke Detectors') as BooleanSchema<boolean>,
         includes_tv: boolean().required().label('TV') as BooleanSchema<boolean>,
         includes_washing_machine: boolean().required().label('Washing Machine') as BooleanSchema<boolean>,
+        status: boolean().required().label('Publish Status') as BooleanSchema<boolean>,
       }),
       initialValues: {
         building_age: 'New',
@@ -533,6 +550,7 @@ export default defineComponent({
         includes_smoke_detectors: false,
         includes_tv: false,
         includes_washing_machine: false,
+        status: false,
       },
     });
 
@@ -563,6 +581,7 @@ export default defineComponent({
     useField('includes_smoke_detectors');
     useField('includes_tv');
     useField('includes_washing_machine');
+    useField('status');
 
     const onSubmit = handleSubmit(async (offerDetails: CreateOffer) => {
       emit('submit-form', offerDetails);
@@ -571,6 +590,10 @@ export default defineComponent({
     const goNext = () => {
       emit('go-next');
     }
+
+    watch(props.offer, () => {
+      setValues({ ...props.offer });
+    })
 
     onMounted(() => {
       if (props.offer && Object.keys(props.offer).length > 0) {

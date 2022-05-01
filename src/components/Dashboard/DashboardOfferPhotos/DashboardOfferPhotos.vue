@@ -126,7 +126,7 @@ export default defineComponent({
     const goFinish = () => {
       emit('go-finish');
     };
-    
+
     const goPrev = () => {
       emit('go-prev');
     };
@@ -208,7 +208,9 @@ export default defineComponent({
         const { data } = await photo.getAll(props.offer.id as number);
         state.photos = data;
 
-        state.mainImageId = data.find((photo: Photo) => photo.is_primary).id;
+        if (data && data.length > 0) {
+          state.mainImageId = data.find((photo: Photo) => photo.is_primary).id;
+        }
       } catch (error) {
         ElNotification({
           title: `Error: ${error.response.data ? error.response.data.error : ''}`,

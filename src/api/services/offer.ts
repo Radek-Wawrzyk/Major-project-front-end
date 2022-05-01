@@ -6,6 +6,10 @@ export default {
     return request.get(`/offers/get?${queryParams}`);
   },
 
+  getUserOffers(queryParams: string) {
+    return request.get(`/offers/get-user-offers?${queryParams}`);
+  },
+
   getSingleOffer(offerId: string) {
     return request.get(`/offers/get-with-details/${offerId}`)
   },
@@ -14,7 +18,7 @@ export default {
     return request.get(`/offers/get/${offerId}`)
   },
 
-  removeOffer(offerId: string) {
+  removeOffer(offerId: number) {
     return request.delete(`/offers/remove/${offerId}`)
   },
 
@@ -26,7 +30,6 @@ export default {
 
     return request.put(`/offers/update/${offer.id}`, {
       ...offer,
-      status: true,
       price,
       living_area,
       deposit,
@@ -41,7 +44,6 @@ export default {
 
     return request.post('/offers/create', {
       ...offer,
-      status: true,
       price,
       living_area,
       deposit,

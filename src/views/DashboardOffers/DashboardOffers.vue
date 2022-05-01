@@ -44,6 +44,14 @@
             </template>
           </el-table-column>
 
+          <el-table-column label="Published" width="80px">
+            <template #default="scope">
+              <p class="dashboard-offers__status">
+                {{ scope.row.status ? 'Yes' : 'No (Draft)' }}
+              </p>
+            </template>
+          </el-table-column>
+
           <el-table-column label="Price" width="120px">
             <template #default="scope">
               <p class="dashboard-offers__price">
@@ -133,7 +141,7 @@ export default defineComponent({
       loading.value = true;
 
       try {
-        const { data } = await offer.getAllOffers(queryParams);
+        const { data } = await offer.getUserOffers(queryParams);
         offersList.value = data.data;
         perPage.value = data.limit;
         totalCount.value = data.totalCount;

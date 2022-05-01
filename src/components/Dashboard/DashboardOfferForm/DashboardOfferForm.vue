@@ -1,12 +1,12 @@
 <template>
   <div class="dashboard-offer-form">
     <el-steps :active="activeStep" align-center class="dashboard-offer-form__steps">
-      <el-step title="Step 1" description="Offer details" />
-      <el-step title="Step 2" description="Offer photos" />
-      <el-step title="Step 3" description="Status" />
+      <el-step title="Details" description="Offer details" />
+      <el-step title="Photos" description="Offer photos" />
+      <el-step title="Status" description="Status" />
     </el-steps>
 
-    <div class="dashboard-offer-form__content" v-if="managementMode === 'edit' && Object.keys(offerInfo).length > 0">
+    <div class="dashboard-offer-form__content">
       <transition name="page-fade" mode="out-in">
         <el-card v-if="activeStep === 0" key="details">
           <dashboard-offer-details 
@@ -72,7 +72,7 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const router = useRouter();
-    const managementMode = ref('create');
+    const managementMode = ref<'create' | 'edit'>('create');
     const activeStep = ref(0);
     const offerInfo = reactive<CreateOffer>({} as CreateOffer);
     const offerId = computed(() => route.params.id);
@@ -113,8 +113,6 @@ export default defineComponent({
         Object.assign(offerInfo, data);
 
         setFormMode('edit');
-        nextStep();
-
         ElNotification({
           title: `Success`,
           type: 'success',
@@ -142,8 +140,6 @@ export default defineComponent({
       try {
         const { data } = await offer.edit(offerDetails);
         Object.assign(offerInfo, data);
-
-        nextStep();
 
         ElNotification({
           title: `Success`,
