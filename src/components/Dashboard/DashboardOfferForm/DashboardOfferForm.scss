@@ -1,0 +1,23 @@
+.dashboard-offer-form {
+  position: relative;
+
+  &__steps {
+    margin: 0 0 32px 0;
+  }
+
+  &__content {
+    position: relative;
+  }
+
+  &__notification {
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    
+    &-text {
+      line-height: 130%;
+    }
+  }
+}

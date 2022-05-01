@@ -10,17 +10,12 @@ export default {
   },
 
   register(registerDetails : AuthRegister) {
-    // Necessary because despite input type number, the value is type string
-    // Therefore to not to mess with TS interfaces, there is a simply "hack" below
-    const stringPhone = registerDetails.phone.toString();
-    const numberPhone = parseInt(stringPhone);
-
     return request.post('/auth/register', {
       first_name: registerDetails.firstName,
       last_name: registerDetails.lastName,
       email: registerDetails.email,
       password: registerDetails.password,
-      phone: numberPhone,
+      phone: registerDetails.phone
     });
   },
 

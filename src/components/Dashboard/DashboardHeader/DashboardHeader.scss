@@ -1,0 +1,23 @@
+.dashboard-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 16px;
+  margin: 0 0 32px 0;
+
+  &__title {
+    font-size: 24px;
+    font-weight: 500;
+  }
+}
+
+// Media
+@media screen and (max-width: 576px) {
+  .dashboard-header {
+    &__title {
+      font-size: 20px;
+    }
+  }
+}

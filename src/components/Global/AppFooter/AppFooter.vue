@@ -1,5 +1,10 @@
 <template>
-  <footer class="app-footer">
+  <footer 
+    class="app-footer"
+    :class="[
+      isDashboardPage ? 'app-footer--dashboard' : false,
+    ]"
+  >
     <div class="container">
       <p class="app-footer__copyright-text">
         2022 All Rights Reserved
@@ -23,10 +28,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default defineComponent({
   name: 'AppFooter',
+  setup() {
+    const route = useRoute();
+    const isDashboardPage = computed(() => route.meta.requiresAuth);
+
+    return {
+      isDashboardPage,
+    };
+  },
 });
 </script>
 

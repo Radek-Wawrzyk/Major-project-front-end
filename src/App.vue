@@ -2,7 +2,12 @@
   <div class="app-page">
     <app-navigation />
 
-    <main class="app-page__main">
+    <main 
+      class="app-page__main"
+      :class="[
+        isDashboardView ? 'app-page__main--is-dashboard' : false,
+      ]"
+    >
       <router-view v-slot="{ Component }">
         <transition name="page-fade" mode="out-in">
           <component :is="Component" />
@@ -10,25 +15,32 @@
       </router-view>
     </main>
 
+    <app-mobile-navigation v-if="isDashboardView" />
+
     <app-footer />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { computed, defineComponent, ref, watch } from 'vue';
 import { useAuthStore } from '@/stores/auth';
-import AppNavigation from '@/components/Global/AppNavigation/AppNavigation.vue';
-import AppFooter from '@/components/Global/AppFooter/AppFooter.vue';
 import { useUserStore } from '@/stores/user';
 import { ElNotification } from 'element-plus'
+import { useRoute } from 'vue-router';
+
+import AppNavigation from '@/components/Global/AppNavigation/AppNavigation.vue';
+import AppFooter from '@/components/Global/AppFooter/AppFooter.vue';
+import AppMobileNavigation from '@/components/Global/AppMobileNavigation/AppMobileNavigation.vue';
 
 export default defineComponent({
   name: "App",
-  components: { AppNavigation, AppFooter },
+  components: { AppNavigation, AppFooter, AppMobileNavigation },
   setup() {
     const authStore = useAuthStore();
     const userStore = useUserStore();
     const loading = ref<boolean>(false);
+    const route = useRoute();
+    const isDashboardView = computed(() => route.meta.requiresAuth);
 
     const getUserDetails = async (): Promise<void> => {
       loading.value = true;
@@ -52,6 +64,10 @@ export default defineComponent({
         getUserDetails();
       } 
     }
+
+    return {
+      isDashboardView,
+    };
   },
 });
 

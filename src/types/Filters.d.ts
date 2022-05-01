@@ -1,5 +1,6 @@
 type BuildingType = 'Apartment' | 'House' | 'Studio';
 type BuildingAge = 'Old' | 'New';
+type BuildingLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
 interface OfferFilters {
   city?: undefined | string;
@@ -74,6 +75,7 @@ export {
   AllOfferFilters,
   BuildingType,
   BuildingAge,
+  BuildingLevel,
   AnyFilterObject,
   SortingItem,
   FiltrationDetails,

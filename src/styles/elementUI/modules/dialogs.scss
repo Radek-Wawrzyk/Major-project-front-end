@@ -17,3 +17,18 @@ body {
     }
   }
 }
+
+// Media
+@media screen and (max-width: 768px) {
+  body {
+    .el-dialog {
+      --el-dialog-width: 100%;
+      --el-dialog-margin-top: 0;
+      margin-bottom: 0;
+      height: 100%;
+      overflow: auto;;
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+}

@@ -18,7 +18,16 @@ interface UserStoreState {
   user?: User;
 }
 
+interface UpdateUser {
+	first_name: string;
+	last_name: string;
+	email: string;
+	phone: string;
+	bio: string | null
+}
+
 export {
   User,
+	UpdateUser,
   UserStoreState,
 };

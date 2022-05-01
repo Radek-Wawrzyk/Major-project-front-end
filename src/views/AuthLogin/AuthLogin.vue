@@ -88,11 +88,10 @@ import { useForm, useField } from 'vee-validate';
 import { useAuthStore } from '@/stores/auth';
 import { ElNotification } from 'element-plus';
 import type { AuthLogin } from '@/types/Auth';
-
-import AppLogo from '@/components/Global/AppLogo/AppLogo.vue';
-import { AxiosError } from 'axios';
 import { Router, useRouter } from 'vue-router';
 import { useUserStore } from '@/stores/user';
+
+import AppLogo from '@/components/Global/AppLogo/AppLogo.vue';
 
 export default defineComponent({
   components: { AppLogo },
@@ -132,7 +131,7 @@ export default defineComponent({
           await userStore.getMe();
           redirectHome()
         } 
-      } catch (error: AxiosError | any) {
+      } catch (error) {
         ElNotification({
           title: `Error: ${error.response.data ? error.response.data.error : ''}`,
           type: 'error',

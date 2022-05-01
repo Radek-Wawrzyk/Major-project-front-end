@@ -20,7 +20,42 @@
   }
 
   &__description {
-    line-height: 150%;
+    position: relative;
+
+    > * {
+      line-height: 150%;
+      color: $text-color;
+    }
+
+    ul, ol {
+      padding: 8px 0 8px 16px;
+    }
+
+    h1, h2, h3 {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    li {
+      margin: 0 0 8px 0;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+
+    strong {
+      font-weight: 500;
+      color: $text-color;
+    }
+
+    ol {
+      list-style: decimal;
+    }
+
+    ul {
+      list-style: disc;
+    }
   }
 
   &__location {
