@@ -76,7 +76,7 @@ export default defineComponent({
       });
 
       try {
-        const { data } = await offer.getSingleOffer(offerId.value);
+        const { data } = await offer.getFullOffer(offerId.value);
         offerDetails.value = data;
       } catch (error) {
         if (error.response.data?.statusCode === 404)

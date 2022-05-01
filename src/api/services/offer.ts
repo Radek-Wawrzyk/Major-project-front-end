@@ -2,7 +2,7 @@ import request from '@/api/index';
 import { CreateOffer, Offer } from '@/types/Offer';
 
 export default {
-  getAllOffers(queryParams: string) {
+  getAll(queryParams: string) {
     return request.get(`/offers/get?${queryParams}`);
   },
 
@@ -10,7 +10,7 @@ export default {
     return request.get(`/offers/get-user-offers?${queryParams}`);
   },
 
-  getSingleOffer(offerId: string) {
+  getFullOffer(offerId: string) {
     return request.get(`/offers/get-with-details/${offerId}`);
   },
 
@@ -18,7 +18,7 @@ export default {
     return request.get(`/offers/get/${offerId}`);
   },
 
-  removeOffer(offerId: number) {
+  remove(offerId: number) {
     return request.delete(`/offers/remove/${offerId}`);
   },
 

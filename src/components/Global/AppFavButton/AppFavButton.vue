@@ -87,7 +87,7 @@ export default defineComponent({
       loading.value = true;
 
       try {
-        const { data } = await favQuestion.saveFavQuestion(props.offerId);
+        const { data } = await favQuestion.save(props.offerId);
         userStore.addFavoriteOffer(data);
 
         ElNotification({
@@ -124,7 +124,7 @@ export default defineComponent({
       loading.value = true;
 
       try {
-        await favQuestion.removeFavQuestion(addedFavOffer.value.id);
+        await favQuestion.remove(addedFavOffer.value.id);
         userStore.removeFavoriteOffer(addedFavOffer.value.id);
 
         ElNotification({

@@ -116,7 +116,7 @@ export default defineComponent({
       loading.value = true;
 
       try {
-        const { data } = await favQuestion.getAllFavQuestions(queryParams);
+        const { data } = await favQuestion.get(queryParams);
         offersList.value = data.data;
         perPage.value = data.limit;
         totalCount.value = data.totalCount;
@@ -161,7 +161,7 @@ export default defineComponent({
 
     const deleteOffer = async (offerId: number) => {
       try {
-        await favQuestion.removeFavQuestion(offerId);
+        await favQuestion.remove(offerId);
         searchFavOffers(activePage.value);
         userStore.removeFavoriteOffer(offerId);
 

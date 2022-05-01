@@ -207,7 +207,7 @@ export default defineComponent({
       loading.value = true;
 
       try {
-        const { data } = await question.getAllQuestions(queryParams);
+        const { data } = await question.getAll(queryParams);
         questionList.value = data.data;
         perPage.value = data.limit;
         totalCount.value = data.totalCount;
@@ -253,7 +253,7 @@ export default defineComponent({
 
     const deleteQuestion = async (questionId: number) => {
       try {
-        await question.removeQuestion(questionId);
+        await question.remove(questionId);
         searchQuestions(activePage.value);
 
         ElNotification({

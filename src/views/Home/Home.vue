@@ -123,7 +123,7 @@ export default defineComponent({
       });
 
       try {
-        const { data } = await offer.getAllOffers(queryParams);
+        const { data } = await offer.getAll(queryParams);
         offers.value = data.data;
         offersNumber.value = data.totalCount;
         totalPages.value = data.totalPages;

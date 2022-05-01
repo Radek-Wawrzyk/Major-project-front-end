@@ -2,19 +2,19 @@ import request from '@/api/index';
 import { Question } from '@/types/Question';
 
 export default {
-  getQuestion(questionId: number) {
+  get(questionId: number) {
     return request.get(`/questions/get/${questionId}`);
   },
 
-  getAllQuestions(queryParams: string) {
+  getAll(queryParams: string) {
     return request.get(`/questions/get?${queryParams}`);
   },
 
-  removeQuestion(questionId: number) {
+  remove(questionId: number) {
     return request.delete(`/questions/remove/${questionId}`);
   },
 
-  askQuestion(questionDetails: Question) {
+  create(questionDetails: Question) {
     return request.post('/questions/create', questionDetails);
   },
 };

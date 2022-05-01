@@ -187,7 +187,7 @@ export default defineComponent({
         emit('on-submit');
 
         try {
-          await question.askQuestion({
+          await question.create({
             question: message,
             email,
             full_name,

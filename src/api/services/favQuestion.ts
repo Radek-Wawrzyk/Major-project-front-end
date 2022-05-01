@@ -1,15 +1,15 @@
 import request from '@/api/index';
 
 export default {
-  saveFavQuestion(offerId: number) {
+  save(offerId: number) {
     return request.post(`/favorite-offers/create/${offerId}`);
   },
 
-  getAllFavQuestions(queryParams: string) {
+  get(queryParams: string) {
     return request.get(`/favorite-offers/get?${queryParams}`);
   },
 
-  removeFavQuestion(offerId: number) {
+  remove(offerId: number) {
     return request.delete(`/favorite-offers/remove/${offerId}`);
   },
 };

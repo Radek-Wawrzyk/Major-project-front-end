@@ -501,7 +501,7 @@ import {
 } from 'yup';
 import { useForm, useField } from 'vee-validate';
 import { BuildingAge, BuildingType, BuildingLevel } from '@/types/Filters';
-import { CreateOffer } from '@/types/Offer';
+import { CreateOffer, Offer } from '@/types/Offer';
 import { buildingTypes, buildingAges, rooms, floors } from '@/data/filters';
 
 export default defineComponent({
@@ -674,7 +674,7 @@ export default defineComponent({
       emit('go-next');
     };
 
-    watch(props.offer, () => {
+    watch(props.offer as Offer, () => {
       setValues({ ...props.offer });
       descriptionEditor.value.reinit();
     });

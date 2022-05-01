@@ -192,7 +192,7 @@ export default defineComponent({
 
     const deleteOffer = async (offerId: number) => {
       try {
-        await offer.removeOffer(offerId);
+        await offer.remove(offerId);
         searchOffers(activePage.value);
 
         ElNotification({
