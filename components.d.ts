@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
     AppFavButton: typeof import('./src/components/Global/AppFavButton/AppFavButton.vue')['default']
     AppFooter: typeof import('./src/components/Global/AppFooter/AppFooter.vue')['default']
     AppLogo: typeof import('./src/components/Global/AppLogo/AppLogo.vue')['default']
+    AppMobileNavigation: typeof import('./src/components/Global/AppMobileNavigation/AppMobileNavigation.vue')['default']
     AppNavigation: typeof import('./src/components/Global/AppNavigation/AppNavigation.vue')['default']
     AppNavigationAvatar: typeof import('./src/components/Global/AppNavigationAvatar/AppNavigationAvatar.vue')['default']
     DashboardHeader: typeof import('./src/components/Dashboard/DashboardHeader/DashboardHeader.vue')['default']

@@ -15,6 +15,8 @@
       </router-view>
     </main>
 
+    <app-mobile-navigation v-if="isDashboardView" />
+
     <app-footer />
   </div>
 </template>
@@ -22,15 +24,17 @@
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue';
 import { useAuthStore } from '@/stores/auth';
-import AppNavigation from '@/components/Global/AppNavigation/AppNavigation.vue';
-import AppFooter from '@/components/Global/AppFooter/AppFooter.vue';
 import { useUserStore } from '@/stores/user';
 import { ElNotification } from 'element-plus'
 import { useRoute } from 'vue-router';
 
+import AppNavigation from '@/components/Global/AppNavigation/AppNavigation.vue';
+import AppFooter from '@/components/Global/AppFooter/AppFooter.vue';
+import AppMobileNavigation from '@/components/Global/AppMobileNavigation/AppMobileNavigation.vue';
+
 export default defineComponent({
   name: "App",
-  components: { AppNavigation, AppFooter },
+  components: { AppNavigation, AppFooter, AppMobileNavigation },
   setup() {
     const authStore = useAuthStore();
     const userStore = useUserStore();

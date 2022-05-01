@@ -593,6 +593,7 @@ export default defineComponent({
 
     watch(props.offer, () => {
       setValues({ ...props.offer });
+      descriptionEditor.value.reinit();
     })
 
     onMounted(() => {

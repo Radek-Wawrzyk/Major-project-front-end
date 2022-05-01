@@ -22,6 +22,14 @@
 }
 
 // media
+@media screen and (max-width: 768px) {
+  .app-footer {
+    &--dashboard {
+      margin: 0 0 60px 0;
+    }
+  }
+}
+
 @media screen and (max-width: 576px) {
   .app-footer {
     padding: 16px 0;

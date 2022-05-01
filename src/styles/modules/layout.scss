@@ -10,6 +10,7 @@
     background-color: $main-background;
 
     &--is-dashboard {
+      padding: calc(64px + 32px + 48px) 0 32px 0;
       background-color: $main-background--accent;
     }
   }
@@ -18,8 +19,8 @@
 .container {
   position: relative;
   width: 100%;
-  max-width: calc(1280px + 4rem);
-  padding: 0 2rem;
+  max-width: calc(1280px + 64px);
+  padding: 0 32px;
   margin: 0 auto;
 
   &--full {
@@ -29,7 +30,15 @@
 
 // Media
 @media screen and (max-width: 768px) {
+  .app-page {
+    &__main {
+      &--is-dashboard {
+        padding: calc(64px + 32px) 0 32px 0;
+      }
+    }
+  }
+
   .container {
-    padding: 0 1rem;
+    padding: 0 16px;
   }
 }
