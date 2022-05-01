@@ -1,0 +1,48 @@
+.offer-page {
+  position: relative;
+
+  &__header {
+    display: flex;
+    margin: 0 auto 16px auto;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: flex-start;
+
+    &-form {
+      width: 35%;
+      position: sticky;
+      top: 80px;
+    }
+
+    &-gallery {
+      margin: 0 0 32px 0;
+    }
+
+    &-content {
+      width: 65%;
+      padding: 0 32px 0 0;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .offer-page {
+    padding: 0 0 80px 0;
+
+    &__inner {
+      flex-direction: column;
+
+      &-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+      }
+
+      &-form {
+        display: none;
+      }
+    }
+  }
+}

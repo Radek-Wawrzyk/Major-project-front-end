@@ -1,0 +1,28 @@
+.app-fav-button {
+  position: relative;
+
+  &--active {
+    path {
+      fill: $primary;
+    }
+  }
+
+  &--icon {
+    position: relative;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    border-radius: 50% !important;
+
+    .el-icon,
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .el-icon + span {
+      display: none;
+    }
+  }
+}

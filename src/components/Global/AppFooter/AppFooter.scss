@@ -1,0 +1,47 @@
+.app-footer {
+  position: relative;
+  text-align: center;
+  padding: 24px 0;
+  border-top: 1px solid $main-border--light;
+
+  &__copyright-text {
+    font-size: 16px;
+    color: $text-color--light;
+    margin: 0 0 16px 0;
+  }
+
+  &__made-by {
+    font-size: 16px;
+    color: $text-color;
+    line-height: 150%;
+  }
+
+  &__icon {
+    color: #f56c6c;
+  }
+}
+
+// media
+@media screen and (max-width: 768px) {
+  .app-footer {
+    &--dashboard {
+      margin: 0 0 60px 0;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .app-footer {
+    padding: 16px 0;
+
+    &__made-by,
+    &__copyright-text,
+    &__link {
+      font-size: 12px;
+    }
+
+    &__copyright-text {
+      margin: 0 0 8px 0;
+    }
+  }
+}

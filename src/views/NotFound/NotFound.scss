@@ -1,0 +1,15 @@
+.page-not-found {
+  position: relative;
+  padding: 0 0 32px 0;
+
+  &__container {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+  }
+
+  &__button {
+    width: 100%;
+  }
+}

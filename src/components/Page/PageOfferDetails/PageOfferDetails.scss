@@ -1,0 +1,187 @@
+.offer-details {
+  position: relative;
+
+  &__main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin: 0 0 10px 0;
+
+    &-name {
+      font-size: 28px;
+      font-weight: 500;
+    }
+
+    &-price {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+
+  &__description {
+    position: relative;
+
+    > * {
+      line-height: 150%;
+      color: $text-color;
+    }
+
+    ul,
+    ol {
+      padding: 8px 0 8px 16px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    li {
+      margin: 0 0 8px 0;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+
+    strong {
+      font-weight: 500;
+      color: $text-color;
+    }
+
+    ol {
+      list-style: decimal;
+    }
+
+    ul {
+      list-style: disc;
+    }
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: $text-color--light;
+    width: 100%;
+    margin: 0 0 32px 0;
+
+    &-icon {
+      margin: 0 6px 0 0;
+
+      svg {
+        width: 24px;
+      }
+    }
+  }
+
+  &__row {
+    position: relative;
+    margin: 0 0 48px 0;
+
+    &-address {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      color: $text-color;
+      width: 100%;
+      margin: 0 0 32px 0;
+
+      &-icon {
+        margin: 0 6px 0 0;
+
+        svg {
+          width: 24px;
+        }
+      }
+    }
+
+    &-heading {
+      font-size: 24px;
+      font-weight: 500;
+      margin: 0 0 20px 0;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 0 48px 0;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid $main-border--light;
+
+      &:nth-child(even) {
+        padding: 12px 0 12px 32px;
+      }
+
+      &:nth-child(odd) {
+        padding: 12px 32px 12px 0;
+      }
+    }
+
+    &-value {
+      font-weight: 500;
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+
+    &-label {
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    &-icon {
+      position: relative;
+      margin: 0 12px 0 0;
+    }
+  }
+}
+
+// Media
+@media screen and (max-width: 486px) {
+  .offer-details {
+    &__main {
+      flex-direction: column;
+      justify-content: unset;
+      align-items: unset;
+      gap: 10px;
+      margin: 0 0 24px 0;
+
+      &-name {
+        font-size: 24px;
+      }
+
+      &-price {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 486px) {
+  .offer-details {
+    &__list {
+      grid-template-columns: repeat(1, 1fr);
+
+      &-item {
+        &:nth-child(even) {
+          padding: 12px 0;
+        }
+
+        &:nth-child(odd) {
+          padding: 12px 0;
+        }
+      }
+    }
+  }
+}

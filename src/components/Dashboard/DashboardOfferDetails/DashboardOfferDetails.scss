@@ -1,0 +1,129 @@
+.dashboard-offer-details {
+  position: relative;
+
+  &__form {
+    position: relative;
+    width: 100%;
+
+    &-item {
+      margin: 0 !important;
+      position: relative;
+
+      .el-select {
+        width: 100% !important;
+      }
+    }
+
+    &-decorator {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $text-color--placeholder;
+    }
+  }
+
+  &__editor {
+    position: relative;
+
+    &--error {
+      .ql-toolbar.ql-snow,
+      .ql-container.ql-snow {
+        border-color: var(--el-color-danger);
+      }
+    }
+
+    .ql-editor {
+      padding: 24px 16px;
+    }
+
+    .ql-toolbar.ql-snow {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    .ql-container.ql-snow {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    &-error {
+      color: var(--el-color-danger);
+      font-size: 12px;
+      line-height: 1;
+      padding-top: 2px;
+      position: absolute;
+      top: 100%;
+      left: 0;
+    }
+  }
+
+  &__section {
+    margin: 0 0 48px 0;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    &-heading {
+      margin: 0 0 24px 0;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &-text {
+      margin: 0 0 8px 0;
+    }
+
+    &-content {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 24px;
+      align-items: flex-end;
+    }
+  }
+}
+
+// Media
+@media screen and (max-width: 1024px) {
+  .dashboard-offer-details {
+    &__section {
+      &-content {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard-offer-details {
+    &__section {
+      &-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      &--actions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+
+        .el-button {
+          width: 100%;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 476px) {
+  .dashboard-offer-details {
+    &__section {
+      &-content {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 24px;
+      }
+    }
+  }
+}
