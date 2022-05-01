@@ -11,15 +11,15 @@ export default {
   },
 
   getSingleOffer(offerId: string) {
-    return request.get(`/offers/get-with-details/${offerId}`)
+    return request.get(`/offers/get-with-details/${offerId}`);
   },
 
   getPlainOffer(offerId: string) {
-    return request.get(`/offers/get/${offerId}`)
+    return request.get(`/offers/get/${offerId}`);
   },
 
   removeOffer(offerId: number) {
-    return request.delete(`/offers/remove/${offerId}`)
+    return request.delete(`/offers/remove/${offerId}`);
   },
 
   edit(offer: CreateOffer) {

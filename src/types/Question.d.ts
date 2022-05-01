@@ -12,6 +12,4 @@ interface Question {
   };
 }
 
-export {
-  Question,
-};
+export { Question };

@@ -1,4 +1,4 @@
-import { BuildingType, BuildingAge, SortingItem } from "@/types/Filters";
+import { BuildingType, BuildingAge, SortingItem } from '@/types/Filters';
 
 const buildingTypes: BuildingType[] = ['Apartment', 'House', 'Studio'];
 const buildingAges: BuildingAge[] = ['Old', 'New'];
@@ -31,10 +31,4 @@ const sortingList: SortingItem[] = [
   },
 ];
 
-export {
-  buildingTypes,
-  buildingAges,
-  rooms,
-  floors,
-  sortingList,
-};
+export { buildingTypes, buildingAges, rooms, floors, sortingList };

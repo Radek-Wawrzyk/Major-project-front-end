@@ -6,8 +6,8 @@
       class="offers-filters__form"
       @submit.prevent="onSubmit()"
     >
-      <el-form-item 
-        label="City" 
+      <el-form-item
+        label="City"
         class="offers-filters__form-item offers-filters__form-item--city"
       >
         <el-input
@@ -20,9 +20,9 @@
       </el-form-item>
 
       <el-form-item label="Property type" class="offers-filters__form-item">
-        <el-select 
-          v-model="filters.building_type" 
-          placeholder="Apartment" 
+        <el-select
+          v-model="filters.building_type"
+          placeholder="Apartment"
           clearable
         >
           <el-option
@@ -45,9 +45,7 @@
         </el-select>
       </el-form-item>
 
-      <el-button type="primary" native-type="submit">
-        Search
-      </el-button>
+      <el-button type="primary" native-type="submit"> Search </el-button>
 
       <el-form-item label="Min Price" class="offers-filters__form-item">
         <el-input
@@ -78,9 +76,7 @@
           clearable
         />
 
-        <span class="offers-filters__form-decorator">
-          m2
-        </span>
+        <span class="offers-filters__form-decorator"> m2 </span>
       </el-form-item>
 
       <el-form-item label="Floor (lvl)" class="offers-filters__form-item">
@@ -95,7 +91,11 @@
       </el-form-item>
 
       <el-form-item label="Free Internet" class="offers-filters__form-item">
-        <el-select v-model="filters.includes_internet" placeholder="Yes" clearable>
+        <el-select
+          v-model="filters.includes_internet"
+          placeholder="Yes"
+          clearable
+        >
           <el-option
             v-for="item in [true, false]"
             :key="item"
@@ -105,8 +105,8 @@
         </el-select>
       </el-form-item>
 
-      <el-button 
-        type="default" 
+      <el-button
+        type="default"
         :icon="operationIcon"
         class="offers-filters__form-filter-button"
         @click="setDialog(true)"
@@ -116,12 +116,12 @@
     </el-form>
 
     <teleport to="body">
-      <el-dialog 
-        v-model="dialogVisible" 
+      <el-dialog
+        v-model="dialogVisible"
         title="All filters"
         custom-class="offers-filters__dialog"
       >
-        <page-offers-all-filters 
+        <page-offers-all-filters
           @filter="filter($event)"
           @close="onClose($event)"
           :filters="dialogFilters"
@@ -169,7 +169,7 @@ export default defineComponent({
       price_max: undefined,
       rooms_number: undefined,
       rule_no_animals: undefined,
-      rule_no_smokers: undefined, 
+      rule_no_smokers: undefined,
     });
 
     const setDialog = (toggleStatus = !dialogVisible.value): void => {
@@ -182,7 +182,7 @@ export default defineComponent({
 
     const filter = (newFilters: any) => {
       emit('search', newFilters);
-      Object.assign(filters, newFilters); 
+      Object.assign(filters, newFilters);
     };
 
     const onSubmit = () => {
@@ -191,11 +191,11 @@ export default defineComponent({
 
     const onClose = (closeDetails: CloseFilterEmit) => {
       if (closeDetails.syncFilters) {
-        Object.assign(filters, closeDetails.filters); 
+        Object.assign(filters, closeDetails.filters);
       }
 
       setDialog(false);
-    }
+    };
 
     return {
       onSubmit,
@@ -206,10 +206,10 @@ export default defineComponent({
       filters,
       buildingTypes,
       buildingAges,
-      rooms, 
+      rooms,
       floors,
       dialogVisible,
-      dialogFilters, 
+      dialogFilters,
     };
   },
 });

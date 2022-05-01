@@ -9,10 +9,10 @@
 
       <section class="host-page-details">
         <figure class="host-page-details__image">
-          <app-avatar 
-            :user="hostDetails" 
+          <app-avatar
+            :user="hostDetails"
             :size="140"
-            class="host-page-details__image-inner" 
+            class="host-page-details__image-inner"
           />
         </figure>
 
@@ -25,35 +25,41 @@
             Joined at {{ joinedDate }}
           </span>
 
-          <a 
+          <a
             class="host-page-details__content-link"
             :href="`mailto:${hostDetails.email}`"
           >
             {{ hostDetails.email }}
           </a>
 
-          <a 
+          <a
             class="host-page-details__content-link"
             :href="`tel:${hostDetails.phone}`"
           >
             {{ hostDetails.phone }}
           </a>
 
-          <p class="host-page-details__content-text"  v-html="hostDetails.bio" />
+          <p class="host-page-details__content-text" v-html="hostDetails.bio" />
         </div>
       </section>
 
       <section class="host-page-offers">
-        <ul class="host-page-offers__list" v-if="hostDetails.offers && hostDetails.offers.length">
-          <page-offer-card 
-            v-for="offer in hostDetails.offers" 
+        <ul
+          class="host-page-offers__list"
+          v-if="hostDetails.offers && hostDetails.offers.length"
+        >
+          <page-offer-card
+            v-for="offer in hostDetails.offers"
             :key="offer.id"
             :offer="offer"
             class="host-page-offers__list-card"
           />
         </ul>
-        
-        <p class="host-page-offers__no-offers" v-if="!hostDetails.offers || hostDetails.offers.length === 0 || error">
+
+        <p
+          class="host-page-offers__no-offers"
+          v-if="!hostDetails.offers || hostDetails.offers.length === 0 || error"
+        >
           Sorry you have not found any offer. Please reset filters
         </p>
       </section>
@@ -80,25 +86,28 @@ export default defineComponent({
     const hostDetails = ref();
     const error = ref();
     const hostId = computed(() => route.params.id as string);
-    const joinedDate = computed(() => dayjs(hostDetails.value.created_at).format('MMMM YYYY'));
+    const joinedDate = computed(() =>
+      dayjs(hostDetails.value.created_at).format('MMMM YYYY'),
+    );
     const redirectHome = (): void => {
       router.push('/');
-    }
+    };
 
     onMounted(async () => {
       const loading = ElLoading.service({
         lock: true,
-        background: "#ffffff",
+        background: '#ffffff',
       });
 
       try {
         const { data } = await user.getUserWithOffers(hostId.value);
         hostDetails.value = data;
       } catch (error) {
-        if (error.response.data?.statusCode === 404) router.push("/page-not-found");
+        if (error.response.data?.statusCode === 404)
+          router.push('/page-not-found');
         error.value = error;
       } finally {
-        loading.close()
+        loading.close();
       }
     });
 

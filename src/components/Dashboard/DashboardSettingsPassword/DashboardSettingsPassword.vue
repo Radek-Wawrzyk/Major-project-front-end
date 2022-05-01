@@ -19,7 +19,10 @@
       </div>
 
       <div class="dashboard-settings-password__form-field">
-        <el-form-item label="Repeat password" :error="errors.passwordConfirmation">
+        <el-form-item
+          label="Repeat password"
+          :error="errors.passwordConfirmation"
+        >
           <el-input
             v-model="form.passwordConfirmation"
             type="password"
@@ -55,10 +58,21 @@ export default defineComponent({
   name: 'DashboardSettingsPassword',
   setup() {
     const loading = ref<boolean>(false);
-    const { values: form, handleSubmit, errors } = useForm({
+    const {
+      values: form,
+      handleSubmit,
+      errors,
+    } = useForm({
       validationSchema: object({
-        password: string().required().min(8).label('Password') as StringSchema<string>,
-        passwordConfirmation: string().required().min(8).label('Repeat password').oneOf([yupRef('password'), null], 'Passwords must match'),
+        password: string()
+          .required()
+          .min(8)
+          .label('Password') as StringSchema<string>,
+        passwordConfirmation: string()
+          .required()
+          .min(8)
+          .label('Repeat password')
+          .oneOf([yupRef('password'), null], 'Passwords must match'),
       }),
       initialValues: {
         password: '',
@@ -74,16 +88,20 @@ export default defineComponent({
 
       try {
         await user.changePassword(password);
-         ElNotification({
+        ElNotification({
           title: `Success`,
           type: 'success',
           message: `You have changed your password`,
         });
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       } finally {
         loading.value = false;

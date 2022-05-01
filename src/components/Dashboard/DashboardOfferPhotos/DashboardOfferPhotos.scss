@@ -23,7 +23,8 @@
   &__upload {
     width: 100%;
 
-    .el-upload, .el-upload-dragger {
+    .el-upload,
+    .el-upload-dragger {
       width: 100%;
     }
 
@@ -36,10 +37,10 @@
       gap: 4px;
     }
 
-    &-icon  {
+    &-icon {
       font-size: 68px;
       color: $text-color--accent;
-      
+
       svg {
         font-size: 68px;
       }
@@ -78,7 +79,8 @@
       background-color: none !important;
       color: $ui-error;
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         color: $ui-error;
         opacity: 0.7;
       }
@@ -92,7 +94,7 @@
     &__header {
       text-align: center;
     }
-    
+
     &__actions {
       display: grid;
       grid-template-columns: repeat(2, 1fr);

@@ -1,8 +1,14 @@
 import auth from '@/api/services/auth';
-import { defineStore, acceptHMRUpdate } from 'pinia'
-import Cookies from 'js-cookie'
+import { defineStore, acceptHMRUpdate } from 'pinia';
+import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import { AuthForgetPassword, AuthLogin, AuthRegister, AuthResetPassword, AuthTokenizedUser } from '@/types/Auth';
+import {
+  AuthForgetPassword,
+  AuthLogin,
+  AuthRegister,
+  AuthResetPassword,
+  AuthTokenizedUser,
+} from '@/types/Auth';
 import router from '@/router';
 
 export const useAuthStore = defineStore({
@@ -12,53 +18,57 @@ export const useAuthStore = defineStore({
   }),
   getters: {
     isAuthenticated: (state) => {
-      return !!state.token
+      return !!state.token;
     },
   },
   actions: {
-    async signIn({ email, password, rememberMe } : AuthLogin): Promise<boolean> {
+    async signIn({ email, password, rememberMe }: AuthLogin): Promise<boolean> {
       try {
         const response = await auth.login({
           email,
           password,
         });
-        
-        console.log(rememberMe)
+
+        console.log(rememberMe);
         // Set JWT cookie for authorization & save token to the state
         if (rememberMe) Cookies.set('token', response.data.access_token);
         this.token = response.data.access_token;
 
         return true;
       } catch (error) {
-        throw (error);
+        throw error;
       }
     },
 
-    async signUp(registerDetails : AuthRegister): Promise<boolean> {
+    async signUp(registerDetails: AuthRegister): Promise<boolean> {
       try {
         await auth.register(registerDetails);
 
         return true;
       } catch (error) {
-        throw (error);
+        throw error;
       }
     },
 
-    async forgetPassword(forgetPasswordDetails: AuthForgetPassword): Promise<boolean> {
+    async forgetPassword(
+      forgetPasswordDetails: AuthForgetPassword,
+    ): Promise<boolean> {
       try {
         await auth.forgotPassword(forgetPasswordDetails);
         return true;
       } catch (error) {
-        throw (error);
+        throw error;
       }
     },
-  
-    async resetPassword(resetPasswordDetails: AuthResetPassword): Promise<boolean> {
+
+    async resetPassword(
+      resetPasswordDetails: AuthResetPassword,
+    ): Promise<boolean> {
       try {
         await auth.resetPassword(resetPasswordDetails);
         return true;
       } catch (error) {
-        throw (error);
+        throw error;
       }
     },
 
@@ -80,10 +90,10 @@ export const useAuthStore = defineStore({
       this.token = null;
       Cookies.remove('token');
       router.push('/');
-    }
+    },
   },
 });
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useAuthStore, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useAuthStore, import.meta.hot));
 }

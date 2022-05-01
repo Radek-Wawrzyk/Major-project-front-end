@@ -2,11 +2,9 @@
   <div class="app-page">
     <app-navigation />
 
-    <main 
+    <main
       class="app-page__main"
-      :class="[
-        isDashboardView ? 'app-page__main--is-dashboard' : false,
-      ]"
+      :class="[isDashboardView ? 'app-page__main--is-dashboard' : false]"
     >
       <router-view v-slot="{ Component }">
         <transition name="page-fade" mode="out-in">
@@ -25,7 +23,7 @@
 import { computed, defineComponent, ref, watch } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 import { useUserStore } from '@/stores/user';
-import { ElNotification } from 'element-plus'
+import { ElNotification } from 'element-plus';
 import { useRoute } from 'vue-router';
 
 import AppNavigation from '@/components/Global/AppNavigation/AppNavigation.vue';
@@ -33,7 +31,7 @@ import AppFooter from '@/components/Global/AppFooter/AppFooter.vue';
 import AppMobileNavigation from '@/components/Global/AppMobileNavigation/AppMobileNavigation.vue';
 
 export default defineComponent({
-  name: "App",
+  name: 'App',
   components: { AppNavigation, AppFooter, AppMobileNavigation },
   setup() {
     const authStore = useAuthStore();
@@ -49,20 +47,24 @@ export default defineComponent({
         await userStore.getMe();
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       } finally {
         loading.value = false;
       }
-    }
+    };
 
     if (authStore.isAuthenticated) {
       // Check JWT exp session, if valid getUser
       if (authStore.checkSession()) {
         getUserDetails();
-      } 
+      }
     }
 
     return {
@@ -70,5 +72,4 @@ export default defineComponent({
     };
   },
 });
-
 </script>

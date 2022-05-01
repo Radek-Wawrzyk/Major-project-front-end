@@ -4,6 +4,4 @@ const getImagePath = (relativeImageSrc: string): string => {
   return `${config.api.baseUrl}/${relativeImageSrc}`;
 };
 
-export {
-  getImagePath,
-};
+export { getImagePath };

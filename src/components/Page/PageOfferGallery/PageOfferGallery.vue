@@ -1,15 +1,15 @@
 <template>
   <section class="offer-gallery">
     <ul class="offer-gallery__list" v-if="hasPhotos">
-      <li 
+      <li
         class="offer-gallery__list-item"
         v-for="(photo, index) in photos"
         :key="photo.id"
         @click="openLightbox(index)"
       >
-        <img 
-          class="offer-gallery__list-image" 
-          :alt="photo.name" 
+        <img
+          class="offer-gallery__list-image"
+          :alt="photo.name"
           :src="imagePath(photo.url)"
         />
       </li>
@@ -17,16 +17,16 @@
 
     <img
       v-else
-      class="offer-gallery__placeholder-photo" 
-      alt="Placeholder photo" 
-      src="@/assets/images/placeholder-photo.jpeg" 
+      class="offer-gallery__placeholder-photo"
+      alt="Placeholder photo"
+      src="@/assets/images/placeholder-photo.jpeg"
     />
 
     <el-button
       v-if="hasPhotos"
       @click="goPrev()"
-      type="" 
-      :icon="ArrowLeft" 
+      type=""
+      :icon="ArrowLeft"
       circle
       class="offer-gallery__button offer-gallery__button--prev"
     />
@@ -34,8 +34,8 @@
     <el-button
       v-if="hasPhotos"
       @click="goNext()"
-      type="" 
-      :icon="ArrowRight" 
+      type=""
+      :icon="ArrowRight"
       circle
       class="offer-gallery__button offer-gallery__button--next"
     />
@@ -97,14 +97,13 @@ export default defineComponent({
     const closeLightbox = () => {
       lightboxIsActive.value = false;
       lightboxActiveIndex.value = 0;
-    }
+    };
     const goNext = () => {
       if (hasPhotos.value) sliderRef.value.next();
-      
-    }
+    };
     const goPrev = () => {
       if (hasPhotos.value) sliderRef.value.prev();
-    }
+    };
 
     onMounted(() => {
       if (!hasPhotos.value) return false;

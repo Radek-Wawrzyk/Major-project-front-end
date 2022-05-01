@@ -28,7 +28,7 @@
           </span>
         </el-card>
 
-         <el-card class="dashboard-page__card">
+        <el-card class="dashboard-page__card">
           <template #header>
             <h2 class="dashboard-page__card-title">
               Percentage of question asked based on all views
@@ -36,7 +36,9 @@
           </template>
 
           <span class="dashboard-page__card-number">
-            {{ Math.round(dashboardDetails.percentageOfAllAppliedQuestionsEver) }}%
+            {{
+              Math.round(dashboardDetails.percentageOfAllAppliedQuestionsEver)
+            }}%
           </span>
         </el-card>
       </div>
@@ -45,11 +47,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted,ref } from "vue";
+import { computed, defineComponent, onMounted, ref } from 'vue';
 import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';
 import stats from '@/api/services/stats';
-import { ElNotification } from "element-plus";
+import { ElNotification } from 'element-plus';
 import { DashboardStats } from '@/types/Stats';
 
 export default defineComponent({
@@ -66,9 +68,13 @@ export default defineComponent({
         dashboardDetails.value = data;
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       }
     });

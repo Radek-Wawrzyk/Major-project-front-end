@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue';
 import { useRoute } from 'vue-router';
 import AppLogo from '@/components/Global/AppLogo/AppLogo.vue';
 
@@ -33,9 +33,9 @@ export default defineComponent({
     return {
       route,
       currentPage,
-    }
+    };
   },
-})
+});
 </script>
 
 <style lang="scss" src="./Auth.scss" />

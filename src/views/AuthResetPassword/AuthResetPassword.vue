@@ -1,13 +1,9 @@
 <template>
   <div class="auth-details">
     <header class="auth-details__header">
-      <h2 class="auth-details__header-title">
-        Reset Password
-      </h2>
+      <h2 class="auth-details__header-title">Reset Password</h2>
 
-      <p class="auth-details__header-text">
-        Please enter your new password!
-      </p>
+      <p class="auth-details__header-text">Please enter your new password!</p>
 
       <p class="auth-details__header-text">
         <router-link
@@ -40,7 +36,10 @@
       </div>
 
       <div class="auth-details__form-field">
-        <el-form-item label="Repeat password" :error="errors.passwordConfirmation">
+        <el-form-item
+          label="Repeat password"
+          :error="errors.passwordConfirmation"
+        >
           <el-input
             v-model="resetPassword.passwordConfirmation"
             type="password"
@@ -68,7 +67,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
+import { defineComponent, ref, computed } from 'vue';
 import { string, object, ref as yupRef, StringSchema } from 'yup';
 import { useForm, useField } from 'vee-validate';
 import { useAuthStore } from '@/stores/auth';
@@ -88,10 +87,21 @@ export default defineComponent({
     const route = useRoute();
     const token = computed(() => route.query.token);
 
-    const { values: resetPassword, handleSubmit, errors } = useForm({
+    const {
+      values: resetPassword,
+      handleSubmit,
+      errors,
+    } = useForm({
       validationSchema: object({
-        password: string().required().min(8).label('Password') as StringSchema<string>,
-        passwordConfirmation: string().required().min(8).label('Repeat password').oneOf([yupRef('password'), null], 'Passwords must match'),
+        password: string()
+          .required()
+          .min(8)
+          .label('Password') as StringSchema<string>,
+        passwordConfirmation: string()
+          .required()
+          .min(8)
+          .label('Repeat password')
+          .oneOf([yupRef('password'), null], 'Passwords must match'),
       }),
       initialValues: {
         password: '',
@@ -105,13 +115,16 @@ export default defineComponent({
     const authStore = useAuthStore();
     const redirectLogin = (): void => {
       router.push('/auth/login');
-    }
+    };
 
     const onSubmit = handleSubmit(async ({ password }) => {
       loading.value = true;
 
       try {
-        const response = await authStore.resetPassword({ password, token: token.value } as AuthResetPassword);
+        const response = await authStore.resetPassword({
+          password,
+          token: token.value,
+        } as AuthResetPassword);
         if (response) {
           redirectLogin();
           ElNotification({
@@ -122,11 +135,14 @@ export default defineComponent({
         }
       } catch (error: AxiosError | any) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
-        
       } finally {
         loading.value = false;
       }
@@ -140,5 +156,5 @@ export default defineComponent({
       token,
     };
   },
-})
+});
 </script>

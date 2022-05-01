@@ -1,9 +1,7 @@
 <template>
   <div class="auth-details">
     <header class="auth-details__header">
-      <h2 class="auth-details__header-title">
-        Sign in to the FindYourFlat
-      </h2>
+      <h2 class="auth-details__header-title">Sign in to the FindYourFlat</h2>
 
       <p class="auth-details__header-text">
         Welcome back! Enter your details below.
@@ -59,7 +57,10 @@
             v-model="login.rememberMe"
           />
 
-          <router-link to="/auth/forgot-password" class="auth-details__form-link">
+          <router-link
+            to="/auth/forgot-password"
+            class="auth-details__form-link"
+          >
             Forgot assword?
           </router-link>
         </el-form-item>
@@ -82,7 +83,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref } from 'vue';
 import { string, object, boolean } from 'yup';
 import { useForm, useField } from 'vee-validate';
 import { useAuthStore } from '@/stores/auth';
@@ -99,8 +100,12 @@ export default defineComponent({
   setup() {
     const loading = ref<boolean>(false);
     const router: Router = useRouter();
-  
-    const { values: login, handleSubmit, errors } = useForm({
+
+    const {
+      values: login,
+      handleSubmit,
+      errors,
+    } = useForm({
       validationSchema: object({
         email: string().required().email().label('Email'),
         password: string().required().min(8).label('Password'),
@@ -120,24 +125,31 @@ export default defineComponent({
     const userStore = useUserStore();
     const redirectHome = (): void => {
       router.push('/dashboard');
-    }
+    };
 
     const onSubmit = handleSubmit(async ({ email, password, rememberMe }) => {
       loading.value = true;
 
       try {
-        const response: boolean = await authStore.signIn({ email, password, rememberMe } as AuthLogin);
+        const response: boolean = await authStore.signIn({
+          email,
+          password,
+          rememberMe,
+        } as AuthLogin);
         if (response) {
           await userStore.getMe();
-          redirectHome()
-        } 
+          redirectHome();
+        }
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
-        
       } finally {
         loading.value = false;
       }
@@ -150,5 +162,5 @@ export default defineComponent({
       loading,
     };
   },
-})
+});
 </script>

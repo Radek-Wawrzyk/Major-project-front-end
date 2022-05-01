@@ -1,4 +1,4 @@
-import { string } from "yup";
+import { string } from 'yup';
 
 interface AuthLogin {
   email: string;

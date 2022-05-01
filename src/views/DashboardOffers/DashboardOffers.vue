@@ -14,14 +14,14 @@
           <el-table-column label="Image" width="60px">
             <template #default="scope">
               <figure class="dashboard-offers__image">
-                <img 
+                <img
                   class="dashboard-offers__image-inner"
                   alt=""
                   :src="getImagePath(getMainImage(scope.row.photos))"
                   v-if="hasImages(scope.row.photos)"
                 />
 
-                <img 
+                <img
                   class="dashboard-offers__image-inner"
                   alt=""
                   src="@/assets/images/placeholder-photo.jpeg"
@@ -62,7 +62,10 @@
 
           <el-table-column label="Location" width="200px">
             <template #default="scope">
-              <p class="dashboard-offers__location" v-html="getFullLocation(scope.row)" />
+              <p
+                class="dashboard-offers__location"
+                v-html="getFullLocation(scope.row)"
+              />
             </template>
           </el-table-column>
 
@@ -70,17 +73,17 @@
             <template #default="scope">
               <div class="dashboard-offers__actions">
                 <el-button
-                  type="primary" 
-                  :icon="EditIcon" 
-                  circle 
+                  type="primary"
+                  :icon="EditIcon"
+                  circle
                   @click="editOffer(scope.row.id)"
                   title="Edit offer from favorites list"
                   aria-label="Edit offer from favorites list"
                 />
-                <el-button 
-                  type="danger" 
-                  :icon="DeleteIcon" 
-                  circle 
+                <el-button
+                  type="danger"
+                  :icon="DeleteIcon"
+                  circle
                   @click="tryToDeleteOffer(scope.row.id)"
                   title="Delete offer from favorites list"
                   aria-label="Delete offer from favorites list"
@@ -92,8 +95,8 @@
       </el-card>
 
       <div class="dashboard-offers__pagination" v-if="offersList.length">
-        <el-pagination 
-          layout="prev, pager, next" 
+        <el-pagination
+          layout="prev, pager, next"
           :total="totalCount"
           :page-count="totalPages"
           @current-change="setPage($event)"
@@ -106,7 +109,10 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted, ref } from 'vue';
 import { ElNotification, ElMessageBox } from 'element-plus';
-import { Delete as DeleteIcon, EditPen as EditIcon } from '@element-plus/icons-vue';
+import {
+  Delete as DeleteIcon,
+  EditPen as EditIcon,
+} from '@element-plus/icons-vue';
 import { prepareParamsQuery } from '@/helpers/filters';
 import { FullFavOffer, Offer, OfferGallery } from '@/types/Offer';
 import { formatPrice } from '@/helpers/price';
@@ -149,18 +155,22 @@ export default defineComponent({
         activePage.value = page;
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       } finally {
         loading.value = false;
       }
-    }
+    };
 
     const setPage = (page: number): void => {
       searchOffers(page);
-    }
+    };
 
     const tryToDeleteOffer = async (questionId: number) => {
       try {
@@ -171,7 +181,7 @@ export default defineComponent({
             confirmButtonText: 'Delete',
             cancelButtonText: 'Cancel',
             type: 'warning',
-          }
+          },
         );
 
         deleteOffer(questionId);
@@ -183,7 +193,7 @@ export default defineComponent({
     const deleteOffer = async (offerId: number) => {
       try {
         await offer.removeOffer(offerId);
-        searchOffers(activePage.value)
+        searchOffers(activePage.value);
 
         ElNotification({
           title: `Success`,
@@ -192,9 +202,13 @@ export default defineComponent({
         });
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       }
     };
@@ -208,16 +222,16 @@ export default defineComponent({
     };
 
     const getFullLocation = (offer: Offer) => {
-     return `${offer.location_street}, ${offer.location_city}, <br/> ${offer.location_post_code}, ${offer.location_country}`
+      return `${offer.location_street}, ${offer.location_city}, <br/> ${offer.location_post_code}, ${offer.location_country}`;
     };
 
     const redirectToNewOffer = () => {
       router.push('/create-offer');
-    }
+    };
 
     const editOffer = (offerId: number) => {
       router.push(`/my-offers/${offerId}`);
-    }
+    };
 
     onMounted(() => {
       searchOffers();
@@ -245,7 +259,6 @@ export default defineComponent({
     };
   },
 });
-
 </script>
 
 <style lang="scss" src="./DashboardOffers.scss" />

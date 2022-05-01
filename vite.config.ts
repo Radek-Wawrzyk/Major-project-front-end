@@ -6,13 +6,12 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import vue from '@vitejs/plugin-vue';
 
-
 export default defineConfig({
   server: {
     port: 8080,
   },
   preview: {
-    port: 8080
+    port: 8080,
   },
   plugins: [
     vue(),
@@ -26,14 +25,14 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      'config': fileURLToPath(new URL('./src/config/index.ts', import.meta.url)),
-    }
+      config: fileURLToPath(new URL('./src/config/index.ts', import.meta.url)),
+    },
   },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "@/styles/modules/variables.scss";`
+        additionalData: `@import "@/styles/modules/variables.scss";`,
       },
-    }
+    },
   },
-})
+});

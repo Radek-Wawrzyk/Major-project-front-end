@@ -1,5 +1,10 @@
 import request from '@/api/index';
-import type { AuthForgetPassword, AuthLogin, AuthRegister, AuthResetPassword } from '@/types/Auth';
+import type {
+  AuthForgetPassword,
+  AuthLogin,
+  AuthRegister,
+  AuthResetPassword,
+} from '@/types/Auth';
 
 export default {
   login(loginDetails: AuthLogin) {
@@ -9,13 +14,13 @@ export default {
     });
   },
 
-  register(registerDetails : AuthRegister) {
+  register(registerDetails: AuthRegister) {
     return request.post('/auth/register', {
       first_name: registerDetails.firstName,
       last_name: registerDetails.lastName,
       email: registerDetails.email,
       password: registerDetails.password,
-      phone: registerDetails.phone
+      phone: registerDetails.phone,
     });
   },
 
@@ -32,4 +37,4 @@ export default {
       token: resetPasswordDetails.token,
     });
   },
-}
+};

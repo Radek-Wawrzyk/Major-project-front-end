@@ -15,7 +15,7 @@
 
           <el-table-column label="Email">
             <template #default="scope">
-              <a 
+              <a
                 :href="`mailto:${scope.row.email}`"
                 title="Email"
                 aria-label="Email"
@@ -28,7 +28,7 @@
 
           <el-table-column label="Phone" width="160px">
             <template #default="scope">
-              <a 
+              <a
                 :href="`tel:${scope.row.phone}`"
                 title="Phone"
                 aria-label="Phone"
@@ -49,19 +49,19 @@
 
           <el-table-column label="Actions" width="160px">
             <template #default="scope">
-              <el-button 
-                type="primary" 
-                :icon="PointerIcon" 
-                circle 
+              <el-button
+                type="primary"
+                :icon="PointerIcon"
+                circle
                 @click="setDialog(scope.row, true)"
                 title="See full question"
                 aria-label="See full question"
               />
-        
-              <el-button 
-                type="danger" 
-                :icon="DeleteIcon" 
-                circle 
+
+              <el-button
+                type="danger"
+                :icon="DeleteIcon"
+                circle
                 @click="tryToDeleteQuestion(scope.row.id)"
                 title="Delete question"
                 aria-label="Delete question"
@@ -72,21 +72,17 @@
       </el-card>
 
       <div class="dashboard-questions__pagination" v-if="questionList.length">
-        <el-pagination 
-          layout="prev, pager, next" 
+        <el-pagination
+          layout="prev, pager, next"
           :total="totalCount"
           :page-count="totalPages"
           @current-change="setPage($event)"
         />
       </div>
     </div>
-    
-    <teleport to="body">
-      <el-dialog 
-        v-model="dialogVisible" 
-        title="Question details"
 
-      >
+    <teleport to="body">
+      <el-dialog v-model="dialogVisible" title="Question details">
         <ul class="dashboard-questions-details">
           <li class="dashboard-questions-details__item">
             <p class="dashboard-questions-details__item-label">
@@ -99,9 +95,7 @@
           </li>
 
           <li class="dashboard-questions-details__item">
-            <p class="dashboard-questions-details__item-label">
-              Full name:
-            </p>
+            <p class="dashboard-questions-details__item-label">Full name:</p>
 
             <p class="dashboard-questions-details__item-value">
               {{ activeQuestion?.full_name }}
@@ -109,11 +103,9 @@
           </li>
 
           <li class="dashboard-questions-details__item">
-            <p class="dashboard-questions-details__item-label">
-              Email:
-            </p>
+            <p class="dashboard-questions-details__item-label">Email:</p>
 
-            <a 
+            <a
               :href="`mailto:${activeQuestion?.email}`"
               title="Email"
               aria-label="Email"
@@ -124,11 +116,9 @@
           </li>
 
           <li class="dashboard-questions-details__item">
-            <p class="dashboard-questions-details__item-label">
-              Phone:
-            </p>
+            <p class="dashboard-questions-details__item-label">Phone:</p>
 
-             <a 
+            <a
               :href="`tel:${activeQuestion?.phone}`"
               title="Phone"
               aria-label="Phone"
@@ -139,9 +129,7 @@
           </li>
 
           <li class="dashboard-questions-details__item">
-            <p class="dashboard-questions-details__item-label">
-              Asked:
-            </p>
+            <p class="dashboard-questions-details__item-label">Asked:</p>
 
             <p class="dashboard-questions-details__item-value">
               {{ getDate(activeQuestion?.created_at) }}
@@ -149,9 +137,7 @@
           </li>
 
           <li class="dashboard-questions-details__item">
-            <p class="dashboard-questions-details__item-label">
-              Question
-            </p>
+            <p class="dashboard-questions-details__item-label">Question</p>
 
             <p class="dashboard-questions-details__item-value">
               {{ activeQuestion?.question }}
@@ -161,7 +147,7 @@
 
         <template #footer>
           <span class="dashboard-questions-actions">
-            <el-button 
+            <el-button
               type="primary"
               @click="setDialog(null!, false)"
               class="dashboard-questions-actions__button"
@@ -179,7 +165,10 @@
 import { defineComponent, onMounted, ref } from 'vue';
 import { Question } from '@/types/Question';
 import { ElNotification, ElMessageBox } from 'element-plus';
-import { Delete as DeleteIcon, Pointer as PointerIcon } from '@element-plus/icons-vue';
+import {
+  Delete as DeleteIcon,
+  Pointer as PointerIcon,
+} from '@element-plus/icons-vue';
 
 import dayjs from 'dayjs';
 import question from '@/api/services/question';
@@ -203,7 +192,10 @@ export default defineComponent({
     const activeQuestion = ref<null | Question>(null);
     const activePage = ref(1);
 
-    const setDialog = (question: Question, toggleStatus = !dialogVisible.value): void => {
+    const setDialog = (
+      question: Question,
+      toggleStatus = !dialogVisible.value,
+    ): void => {
       dialogVisible.value = toggleStatus;
 
       if (!!question.id) activeQuestion.value = null;
@@ -223,19 +215,23 @@ export default defineComponent({
         activePage.value = page;
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       } finally {
         // loading.close()
         loading.value = false;
       }
-    }
+    };
 
     const setPage = (page: number): void => {
       searchQuestions(page);
-    }
+    };
 
     const tryToDeleteQuestion = async (questionId: number) => {
       try {
@@ -246,7 +242,7 @@ export default defineComponent({
             confirmButtonText: 'Delete',
             cancelButtonText: 'Cancel',
             type: 'warning',
-          }
+          },
         );
 
         deleteQuestion(questionId);
@@ -258,7 +254,7 @@ export default defineComponent({
     const deleteQuestion = async (questionId: number) => {
       try {
         await question.removeQuestion(questionId);
-        searchQuestions(activePage.value)
+        searchQuestions(activePage.value);
 
         ElNotification({
           title: `Success`,
@@ -267,15 +263,19 @@ export default defineComponent({
         });
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       }
     };
 
     const getDate = (rawDate: Date) => {
-      return dayjs(rawDate).format('MMMM DD, YYYY')
+      return dayjs(rawDate).format('MMMM DD, YYYY');
     };
 
     onMounted(() => {
@@ -300,7 +300,6 @@ export default defineComponent({
     };
   },
 });
-
 </script>
 
 <style lang="scss" src="./DashboardQuestions.scss" />

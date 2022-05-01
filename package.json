@@ -7,7 +7,8 @@
     "preview": "vite preview --port 5050",
     "test:unit": "vitest --environment jsdom",
     "typecheck": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "format": "prettier .  --write"
   },
   "dependencies": {
     "@types/google.maps": "^3.48.6",
@@ -17,6 +18,7 @@
     "axios": "^0.26.1",
     "dayjs": "^1.11.1",
     "element-plus": "^2.1.10",
+    "eslint-config-prettier": "^8.5.0",
     "js-cookie": "^3.0.1",
     "jwt-decode": "^3.1.2",
     "pinia": "^2.0.13",

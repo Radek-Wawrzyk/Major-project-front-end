@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 
 const router = createRouter({
@@ -46,7 +46,8 @@ const router = createRouter({
         {
           path: '/auth/forgot-password',
           name: 'forgotPassword',
-          component: () => import('@/views/AuthForgetPassword/AuthForgetPassword.vue'),
+          component: () =>
+            import('@/views/AuthForgetPassword/AuthForgetPassword.vue'),
           meta: {
             isAuthPage: true,
           },
@@ -54,12 +55,13 @@ const router = createRouter({
         {
           path: '/auth/reset-password',
           name: 'resetPassword',
-          component: () => import('@/views/AuthResetPassword/AuthResetPassword.vue'),
+          component: () =>
+            import('@/views/AuthResetPassword/AuthResetPassword.vue'),
           meta: {
             isAuthPage: true,
           },
         },
-      ]
+      ],
     },
     // Dashboard views
     {
@@ -73,7 +75,8 @@ const router = createRouter({
     {
       path: '/my-account',
       name: 'myAccount',
-      component: () => import('@/views/DashboardSettings/DashboardSettings.vue'),
+      component: () =>
+        import('@/views/DashboardSettings/DashboardSettings.vue'),
       meta: {
         requiresAuth: true,
       },
@@ -81,7 +84,8 @@ const router = createRouter({
     {
       path: '/questions',
       name: 'questions',
-      component: () => import('@/views/DashboardQuestions/DashboardQuestions.vue'),
+      component: () =>
+        import('@/views/DashboardQuestions/DashboardQuestions.vue'),
       meta: {
         requiresAuth: true,
       },
@@ -89,7 +93,8 @@ const router = createRouter({
     {
       path: '/favorite-offers',
       name: 'favoriteOffers',
-      component: () => import('@/views/DashboardFavOffers/DashboardFavOffers.vue'),
+      component: () =>
+        import('@/views/DashboardFavOffers/DashboardFavOffers.vue'),
       meta: {
         requiresAuth: true,
       },
@@ -105,7 +110,8 @@ const router = createRouter({
     {
       path: '/create-offer',
       name: 'createOffer',
-      component: () => import('@/views/DashboardCreateOffer/DashboardCreateOffer.vue'),
+      component: () =>
+        import('@/views/DashboardCreateOffer/DashboardCreateOffer.vue'),
       meta: {
         requiresAuth: true,
       },
@@ -113,7 +119,8 @@ const router = createRouter({
     {
       path: '/my-offers/:id',
       name: 'editOffer',
-      component: () => import('@/views/DashboardEditOffer/DashboardEditOffer.vue'),
+      component: () =>
+        import('@/views/DashboardEditOffer/DashboardEditOffer.vue'),
       meta: {
         requiresAuth: true,
       },
@@ -123,8 +130,8 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: 'notFound',
       component: () => import('@/views/NotFound/NotFound.vue'),
-    }
-  ]
+    },
+  ],
 });
 
 // Guard for auth pages
@@ -146,7 +153,7 @@ router.beforeEach((to, from, next) => {
 
   if (!authStore.isAuthenticated && to.meta.requiresAuth) {
     next('/auth');
-    return 
+    return;
   }
 
   next();

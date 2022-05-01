@@ -26,5 +26,5 @@ export default {
 
   upload(formData: FormData, offerId: number) {
     return request.post(`/photos/upload/${offerId}`, formData);
-  }
+  },
 };

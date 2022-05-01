@@ -4,6 +4,4 @@ interface DashboardStats {
   percentageOfAllAppliedQuestionsEver: number;
 }
 
-export {
-  DashboardStats,
-};
+export { DashboardStats };

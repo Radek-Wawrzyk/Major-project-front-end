@@ -6,6 +6,4 @@ interface Photo {
   name: string;
 }
 
-export {
-  Photo,
-};
+export { Photo };

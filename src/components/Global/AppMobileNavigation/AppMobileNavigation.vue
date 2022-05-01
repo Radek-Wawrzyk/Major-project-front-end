@@ -2,7 +2,7 @@
   <nav class="app-mobile-navigation">
     <ul class="app-mobile-navigation__menu">
       <li
-        v-for="menuItem in mobiledashboardMenu" 
+        v-for="menuItem in mobiledashboardMenu"
         :key="menuItem.url"
         class="app-mobile-navigation__menu-item"
       >
@@ -27,7 +27,7 @@ export default defineComponent({
   name: 'AppMobileNavigation',
   setup() {
     return {
-      mobiledashboardMenu
+      mobiledashboardMenu,
     };
   },
 });

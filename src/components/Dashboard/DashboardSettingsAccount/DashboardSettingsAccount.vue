@@ -8,28 +8,28 @@
         :auto-upload="true"
         action=""
       >
-        <img 
-          class="dashboard-settings-account__avatar-image" 
-          alt="" 
+        <img
+          class="dashboard-settings-account__avatar-image"
+          alt=""
           :src="getImagePath(user.avatar_url)"
           v-if="!uploadSuccess && !newImageUrl && user.avatar_url"
         />
 
-        <img 
-          class="dashboard-settings-account__avatar-image" 
-          alt="" 
+        <img
+          class="dashboard-settings-account__avatar-image"
+          alt=""
           :src="getImagePath(newImageUrl)"
           v-else-if="uploadSuccess && newImageUrl"
         />
 
-        <el-icon v-else  class="dashboard-settings-account__avatar-icon">
+        <el-icon v-else class="dashboard-settings-account__avatar-icon">
           <plus-icon width="40px" />
         </el-icon>
       </el-upload>
 
-      <el-button 
-        @click="deleteAvatar()" 
-        plain 
+      <el-button
+        @click="deleteAvatar()"
+        plain
         type="danger"
         class="dashboard-settings-account__avatar-button"
         v-if="user.avatar_url !== null"
@@ -113,7 +113,7 @@
           Update details
         </el-button>
       </div>
-    </el-form> 
+    </el-form>
   </section>
 </template>
 
@@ -141,12 +141,25 @@ export default defineComponent({
   setup(props) {
     const userStore = useUserStore();
     const loading = ref(false);
-    const { values: form, handleSubmit, errors } = useForm({
+    const {
+      values: form,
+      handleSubmit,
+      errors,
+    } = useForm({
       validationSchema: object({
-        first_name: string().required().label('First name') as StringSchema<string>,
-        last_name: string().required().label('Last name') as StringSchema<string>,
-        phone: string().required().label('Phone number') as StringSchema<string>,
-        email: string().required().email().label('Email') as StringSchema<string>,
+        first_name: string()
+          .required()
+          .label('First name') as StringSchema<string>,
+        last_name: string()
+          .required()
+          .label('Last name') as StringSchema<string>,
+        phone: string()
+          .required()
+          .label('Phone number') as StringSchema<string>,
+        email: string()
+          .required()
+          .email()
+          .label('Email') as StringSchema<string>,
         bio: string().label('Bio/Description') as StringSchema<string | null>,
       }),
       initialValues: {
@@ -179,9 +192,13 @@ export default defineComponent({
         });
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       } finally {
         loading.value = false;
@@ -191,19 +208,24 @@ export default defineComponent({
     const uploadAvatar = async (uploadDetails: any) => {
       try {
         let updatedUser = null;
-        if (props.user.avatar_url) updatedUser = await userStore.updateAvatar(uploadDetails.file);
+        if (props.user.avatar_url)
+          updatedUser = await userStore.updateAvatar(uploadDetails.file);
         else updatedUser = await userStore.uploadAvatar(uploadDetails.file);
-        
+
         newImageUrl.value = updatedUser.avatar_url;
         uploadSuccess.value = true;
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       }
-    }
+    };
 
     const deleteAvatar = async () => {
       try {
@@ -215,15 +237,19 @@ export default defineComponent({
         });
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       }
-    }
+    };
 
     onMounted(() => {
-      Object.assign(form, props.user)
+      Object.assign(form, props.user);
     });
 
     return {

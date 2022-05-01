@@ -12,25 +12,24 @@
       </div>
 
       <div class="offer-mobile-bar__actions">
-        <el-button 
-          type="primary" 
+        <el-button
+          type="primary"
           class="offer-mobile-bar__actions-button"
           @click="setAskDialog(true)"
         >
           Ask question
         </el-button>
-        <app-fav-button :offer-id="offer.id" class="offer-mobile-bar__actions-button" />
+        <app-fav-button
+          :offer-id="offer.id"
+          class="offer-mobile-bar__actions-button"
+        />
       </div>
     </div>
 
     <!-- Modal for form -->
     <teleport to="body">
-      <el-dialog 
-        v-model="dialogVisible" 
-        title="Ask question"
-        width="96%"
-      >
-        <page-offer-form  
+      <el-dialog v-model="dialogVisible" title="Ask question" width="96%">
+        <page-offer-form
           class="offer-mobile-bar__ask-form"
           :offer-id="offer.id"
           :user-id="offer.authorId"

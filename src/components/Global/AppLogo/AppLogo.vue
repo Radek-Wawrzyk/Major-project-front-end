@@ -1,6 +1,6 @@
 <template>
-  <router-link 
-    to="/" 
+  <router-link
+    to="/"
     title="FindYourFlat"
     aria-label="Go home"
     class="app-logo"
@@ -10,10 +10,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'AppLogo'
+  name: 'AppLogo',
 });
 </script>
 

@@ -9,7 +9,8 @@
     align-items: flex-end;
 
     &-filter-button {
-      svg, .el-icon {
+      svg,
+      .el-icon {
         width: 18px;
         height: 18px;
       }
@@ -48,7 +49,6 @@
   .offers-filters {
     &__dialog {
       width: 95%;
-      
     }
   }
 }
@@ -60,7 +60,7 @@
       --el-dialog-margin-top: 0;
       margin-bottom: 0;
       height: 100%;
-      overflow: auto;;
+      overflow: auto;
       max-width: 100%;
       width: 100%;
     }

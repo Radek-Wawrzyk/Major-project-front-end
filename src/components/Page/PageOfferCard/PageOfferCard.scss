@@ -36,10 +36,10 @@
       color: $text-color--light;
       width: 100%;
       margin: 0 0 18px 0;
-  
+
       &-icon {
         margin: 0 6px 0 0;
-  
+
         svg {
           width: 16px;
         }
@@ -149,7 +149,7 @@
 
     &-list {
       display: grid;
-      grid-template-columns: repeat(2, 1fr)
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 }

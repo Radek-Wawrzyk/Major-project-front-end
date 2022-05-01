@@ -1,5 +1,5 @@
 <template>
-  <div id="map" class="offer-map" ref="mapRef" v-if="!error"/>
+  <div id="map" class="offer-map" ref="mapRef" v-if="!error" />
   <p class="offer-map__not-found" v-else>
     Sorry but the offer's localization has not been found (No map)
   </p>
@@ -32,9 +32,12 @@ export default defineComponent({
     const marker = ref();
     const error = ref(null);
 
-    watch(() => props.address, () => { 
-      findCoordinates(props.address);
-    });
+    watch(
+      () => props.address,
+      () => {
+        findCoordinates(props.address);
+      },
+    );
 
     const setupMap = () => {
       map.value = new google.maps.Map(mapRef.value, props.options);
@@ -43,7 +46,7 @@ export default defineComponent({
       findCoordinates(props.address);
 
       marker.value = new google.maps.Marker({
-        map: map.value
+        map: map.value,
       });
     };
 
@@ -64,7 +67,7 @@ export default defineComponent({
         await loadScript(
           `${config.google.mapUrl}/js?key=${config.google.mapApi}&libraries=geocoder`,
           true,
-          'google-maps-api'
+          'google-maps-api',
         );
 
         setupMap();

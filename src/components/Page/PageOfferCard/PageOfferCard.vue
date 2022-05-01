@@ -15,15 +15,15 @@
         class="offer-card__image-inner"
       />
 
-      <app-fav-button 
-        :offer-id="offer.id" 
+      <app-fav-button
+        :offer-id="offer.id"
         class="offer-card__image-fav-button"
         mode="icon"
       />
     </figure>
 
     <div class="offer-card__details">
-      <router-link 
+      <router-link
         :to="`/offers/${offer.id}`"
         aria-label="Go to the offer page"
         title="Go to the offer page"
@@ -38,15 +38,12 @@
       </p>
 
       <h4 class="offer-card__details-price">
-        {{ formatPrice(offer.price )}} 
-        <span class="offer-card__details-price-text">
-          / per month
-        </span>
-        
+        {{ formatPrice(offer.price) }}
+        <span class="offer-card__details-price-text"> / per month </span>
       </h4>
 
-      <app-fav-button 
-        :offer-id="offer.id" 
+      <app-fav-button
+        :offer-id="offer.id"
         class="offer-card__details-fav-button"
         mode="icon"
       />
@@ -81,7 +78,7 @@
         </li>
       </ul>
 
-      <router-link 
+      <router-link
         :to="`/offers/${offer.id}`"
         aria-label="Go to the offer page"
         title="Go to the offer page"
@@ -118,15 +115,17 @@ export default defineComponent({
   },
   setup(props) {
     const fullLocation = computed(() => {
-      return `${props.offer.location_street}, ${props.offer.location_city}, ${props.offer.location_post_code}, ${props.offer.location_country}`
+      return `${props.offer.location_street}, ${props.offer.location_city}, ${props.offer.location_post_code}, ${props.offer.location_country}`;
     });
 
     const primaryImage = computed(() => {
       if (!hasImages.value) return undefined;
       return props.offer.photos.find((photo) => photo.is_primary);
     });
-  
-    const hasImages = computed(() => props.offer.photos && props.offer.photos.length !== 0);
+
+    const hasImages = computed(
+      () => props.offer.photos && props.offer.photos.length !== 0,
+    );
 
     return {
       fullLocation,

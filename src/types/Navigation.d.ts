@@ -8,7 +8,4 @@ interface DropdownMenuItem {
   name: string;
 }
 
-export {
-  DashboardMenuItem,
-  DropdownMenuItem,
-};
+export { DashboardMenuItem, DropdownMenuItem };

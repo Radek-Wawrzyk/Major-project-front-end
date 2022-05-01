@@ -6,18 +6,20 @@
 
         <div class="app-navigation__content" v-if="!isAuthenticated">
           <el-button @click="redirectToPage('login')">Sign in</el-button>
-          <el-button @click="redirectToPage('register')" type="primary">Sign up</el-button>
+          <el-button @click="redirectToPage('register')" type="primary"
+            >Sign up</el-button
+          >
         </div>
 
         <div class="app-navigation__content" v-else>
-          <el-dropdown 
-            class="app-navigation__dropdown" 
-            trigger="click" 
+          <el-dropdown
+            class="app-navigation__dropdown"
+            trigger="click"
             v-if="user"
             popper-class="app-navigation__dropdown-popper"
           >
             <span class="el-dropdown-link app-navigation__dropdown-link">
-              <app-navigation-avatar :user="user"  />
+              <app-navigation-avatar :user="user" />
               <span class="app-navigation__dropdown-name">
                 {{ user.first_name }}
               </span>
@@ -29,8 +31,8 @@
 
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item 
-                  v-for="menuItem in dropdownMenu" 
+                <el-dropdown-item
+                  v-for="menuItem in dropdownMenu"
                   :key="menuItem.value"
                   @click="redirectToPage(menuItem.value)"
                 >
@@ -42,13 +44,13 @@
         </div>
       </div>
     </div>
-   
+
     <div class="app-navigation-dashboard" v-if="isDashboardPage && user">
       <transition name="page-fade" mode="out-in">
         <div class="app-navigation-dashboard__container container">
           <ul class="app-navigation-dashboard__menu">
             <li
-              v-for="menuItem in dashboardMenu" 
+              v-for="menuItem in dashboardMenu"
               :key="menuItem.url"
               class="app-navigation-dashboard__menu-item"
             >
@@ -69,12 +71,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 import { useAuthStore } from '@/stores/auth';
 import { useRoute, useRouter } from 'vue-router';
 import { computed } from '@vue/reactivity';
-import { Search as searchIcon, ArrowDown }  from '@element-plus/icons-vue';
-import { Tools as toolsIcon }  from '@element-plus/icons-vue';
+import { Search as searchIcon, ArrowDown } from '@element-plus/icons-vue';
+import { Tools as toolsIcon } from '@element-plus/icons-vue';
 import { useUserStore } from '@/stores/user';
 import { dropdownMenu, dashboardMenu } from '@/data/navigation';
 
@@ -139,7 +141,7 @@ export default defineComponent({
           break;
         }
       }
-    }
+    };
 
     return {
       redirectToPage,
@@ -150,7 +152,7 @@ export default defineComponent({
       isDashboardPage,
       searchIcon,
       toolsIcon,
-    }
+    };
   },
 });
 </script>

@@ -15,14 +15,13 @@ request.interceptors.request.use((config: AxiosRequestConfig) => {
   if (authStore.isAuthenticated) {
     config.headers = {
       ...config.headers,
-      'Authorization': `Bearer ${authStore.token}`,
+      Authorization: `Bearer ${authStore.token}`,
     };
 
     return config;
   }
 
   return config;
-  },
-);
+});
 
 export default request;

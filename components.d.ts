@@ -19,10 +19,10 @@ declare module '@vue/runtime-core' {
     DashboardSettingsAccount: typeof import('./src/components/Dashboard/DashboardSettingsAccount/DashboardSettingsAccount.vue')['default']
     DashboardSettingsPassword: typeof import('./src/components/Dashboard/DashboardSettingsPassword/DashboardSettingsPassword.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
-    ElButto: typeof import('element-plus/es')['ElButto']
+    ElButto: typeof import('element-plus/es')['ElButto'];
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
-    ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
+    ElCheckbox: typeof import('element-plus/es')['ElCheckbox'];
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
@@ -33,18 +33,18 @@ declare module '@vue/runtime-core' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElPagination: typeof import('element-plus/es')['ElPagination']
-    ElRadio: typeof import('element-plus/es')['ElRadio']
+    ElRadio: typeof import('element-plus/es')['ElRadio'];
     ElSelect: typeof import('element-plus/es')['ElSelect']
-    ElStep: typeof import('element-plus/es')['ElStep']
-    ElSteps: typeof import('element-plus/es')['ElSteps']
-    ElSwitch: typeof import('element-plus/es')['ElSwitch']
-    ElTable: typeof import('element-plus/es')['ElTable']
-    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
-    ElUpload: typeof import('element-plus/es')['ElUpload']
-    Loading: typeof import('element-plus/es')['ElLoadingDirective']
-    Old: typeof import('./src/components/Page/PageOffersFilters/old.vue')['default']
-    PageOffer: typeof import('./src/components/Page/PageOfferCard/PageOffer.vue')['default']
-    PageOfferAllFilters: typeof import('./src/components/Page/PageOffersAllFilters/PageOfferAllFilters.vue')['default']
+    ElStep: typeof import('element-plus/es')['ElStep'];
+    ElSteps: typeof import('element-plus/es')['ElSteps'];
+    ElSwitch: typeof import('element-plus/es')['ElSwitch'];
+    ElTable: typeof import('element-plus/es')['ElTable'];
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn'];
+    ElUpload: typeof import('element-plus/es')['ElUpload'];
+    Loading: typeof import('element-plus/es')['ElLoadingDirective'];
+    Old: typeof import('./src/components/Page/PageOffersFilters/old.vue')['default'];
+    PageOffer: typeof import('./src/components/Page/PageOfferCard/PageOffer.vue')['default'];
+    PageOfferAllFilters: typeof import('./src/components/Page/PageOffersAllFilters/PageOfferAllFilters.vue')['default'];
     PageOfferCard: typeof import('./src/components/Page/PageOfferCard/PageOfferCard.vue')['default']
     PageOfferDetails: typeof import('./src/components/Page/PageOfferDetails/PageOfferDetails.vue')['default']
     PageOfferForm: typeof import('./src/components/Page/PageOfferForm/PageOfferForm.vue')['default']

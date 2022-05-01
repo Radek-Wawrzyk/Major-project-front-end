@@ -8,18 +8,18 @@
 
     <div class="container offer-page__inner">
       <div class="offer-page__inner-content">
-        <page-offer-gallery 
+        <page-offer-gallery
           class="offer-page__inner-gallery"
           :photos="offerDetails.photos"
         />
 
-        <page-offer-details 
+        <page-offer-details
           :offer="offerDetails"
           class="offer-page__inner-details"
         />
       </div>
 
-      <page-offer-form  
+      <page-offer-form
         class="offer-page__inner-form"
         :offer-id="offerDetails.id"
         :user-id="offerDetails.authorId"
@@ -45,8 +45,13 @@ import PageOfferDetails from '@/components/Page/PageOfferDetails/PageOfferDetail
 import PageOfferMobileBar from '@/components/Page/PageOfferMobileBar/PageOfferMobileBar.vue';
 
 export default defineComponent({
-  name: "PageOffer",
-  components: { PageOfferForm, PageOfferGallery, PageOfferDetails, PageOfferMobileBar, },
+  name: 'PageOffer',
+  components: {
+    PageOfferForm,
+    PageOfferGallery,
+    PageOfferDetails,
+    PageOfferMobileBar,
+  },
   setup() {
     const route = useRoute();
     const router = useRouter();
@@ -55,27 +60,29 @@ export default defineComponent({
 
     const redirectHome = (): void => {
       router.push('/');
-    }
+    };
 
-    const loadedOffer = computed(() => 
-      typeof offerDetails.value === 'object' && 
-      Object.keys(offerDetails.value) && 
-      Object.keys(offerDetails.value).length !== 0
+    const loadedOffer = computed(
+      () =>
+        typeof offerDetails.value === 'object' &&
+        Object.keys(offerDetails.value) &&
+        Object.keys(offerDetails.value).length !== 0,
     );
 
     onMounted(async () => {
       const loading = ElLoading.service({
         lock: true,
-        background: "#ffffff",
+        background: '#ffffff',
       });
 
       try {
         const { data } = await offer.getSingleOffer(offerId.value);
         offerDetails.value = data;
       } catch (error) {
-        if (error.response.data?.statusCode === 404) router.push("/page-not-found");
+        if (error.response.data?.statusCode === 404)
+          router.push('/page-not-found');
       } finally {
-        loading.close()
+        loading.close();
       }
     });
 

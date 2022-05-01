@@ -1,13 +1,19 @@
 <template>
-  <el-button 
-    @click="handleRequest()" 
+  <el-button
+    @click="handleRequest()"
     :round="mode !== 'button'"
-    :icon="mode !== 'button' ? (isIncluded(offerId) ? starIconFilled : starIcon) : null"
+    :icon="
+      mode !== 'button'
+        ? isIncluded(offerId)
+          ? starIconFilled
+          : starIcon
+        : null
+    "
     :class="[
       mode !== 'button' ? 'app-fav-button--icon' : null,
       isIncluded(offerId) ? 'app-fav-button--active' : null,
     ]"
-    :type="(isIncluded(offerId) && mode === 'button') ? 'danger' : 'default'"
+    :type="isIncluded(offerId) && mode === 'button' ? 'danger' : 'default'"
     class="app-fav-button"
   >
     <template v-if="mode === 'button'">
@@ -21,7 +27,10 @@ import favQuestion from '@/api/services/favQuestion';
 import { useAuthStore } from '@/stores/auth';
 import { computed, defineComponent, PropType, ref } from 'vue';
 import { ElNotification } from 'element-plus';
-import { Star as starIcon, StarFilled as starIconFilled } from '@element-plus/icons-vue'
+import {
+  Star as starIcon,
+  StarFilled as starIconFilled,
+} from '@element-plus/icons-vue';
 import { useUserStore } from '@/stores/user';
 import { FavoriteOffer } from '@/types/Offer';
 
@@ -45,19 +54,24 @@ export default defineComponent({
 
     const addedFavOffer = computed(() => {
       const targetFavOffer = userStore.user?.favOffers.find((favOffer) => {
-        return favOffer.userId === userStore.user?.id && favOffer.offerId === props.offerId;
+        return (
+          favOffer.userId === userStore.user?.id &&
+          favOffer.offerId === props.offerId
+        );
       });
 
       return targetFavOffer as FavoriteOffer;
     });
 
     const isIncluded = (offerId: number) => {
-      return userStore.user?.favOffers.some((offer) => offer.offerId === offerId);
-    }
+      return userStore.user?.favOffers.some(
+        (offer) => offer.offerId === offerId,
+      );
+    };
     const handleRequest = () => {
       if (isIncluded(props.offerId)) removeFromFavorites();
       else addToFavorites();
-    }
+    };
 
     const addToFavorites = async (): Promise<void> => {
       if (!authStore.isAuthenticated) {
@@ -83,9 +97,13 @@ export default defineComponent({
         });
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       } finally {
         loading.value = false;
@@ -116,9 +134,13 @@ export default defineComponent({
         });
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       } finally {
         loading.value = false;

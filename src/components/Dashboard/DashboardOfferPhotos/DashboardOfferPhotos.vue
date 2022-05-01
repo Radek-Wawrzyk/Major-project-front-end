@@ -30,7 +30,7 @@
     </header>
 
     <ul class="dashboard-offer-photos__list">
-      <li 
+      <li
         class="dashboard-offer-photos__list-item"
         v-for="photo in state.photos"
         :key="photo.id"
@@ -42,15 +42,15 @@
           :auto-upload="true"
           action=""
         >
-          <img 
-            class="dashboard-offer-photos__list-image" 
-            :alt="photo.name" 
+          <img
+            class="dashboard-offer-photos__list-image"
+            :alt="photo.name"
             :src="getImagePath(photo.url)"
           />
         </el-upload>
 
         <div class="dashboard-offer-photos__list-actions">
-          <el-radio 
+          <el-radio
             :label="photo.id"
             v-model="state.mainImageId"
             size="large"
@@ -60,8 +60,8 @@
             Main Image
           </el-radio>
 
-          <el-button 
-            class="dashboard-offer-photos__list-remove" 
+          <el-button
+            class="dashboard-offer-photos__list-remove"
             @click="deleteImage(photo.id)"
             type="text"
           >
@@ -120,7 +120,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const state = reactive({
       photos: <Photo[]>[],
-      mainImageId: <number>0, 
+      mainImageId: <number>0,
     });
 
     const goFinish = () => {
@@ -135,21 +135,25 @@ export default defineComponent({
       try {
         const formData = new FormData();
         formData.append('image', uploadDetails.file);
-        const { data } = await photo.upload(formData, props.offer.id  as number);
+        const { data } = await photo.upload(formData, props.offer.id as number);
 
         if (state.photos.length === 0) {
           state.mainImageId = data.id;
         }
 
-        state.photos.push(data);  
+        state.photos.push(data);
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       }
-    }
+    };
 
     const updatePhoto = async (uploadDetails: any, photoId: number) => {
       try {
@@ -160,39 +164,54 @@ export default defineComponent({
         getAllPhotos(false);
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       }
-    }
+    };
 
     const setAsPrimary = async (photoId: number) => {
       try {
-        const { data } = await photo.setAsPrimary(props.offer.id as number, photoId);
+        const { data } = await photo.setAsPrimary(
+          props.offer.id as number,
+          photoId,
+        );
         Object.assign(state.photos, data);
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       }
-    }
+    };
 
     const deleteImage = async (photoId: number) => {
-      console.log(photoId)
+      console.log(photoId);
       try {
         await photo.delete(photoId);
         getAllPhotos(false);
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       }
-    }
+    };
 
     const getAllPhotos = async (preloader: boolean = true) => {
       let loading: any;
@@ -200,10 +219,10 @@ export default defineComponent({
       if (preloader) {
         loading = ElLoading.service({
           lock: true,
-          background: "#ffffff",
+          background: '#ffffff',
         });
       }
-      
+
       try {
         const { data } = await photo.getAll(props.offer.id as number);
         state.photos = data;
@@ -213,9 +232,13 @@ export default defineComponent({
         }
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       } finally {
         if (preloader) {
@@ -224,7 +247,7 @@ export default defineComponent({
           }, 250);
         }
       }
-    }
+    };
 
     onMounted(() => {
       if (props.mode === 'edit') {

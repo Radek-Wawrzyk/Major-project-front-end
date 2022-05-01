@@ -1,7 +1,5 @@
 const formatPrice = (price: number): string => {
-  return `£${price}`
+  return `£${price}`;
 };
 
-export {
-  formatPrice,
-};
+export { formatPrice };

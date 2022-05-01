@@ -1,7 +1,11 @@
 <template>
   <div class="app-avatar">
     <span class="app-avatar__check" v-if="isChecked" v-html="checkIcon" />
-    <el-avatar :size="size" v-if="user.avatar_url" :src="imagePath(user.avatar_url)" />
+    <el-avatar
+      :size="size"
+      v-if="user.avatar_url"
+      :src="imagePath(user.avatar_url)"
+    />
     <el-avatar :size="size" v-else>
       {{ getDefaultInitials(user.first_name, user.last_name) }}
     </el-avatar>
@@ -9,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType } from 'vue';
 import { User } from '@/types/User';
 import { getInitials } from '@/helpers/initials';
 import { getImagePath } from '@/helpers/images';
@@ -34,7 +38,8 @@ export default defineComponent({
     },
   },
   setup() {
-    const getDefaultInitials = (firstName: string, lastName: string) => getInitials(firstName, lastName);
+    const getDefaultInitials = (firstName: string, lastName: string) =>
+      getInitials(firstName, lastName);
     const imagePath = (imagePath: string) => getImagePath(imagePath);
 
     return {

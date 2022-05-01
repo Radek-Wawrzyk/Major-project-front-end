@@ -1,4 +1,4 @@
-import { User } from "./User";
+import { User } from './User';
 
 interface OfferGallery {
   id: number;
@@ -42,7 +42,7 @@ interface Offer {
   published_date: Date;
   rooms_number: number;
   rule_no_animals: boolean;
-  rule_no_smokers: boolean
+  rule_no_smokers: boolean;
   status: boolean;
   updated_at: Date;
 }
@@ -68,10 +68,10 @@ interface CreateOffer {
   building_level: number;
   building_type: string;
   includes_air_conditioning: boolean;
-  includes_balcony: boolean
+  includes_balcony: boolean;
   includes_basement: boolean;
   includes_garage: boolean;
-  includes_garden: boolean
+  includes_garden: boolean;
   includes_house_phone: boolean;
   includes_internet: boolean;
   includes_lift: boolean;
@@ -89,15 +89,9 @@ interface CreateOffer {
   deposit: number;
   rooms_number: number;
   rule_no_animals: boolean;
-  rule_no_smokers: boolean
+  rule_no_smokers: boolean;
   status?: boolean;
   price: number;
 }
 
-export {
-  Offer,
-  CreateOffer,
-  OfferGallery,
-  FavoriteOffer,
-  FullFavOffer,
-};
+export { Offer, CreateOffer, OfferGallery, FavoriteOffer, FullFavOffer };

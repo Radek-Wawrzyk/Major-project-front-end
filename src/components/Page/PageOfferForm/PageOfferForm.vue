@@ -1,15 +1,17 @@
 <template>
-  <section 
-    class="offer-form" 
-    :class="[ 
-      isPlain ? 'offer-form--is-plain' : false,
-    ]"
+  <section
+    class="offer-form"
+    :class="[isPlain ? 'offer-form--is-plain' : false]"
   >
     <header class="offer-form__header">
-      <app-avatar :user="offerAuthor" :is-checked="true" class="offer-form__header-avatar"/>
-      
+      <app-avatar
+        :user="offerAuthor"
+        :is-checked="true"
+        class="offer-form__header-avatar"
+      />
+
       <div class="offer-form__header-info">
-        <router-link 
+        <router-link
           class="offer-form__header-name"
           :to="`/host/${offerAuthor.id}`"
           aria-label="Go to the host page"
@@ -19,8 +21,11 @@
         </router-link>
 
         <span class="offer-form__header-tel">
-          Tel: 
-          <a :href="`tel:${offerAuthor.phone}`" class="offer-form__header-tel-link">
+          Tel:
+          <a
+            :href="`tel:${offerAuthor.phone}`"
+            class="offer-form__header-tel-link"
+          >
             {{ offerAuthor.phone }}
           </a>
         </span>
@@ -96,7 +101,10 @@
       </div>
 
       <div class="offer-form__inner-field">
-        <app-fav-button :offer-id="offerId" class="offer-form__inner-fav-button" />
+        <app-fav-button
+          :offer-id="offerId"
+          class="offer-form__inner-fav-button"
+        />
       </div>
     </el-form>
   </section>
@@ -108,8 +116,8 @@ import { defineComponent, PropType, ref } from 'vue';
 import { string, object, StringSchema } from 'yup';
 import { ElNotification } from 'element-plus';
 import question from '@/api/services/question';
-import AppFavButton from '@/components/Global/AppFavButton/AppFavButton.vue'
-import AppAvatar from '@/components/Global/AppAvatar/AppAvatar.vue'
+import AppFavButton from '@/components/Global/AppFavButton/AppFavButton.vue';
+import AppAvatar from '@/components/Global/AppAvatar/AppAvatar.vue';
 import { User } from '@/types/User';
 
 export default defineComponent({
@@ -141,11 +149,22 @@ export default defineComponent({
   setup(props, { emit }) {
     const loading = ref<boolean>(false);
 
-    const { values: questionForm, handleSubmit, errors } = useForm({
+    const {
+      values: questionForm,
+      handleSubmit,
+      errors,
+    } = useForm({
       validationSchema: object({
-        email: string().required().email().label('Email') as StringSchema<string>,
-        phone: string().required().label('Phone number') as StringSchema<string>,
-        full_name: string().required().label('Full name') as StringSchema<string>,
+        email: string()
+          .required()
+          .email()
+          .label('Email') as StringSchema<string>,
+        phone: string()
+          .required()
+          .label('Phone number') as StringSchema<string>,
+        full_name: string()
+          .required()
+          .label('Full name') as StringSchema<string>,
         message: string().required().label('Question') as StringSchema<string>,
       }),
       initialValues: {
@@ -161,37 +180,42 @@ export default defineComponent({
     useField('phone');
     useField('message');
 
-    const onSubmit = handleSubmit(async ({ message, email, full_name, phone }) => {
-      loading.value = true;
+    const onSubmit = handleSubmit(
+      async ({ message, email, full_name, phone }) => {
+        loading.value = true;
 
-      emit('on-submit');
+        emit('on-submit');
 
-      try {
+        try {
+          await question.askQuestion({
+            question: message,
+            email,
+            full_name,
+            phone,
+            offerId: props.offerId,
+            userId: props.userId,
+          });
 
-         await question.askQuestion({
-          question: message,
-          email,
-          full_name,
-          phone,
-          offerId: props.offerId,
-          userId: props.userId,
-        });
-
-        ElNotification({
-          title: `Sucess`,
-          type: 'success',
-          message: `Your question has been sent to the author of this offer!`,
-        });
-      } catch (error) {
-        ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
-          type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
-        });
-      } finally {
-        loading.value = false;
-      }
-    });
+          ElNotification({
+            title: `Sucess`,
+            type: 'success',
+            message: `Your question has been sent to the author of this offer!`,
+          });
+        } catch (error) {
+          ElNotification({
+            title: `Error: ${
+              error.response.data ? error.response.data.error : ''
+            }`,
+            type: 'error',
+            message: `${
+              error.response.data ? error.response.data.message : error
+            }`,
+          });
+        } finally {
+          loading.value = false;
+        }
+      },
+    );
 
     return {
       loading,

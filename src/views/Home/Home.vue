@@ -11,9 +11,9 @@
             Offers list ({{ offersNumber }})
           </h1>
 
-          <el-select 
-            v-model="sortingValue" 
-            placeholder="Sorting" 
+          <el-select
+            v-model="sortingValue"
+            placeholder="Sorting"
             clearable
             class="page-home__inner-sorting"
           >
@@ -27,8 +27,8 @@
         </header>
 
         <ul class="page-home__inner-content" v-if="offers && offers.length">
-          <page-offer-card 
-            v-for="offer in offers" 
+          <page-offer-card
+            v-for="offer in offers"
             :key="offer.id"
             :offer="offer"
             class="page-home__inner-card"
@@ -36,15 +36,18 @@
         </ul>
 
         <div class="page-home__inner-pagination" v-if="offers && offers.length">
-          <el-pagination 
-            layout="prev, pager, next" 
+          <el-pagination
+            layout="prev, pager, next"
             :total="offersNumber"
             :page-count="totalPages"
             @current-change="setPage($event)"
           />
         </div>
 
-        <p class="page-home__inner-no-offers" v-if="!offers || offers.length === 0 || error">
+        <p
+          class="page-home__inner-no-offers"
+          v-if="!offers || offers.length === 0 || error"
+        >
           Sorry you have not found any offer. Please reset filters
         </p>
       </section>
@@ -54,7 +57,7 @@
 
 <script lang="ts">
 import offer from '@/api/services/offer';
-import { defineComponent, onMounted, ref, watch } from 'vue'
+import { defineComponent, onMounted, ref, watch } from 'vue';
 import { ElLoading } from 'element-plus';
 import { sortingList } from '@/data/filters';
 import { prepareParamsQuery } from '@/helpers/filters';
@@ -82,18 +85,21 @@ export default defineComponent({
     const perPage = ref(0);
     const finalDetailsQuery = ref();
 
-    watch(() => sortingValue.value, (value) => {
-      const { order, field } : { order: string; field: string} = value;
+    watch(
+      () => sortingValue.value,
+      (value) => {
+        const { order, field }: { order: string; field: string } = value;
 
-      sortingParams.value = {
-        sortingOrder: order,
-        sortingField: field,
-      };
-    });
+        sortingParams.value = {
+          sortingOrder: order,
+          sortingField: field,
+        };
+      },
+    );
 
     const setPage = (page: number): void => {
       searchOffers({ page });
-    }
+    };
     const setParamsToLink = (params: FiltrationDetails): void => {
       router.push({
         path: '',
@@ -101,14 +107,14 @@ export default defineComponent({
           ...params,
         },
       });
-    }
+    };
 
     const searchOffers = async (details: FiltrationDetails): Promise<void> => {
-      finalDetailsQuery.value = {...finalDetailsQuery.value, ...details };
+      finalDetailsQuery.value = { ...finalDetailsQuery.value, ...details };
 
       const loading = ElLoading.service({
         lock: true,
-        background: "#ffffff",
+        background: '#ffffff',
       });
 
       const queryParams: string = prepareParamsQuery({
@@ -125,7 +131,7 @@ export default defineComponent({
 
         setParamsToLink({
           ...finalDetailsQuery.value,
-          ...sortingParams.value 
+          ...sortingParams.value,
         });
       } catch (err) {
         error.value = err;
@@ -151,10 +157,9 @@ export default defineComponent({
       perPage,
       searchOffers,
       setPage,
-    }
+    };
   },
-})
-
+});
 </script>
 
 <style lang="scss" src="./Home.scss" />

@@ -1,6 +1,10 @@
 <template>
   <div class="dashboard-offer-form">
-    <el-steps :active="activeStep" align-center class="dashboard-offer-form__steps">
+    <el-steps
+      :active="activeStep"
+      align-center
+      class="dashboard-offer-form__steps"
+    >
       <el-step title="Details" description="Offer details" />
       <el-step title="Photos" description="Offer photos" />
       <el-step title="Status" description="Status" />
@@ -9,17 +13,17 @@
     <div class="dashboard-offer-form__content">
       <transition name="page-fade" mode="out-in">
         <el-card v-if="activeStep === 0" key="details">
-          <dashboard-offer-details 
+          <dashboard-offer-details
             @submit-form="saveOfferDetails($event)"
             @go-next="nextStep()"
-            :offer="offerInfo" 
+            :offer="offerInfo"
             :mode="managementMode"
           />
         </el-card>
 
         <el-card v-else-if="activeStep === 1" key="photos">
-          <dashboard-offer-photos 
-            @go-finish="finishEditing()" 
+          <dashboard-offer-photos
+            @go-finish="finishEditing()"
             @go-prev="prevStep()"
             :offer="offerInfo"
             :mode="managementMode"
@@ -28,7 +32,7 @@
 
         <el-card v-else-if="activeStep === 3" key="finish">
           <div class="dashboard-offer-form__notification">
-            <img 
+            <img
               class="dashboard-offer-form__notification-icon"
               alt=""
               src="@/assets/icons/success.svg"
@@ -37,8 +41,8 @@
             <p class="dashboard-offer-form__notification-text">
               Your offer has been successfully saved!
 
-              <router-link 
-                to="/my-offers" 
+              <router-link
+                to="/my-offers"
                 class="dashboard-offer-form__notification-link"
                 title="Back to my offers"
                 arial-label="Back to my offers"
@@ -95,17 +99,17 @@ export default defineComponent({
 
     const finishEditing = () => {
       activeStep.value = 3;
-    }
+    };
 
     const saveOfferDetails = (offerDetails: CreateOffer) => {
       if (managementMode.value === 'create') createOffer(offerDetails);
       else editOffer(offerDetails);
-    }
+    };
 
     const createOffer = async (offerDetails: CreateOffer) => {
       const loading = ElLoading.service({
         lock: true,
-        background: "#ffffff",
+        background: '#ffffff',
       });
 
       try {
@@ -120,9 +124,13 @@ export default defineComponent({
         });
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       } finally {
         setTimeout(() => {
@@ -134,7 +142,7 @@ export default defineComponent({
     const editOffer = async (offerDetails: CreateOffer) => {
       const loading = ElLoading.service({
         lock: true,
-        background: "#ffffff",
+        background: '#ffffff',
       });
 
       try {
@@ -148,40 +156,49 @@ export default defineComponent({
         });
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       } finally {
         setTimeout(() => {
           loading.close();
         }, 250);
       }
-    }
+    };
 
     const getOffer = async (offerId: string) => {
       const loading = ElLoading.service({
         lock: true,
-        background: "#ffffff",
+        background: '#ffffff',
       });
 
       try {
         const { data } = await offer.getPlainOffer(offerId);
         Object.assign(offerInfo, data);
       } catch (error) {
-        if (error.response.data?.statusCode === 404) router.push("/page-not-found");
+        if (error.response.data?.statusCode === 404)
+          router.push('/page-not-found');
 
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       } finally {
         setTimeout(() => {
           loading.close();
         }, 250);
       }
-    }
+    };
 
     onMounted(() => {
       if (route.name !== 'editOffer') setFormMode('create');

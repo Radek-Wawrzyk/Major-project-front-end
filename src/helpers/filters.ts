@@ -1,4 +1,4 @@
-import { AnyFilterObject } from "@/types/Filters"
+import { AnyFilterObject } from '@/types/Filters';
 
 const prepareParamsQuery = (filterObject: AnyFilterObject): string => {
   let finalQuery = {};
@@ -12,8 +12,8 @@ const prepareParamsQuery = (filterObject: AnyFilterObject): string => {
       finalQuery = {
         ...finalQuery,
         [key]: filterObject[key],
-      }
-    }    
+      };
+    }
   }
 
   if (Object.keys(finalQuery).length !== 0) {
@@ -21,8 +21,6 @@ const prepareParamsQuery = (filterObject: AnyFilterObject): string => {
   }
 
   return '';
-}
-
-export {
-  prepareParamsQuery,
 };
+
+export { prepareParamsQuery };

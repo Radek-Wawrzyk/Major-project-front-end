@@ -9,7 +9,6 @@
         {{ formatPrice(offer.price) }} (per month)
       </h2>
     </header>
-    
 
     <p class="offer-details__location">
       <span v-html="locationIcon" class="offer-details__location-icon" />
@@ -67,9 +66,7 @@
           Living area
         </p>
 
-        <p class="offer-details__list-value">
-          {{ offer.living_area }} (m2)
-        </p>
+        <p class="offer-details__list-value">{{ offer.living_area }} (m2)</p>
       </li>
 
       <li class="offer-details__list-item">
@@ -85,23 +82,17 @@
     </ul>
 
     <div class="offer-details__row">
-      <h3 class="offer-details__row-heading">
-        Description
-      </h3>
+      <h3 class="offer-details__row-heading">Description</h3>
 
       <p class="offer-details__description" v-html="offer.description" />
     </div>
 
     <div class="offer-details__row">
-      <h3 class="offer-details__row-heading">
-        Additional information
-      </h3>
+      <h3 class="offer-details__row-heading">Additional information</h3>
 
       <ul class="offer-details__list offer-details__list--additional">
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            Building Age
-          </p>
+          <p class="offer-details__list-label">Building Age</p>
 
           <p class="offer-details__list-value">
             {{ offer.building_age }}
@@ -109,9 +100,7 @@
         </li>
 
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            Parking Space
-          </p>
+          <p class="offer-details__list-label">Parking Space</p>
 
           <p class="offer-details__list-value">
             {{ offer.includes_parking_space ? 'Yes' : 'No' }}
@@ -119,9 +108,7 @@
         </li>
 
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            Television
-          </p>
+          <p class="offer-details__list-label">Television</p>
 
           <p class="offer-details__list-value">
             {{ offer.includes_tv ? 'Yes' : 'No' }}
@@ -129,9 +116,7 @@
         </li>
 
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            Garage
-          </p>
+          <p class="offer-details__list-label">Garage</p>
 
           <p class="offer-details__list-value">
             {{ offer.includes_garage ? 'Yes' : 'No' }}
@@ -139,9 +124,7 @@
         </li>
 
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            Parking Space
-          </p>
+          <p class="offer-details__list-label">Parking Space</p>
 
           <p class="offer-details__list-value">
             {{ offer.includes_garage ? 'Yes' : 'No' }}
@@ -149,9 +132,7 @@
         </li>
 
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            Lift
-          </p>
+          <p class="offer-details__list-label">Lift</p>
 
           <p class="offer-details__list-value">
             {{ offer.includes_lift ? 'Yes' : 'No' }}
@@ -159,9 +140,7 @@
         </li>
 
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            Air Conditioning
-          </p>
+          <p class="offer-details__list-label">Air Conditioning</p>
 
           <p class="offer-details__list-value">
             {{ offer.includes_air_conditioning ? 'Yes' : 'No' }}
@@ -169,9 +148,7 @@
         </li>
 
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            House Phone
-          </p>
+          <p class="offer-details__list-label">House Phone</p>
 
           <p class="offer-details__list-value">
             {{ offer.includes_house_phone ? 'Yes' : 'No' }}
@@ -179,9 +156,7 @@
         </li>
 
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            Balcony
-          </p>
+          <p class="offer-details__list-label">Balcony</p>
 
           <p class="offer-details__list-value">
             {{ offer.includes_balcony ? 'Yes' : 'No' }}
@@ -189,9 +164,7 @@
         </li>
 
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            Basement
-          </p>
+          <p class="offer-details__list-label">Basement</p>
 
           <p class="offer-details__list-value">
             {{ offer.includes_basement ? 'Yes' : 'No' }}
@@ -199,9 +172,7 @@
         </li>
 
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            Washing Machine
-          </p>
+          <p class="offer-details__list-label">Washing Machine</p>
 
           <p class="offer-details__list-value">
             {{ offer.includes_washing_machine ? 'Yes' : 'No' }}
@@ -209,9 +180,7 @@
         </li>
 
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            Smoke Detectors
-          </p>
+          <p class="offer-details__list-label">Smoke Detectors</p>
 
           <p class="offer-details__list-value">
             {{ offer.includes_smoke_detectors ? 'Yes' : 'No' }}
@@ -219,9 +188,7 @@
         </li>
 
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            No Smokers
-          </p>
+          <p class="offer-details__list-label">No Smokers</p>
 
           <p class="offer-details__list-value">
             {{ offer.rule_no_smokers ? 'Yes' : 'No' }}
@@ -229,9 +196,7 @@
         </li>
 
         <li class="offer-details__list-item">
-          <p class="offer-details__list-label">
-            No Animals
-          </p>
+          <p class="offer-details__list-label">No Animals</p>
 
           <p class="offer-details__list-value">
             {{ offer.rule_no_animals ? 'Yes' : 'No' }}
@@ -241,16 +206,14 @@
     </div>
 
     <div class="offer-details__row">
-      <h3 class="offer-details__row-heading">
-        Address
-      </h3>
+      <h3 class="offer-details__row-heading">Address</h3>
 
       <div class="offer-details__row-address">
         <span v-html="locationIcon" class="offer-details__row-address-icon" />
         {{ fullLocation }}
       </div>
 
-      <page-offer-map :address="fullLocation" :options="{ zoom: 14 }"/>
+      <page-offer-map :address="fullLocation" :options="{ zoom: 14 }" />
     </div>
   </section>
 </template>
@@ -285,7 +248,7 @@ export default defineComponent({
   },
   setup(props) {
     const fullLocation = computed(() => {
-      return `${props.offer.location_street}, ${props.offer.location_city}, ${props.offer.location_post_code}, ${props.offer.location_country}`
+      return `${props.offer.location_street}, ${props.offer.location_city}, ${props.offer.location_post_code}, ${props.offer.location_country}`;
     });
 
     return {

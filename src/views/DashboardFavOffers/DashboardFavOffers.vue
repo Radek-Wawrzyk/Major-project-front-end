@@ -8,14 +8,14 @@
           <el-table-column label="Image" width="60px">
             <template #default="scope">
               <figure class="dashboard-fav-offers__image">
-                <img 
+                <img
                   class="dashboard-fav-offers__image-inner"
                   alt=""
                   :src="getImagePath(getMainImage(scope.row.offer.photos))"
                   v-if="hasImages(scope.row.offer.photos)"
                 />
 
-                <img 
+                <img
                   class="dashboard-fav-offers__image-inner"
                   alt=""
                   src="@/assets/images/placeholder-photo.jpeg"
@@ -49,17 +49,17 @@
           <el-table-column label="Location" width="200px">
             <template #default="scope">
               <p class="dashboard-fav-offers__location">
-                {{ getFullLocation(scope.row.offer)}}
+                {{ getFullLocation(scope.row.offer) }}
               </p>
             </template>
           </el-table-column>
 
           <el-table-column label="Actions" width="120px">
             <template #default="scope">
-              <el-button 
-                type="danger" 
-                :icon="DeleteIcon" 
-                circle 
+              <el-button
+                type="danger"
+                :icon="DeleteIcon"
+                circle
                 @click="tryToDeleteOffer(scope.row.id)"
                 title="Delete offer from favorites list"
                 aria-label="Delete offer from favorites list"
@@ -70,8 +70,8 @@
       </el-card>
 
       <div class="dashboard-fav-offers__pagination" v-if="offersList.length">
-        <el-pagination 
-          layout="prev, pager, next" 
+        <el-pagination
+          layout="prev, pager, next"
           :total="totalCount"
           :page-count="totalPages"
           @current-change="setPage($event)"
@@ -124,18 +124,22 @@ export default defineComponent({
         activePage.value = page;
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       } finally {
         loading.value = false;
       }
-    }
+    };
 
     const setPage = (page: number): void => {
       searchFavOffers(page);
-    }
+    };
 
     const tryToDeleteOffer = async (questionId: number) => {
       try {
@@ -146,7 +150,7 @@ export default defineComponent({
             confirmButtonText: 'Delete',
             cancelButtonText: 'Cancel',
             type: 'warning',
-          }
+          },
         );
 
         deleteOffer(questionId);
@@ -158,7 +162,7 @@ export default defineComponent({
     const deleteOffer = async (offerId: number) => {
       try {
         await favQuestion.removeFavQuestion(offerId);
-        searchFavOffers(activePage.value)
+        searchFavOffers(activePage.value);
         userStore.removeFavoriteOffer(offerId);
 
         ElNotification({
@@ -168,9 +172,13 @@ export default defineComponent({
         });
       } catch (error) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
       }
     };
@@ -184,7 +192,7 @@ export default defineComponent({
     };
 
     const getFullLocation = (offer: Offer) => {
-     return `${offer.location_street}, ${offer.location_city}, ${offer.location_post_code}, ${offer.location_country}`
+      return `${offer.location_street}, ${offer.location_city}, ${offer.location_post_code}, ${offer.location_country}`;
     };
 
     onMounted(() => {
@@ -210,7 +218,6 @@ export default defineComponent({
     };
   },
 });
-
 </script>
 
 <style lang="scss" src="./DashboardFavOffers.scss" />

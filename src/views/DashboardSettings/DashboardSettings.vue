@@ -11,19 +11,15 @@
 
       <el-card class="dashboard-settings__card">
         <template v-slot:header>
-          <h2 class="dashboard-settings__card-heading">
-            Basic information
-          </h2>
+          <h2 class="dashboard-settings__card-heading">Basic information</h2>
         </template>
 
-        <dashboard-settings-account :user="user" /> 
+        <dashboard-settings-account :user="user" />
       </el-card>
 
       <el-card class="dashboard-settings__card">
         <template v-slot:header>
-          <h2 class="dashboard-settings__card-heading">
-            Change password
-          </h2>
+          <h2 class="dashboard-settings__card-heading">Change password</h2>
         </template>
 
         <dashboard-settings-password />
@@ -43,7 +39,7 @@ import { storeToRefs } from 'pinia';
 import DashboardHeader from '@/components/Dashboard/DashboardHeader/DashboardHeader.vue';
 import DashboardSettingsPassword from '@/components/Dashboard/DashboardSettingsPassword/DashboardSettingsPassword.vue';
 import DashboardSettingsAccount from '@/components/Dashboard/DashboardSettingsAccount/DashboardSettingsAccount.vue';
-import { default as userService} from '@/api/services/user';
+import { default as userService } from '@/api/services/user';
 
 export default defineComponent({
   name: 'DashboardSettings',
@@ -66,7 +62,7 @@ export default defineComponent({
             confirmButtonText: 'Delete',
             cancelButtonText: 'Cancel',
             type: 'warning',
-          }
+          },
         );
 
         await userService.deleteAccount();

@@ -1,4 +1,4 @@
-import { DashboardMenuItem, DropdownMenuItem } from "@/types/Navigation";
+import { DashboardMenuItem, DropdownMenuItem } from '@/types/Navigation';
 
 const dropdownMenu: DropdownMenuItem[] = [
   {
@@ -76,8 +76,4 @@ const dashboardMenu: DashboardMenuItem[] = [
   },
 ];
 
-export {
-  dashboardMenu,
-  dropdownMenu,
-  mobiledashboardMenu,
-};
+export { dashboardMenu, dropdownMenu, mobiledashboardMenu };

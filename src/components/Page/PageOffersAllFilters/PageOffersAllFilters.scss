@@ -15,7 +15,7 @@
       align-items: flex-end;
     }
   }
-  
+
   &__form {
     &-item {
       margin: 0 !important;
@@ -69,7 +69,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
     }
-    
+
     &__section {
       &-grid {
         grid-template-columns: repeat(3, 1fr);

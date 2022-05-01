@@ -1,13 +1,9 @@
 <template>
   <div class="auth-details">
     <header class="auth-details__header">
-      <h2 class="auth-details__header-title">
-        Sign up to the FindYourFlat
-      </h2>
+      <h2 class="auth-details__header-title">Sign up to the FindYourFlat</h2>
 
-      <p class="auth-details__header-text">
-        Please enter your details below.
-      </p>
+      <p class="auth-details__header-text">Please enter your details below.</p>
 
       <p class="auth-details__header-text">
         Already have an account?
@@ -98,7 +94,8 @@
           <p class="auth-details__form-register-info">
             By registering, I agree to
             <a href="#" class="auth-details__form-link">Minimal Terms</a>
-            of Service and <a href="#" class="auth-details__form-link">Privacy Policy.</a>
+            of Service and
+            <a href="#" class="auth-details__form-link">Privacy Policy.</a>
           </p>
         </el-form-item>
       </div>
@@ -107,7 +104,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref } from 'vue';
 import { string, object, number } from 'yup';
 import { useForm, useField } from 'vee-validate';
 import { useAuthStore } from '@/stores/auth';
@@ -124,8 +121,12 @@ export default defineComponent({
   setup() {
     const loading = ref<boolean>(false);
     const router: Router = useRouter();
-  
-    const { values: register, handleSubmit, errors } = useForm({
+
+    const {
+      values: register,
+      handleSubmit,
+      errors,
+    } = useForm({
       validationSchema: object({
         firstName: string().required().label('First name'),
         lastName: string().required().label('Last name'),
@@ -151,13 +152,15 @@ export default defineComponent({
     const authStore = useAuthStore();
     const redirectLogin = (): void => {
       router.push('/auth/login');
-    }
+    };
 
     const onSubmit = handleSubmit(async (registerDetails) => {
       loading.value = true;
 
       try {
-        const response: boolean = await authStore.signUp(registerDetails as AuthRegister);
+        const response: boolean = await authStore.signUp(
+          registerDetails as AuthRegister,
+        );
         if (response) {
           redirectLogin();
           ElNotification({
@@ -168,11 +171,14 @@ export default defineComponent({
         }
       } catch (error: AxiosError | any) {
         ElNotification({
-          title: `Error: ${error.response.data ? error.response.data.error : ''}`,
+          title: `Error: ${
+            error.response.data ? error.response.data.error : ''
+          }`,
           type: 'error',
-          message: `${error.response.data ? error.response.data.message : error}`,
+          message: `${
+            error.response.data ? error.response.data.message : error
+          }`,
         });
-        
       } finally {
         loading.value = false;
       }
@@ -185,5 +191,5 @@ export default defineComponent({
       loading,
     };
   },
-})
+});
 </script>
