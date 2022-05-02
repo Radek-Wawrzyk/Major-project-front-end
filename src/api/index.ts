@@ -1,8 +1,9 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { useAuthStore } from '@/stores/auth';
+import config from '@/config';
 
 const request: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: config.api.baseUrl,
   validateStatus: (status: number) => {
     return status >= 200 && status < 300;
   },
