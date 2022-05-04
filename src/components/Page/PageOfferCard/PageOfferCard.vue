@@ -84,7 +84,7 @@
         title="Go to the offer page"
         class="el-button el-button--primary el-button--large offer-card__details-mobile-link"
       >
-        {{ offer.name }}
+        Check offer
       </router-link>
     </div>
   </li>

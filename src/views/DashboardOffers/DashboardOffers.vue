@@ -176,7 +176,7 @@ export default defineComponent({
       try {
         await ElMessageBox.confirm(
           'You will permanently delete this offer! Continue?',
-          'Delete Question',
+          'Delete Offer',
           {
             confirmButtonText: 'Delete',
             cancelButtonText: 'Cancel',

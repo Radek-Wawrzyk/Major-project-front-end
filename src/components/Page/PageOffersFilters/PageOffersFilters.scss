@@ -40,7 +40,7 @@
 
   &__dialog {
     max-width: 1280px;
-    width: 100%;
+    width: 100% !important;
   }
 }
 
@@ -48,7 +48,7 @@
 @media screen and (max-width: 1280px) {
   .offers-filters {
     &__dialog {
-      width: 95%;
+      width: 95% !important;
     }
   }
 }
@@ -62,7 +62,7 @@
       height: 100%;
       overflow: auto;
       max-width: 100%;
-      width: 100%;
+      width: 100% !important;
     }
 
     &__form {

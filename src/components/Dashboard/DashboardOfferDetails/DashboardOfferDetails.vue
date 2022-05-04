@@ -445,7 +445,7 @@
       </section>
 
       <section
-        class="dashboard-offer-details__section dashboard-offer-details__section--actions"
+        class="dashboard-offer-details__section dashboard-offer-details__section--publish"
       >
         <h3 class="dashboard-offer-details__section-heading">
           Offer Publish status
