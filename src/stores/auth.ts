@@ -50,11 +50,9 @@ export const useAuthStore = defineStore({
       }
     },
 
-    async forgetPassword(
-      forgetPasswordDetails: AuthForgetPassword,
-    ): Promise<boolean> {
+    async forgetPassword(email: string): Promise<boolean> {
       try {
-        await auth.forgotPassword(forgetPasswordDetails);
+        await auth.forgotPassword(email);
         return true;
       } catch (error) {
         throw error;

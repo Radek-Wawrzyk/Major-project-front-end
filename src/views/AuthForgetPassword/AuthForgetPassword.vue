@@ -35,33 +35,6 @@
       </div>
 
       <div class="auth-details__form-field">
-        <el-form-item label="Password" :error="errors.password">
-          <el-input
-            v-model="forgetPassword.password"
-            type="password"
-            autocomplete="off"
-            placeholder="Str@ngPassW@r1"
-            show-password
-          />
-        </el-form-item>
-      </div>
-
-      <div class="auth-details__form-field">
-        <el-form-item
-          label="Repeat password"
-          :error="errors.passwordConfirmation"
-        >
-          <el-input
-            v-model="forgetPassword.passwordConfirmation"
-            type="password"
-            autocomplete="off"
-            placeholder="Repeat Str@ngPassW@r1"
-            show-password
-          />
-        </el-form-item>
-      </div>
-
-      <div class="auth-details__form-field">
         <el-form-item>
           <el-button
             type="primary"
@@ -132,14 +105,11 @@ export default defineComponent({
       router.push('/auth/login');
     };
 
-    const onSubmit = handleSubmit(async ({ password, email }) => {
+    const onSubmit = handleSubmit(async ({ email }) => {
       loading.value = true;
 
       try {
-        const response = await authStore.forgetPassword({
-          password,
-          email,
-        } as AuthForgetPassword);
+        const response = await authStore.forgetPassword(email);
         if (response) {
           redirectLogin();
           ElNotification({

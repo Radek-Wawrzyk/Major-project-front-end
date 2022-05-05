@@ -24,11 +24,8 @@ export default {
     });
   },
 
-  forgotPassword(forgetPasswordDetails: AuthForgetPassword) {
-    return request.post('/auth/forgot-password', {
-      email: forgetPasswordDetails.email,
-      password: forgetPasswordDetails.password,
-    });
+  forgotPassword(email: string) {
+    return request.post('/auth/forgot-password', email);
   },
 
   resetPassword(resetPasswordDetails: AuthResetPassword) {
