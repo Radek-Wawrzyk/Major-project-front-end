@@ -5,6 +5,13 @@ body {
         display: none;
       }
     }
+
+    &__inner {
+      &[type='number'] {
+        -moz-appearance:textfield;
+      }
+
+    }
   }
 }
 

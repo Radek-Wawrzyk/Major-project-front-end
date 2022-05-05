@@ -90,10 +90,10 @@ export default defineComponent({
       (value) => {
         const { order, field }: { order: string; field: string } = value;
 
-        sortingParams.value = {
+        searchOffers({
           sortingOrder: order,
           sortingField: field,
-        };
+        });
       },
     );
 
@@ -101,6 +101,7 @@ export default defineComponent({
       searchOffers({ page });
     };
     const setParamsToLink = (params: FiltrationDetails): void => {
+      console.log(params);
       router.push({
         path: '',
         query: {

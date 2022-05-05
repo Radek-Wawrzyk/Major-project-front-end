@@ -401,7 +401,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, PropType, watch } from 'vue';
+import { defineComponent, reactive, PropType, watch, onMounted } from 'vue';
 import { AllOfferFilters } from '@/types/Filters';
 import { buildingTypes, buildingAges, rooms, floors } from '@/data/filters';
 
@@ -412,6 +412,11 @@ export default defineComponent({
     filters: {
       type: Object as PropType<AllOfferFilters>,
       required: true,
+    },
+    isVisible: {
+      type: Boolean as PropType<boolean>,
+      required: false,
+      default: () => true,
     },
   },
   setup(props, { emit }) {
@@ -442,6 +447,12 @@ export default defineComponent({
 
     watch(props.filters, () => {
       Object.assign(filters, props.filters);
+    }, { deep: true });
+
+    watch(() => props.isVisible, () => {
+      if (!props.isVisible) {
+        onClose();
+      }
     });
 
     const onSubmit = () => {
@@ -455,6 +466,10 @@ export default defineComponent({
         filters,
       });
     };
+
+    onMounted(() => {
+      Object.assign(filters, props.filters);
+    });
 
     return {
       filters,

@@ -61,7 +61,7 @@
             to="/auth/forgot-password"
             class="auth-details__form-link"
           >
-            Forgot assword?
+            Forgot password?
           </router-link>
         </el-form-item>
       </div>

@@ -73,7 +73,6 @@
           type="number"
           autocomplete="off"
           placeholder="0"
-          clearable
         />
 
         <span class="offers-filters__form-decorator"> m2 </span>
@@ -125,6 +124,7 @@
           @filter="filter($event)"
           @close="onClose($event)"
           :filters="dialogFilters"
+          :is-visible="dialogVisible"
         />
       </el-dialog>
     </teleport>

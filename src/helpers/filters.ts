@@ -16,7 +16,9 @@ const prepareParamsQuery = (filterObject: AnyFilterObject): string => {
     }
   }
 
-  if (Object.keys(finalQuery).length !== 0) {
+  const emtyFilters = Object.values(finalQuery).every(key => key === undefined);
+
+  if (Object.keys(finalQuery).length !== 0 && !emtyFilters) {
     return new URLSearchParams(finalQuery).toString();
   }
 
